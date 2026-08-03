@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="overflow-x-hidden">
+    <div class="w-full min-h-screen relative bg-gray-50">
+
+
+        <div class="relative z-10 ">
+
+            <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
+                <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+                    <div class="menubtn">
+                        <i class="ri-menu-fill text-2xl"></i>
+                    </div>
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <!-- notification k ley route bnana h -->
+                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                    </a>
+                    <div class="flex items-center gap-2">
+                        <img class="h-10 w-11 rounded-full"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
+                            alt="">
+                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                    </div>
+                </div>
+            </nav>
+            <!-- *********** FOr the menu list div ********-->
+            <div
+                class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4 overflow-y-auto">
+
+                <div class="flex items-center ">
+                    <img class="h-8"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                        alt="">
+                    <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+                </div>
+
+                <div class="cross flex justify-end mb-3">
+                    <i
+                        class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+                </div>
+                <div class="list">
+                    <ul class=" space-y-3">
+                        <!-- yha pee user dashboard menu link attach krne h -->
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer bg-blue-100 text-blue-600 mb-1">
+                            <a href="">
+                                <i class="ri-home-3-line text-xl"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                            <a href="">
+                                <i class="ri-group-line text-xl"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-file-add-line text-xl"></i>
+                                <span>Post a Job</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-briefcase-4-line text-xl"></i>
+                                <span>Jobs Posts</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-team-line text-xl"></i>
+                                <span>Applicants</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-file-list-3-line text-xl"></i>
+                                <span>Applications</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-bookmark-line text-xl"></i>
+                                <span>Saved Candidates</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-chat-3-line text-xl"></i>
+                                <span>Messages</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-logout-box-r-line text-xl"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
+
+            <!-- ***************text over picture************* -->
+
+            <div class="textcontainer  px-6 sm:px-8 lg:px-12 py-2 pt-32 pb-10  transition-all duration-300">
+                <div class="welcome mb-8">
+                    <h4 class="text-3xl sm:text-4xl lg:text-5xl mt-2 font-bold">Welcome back, <span
+                            class="text-blue-600">TechNova Solutions</span>!</h4>
+                    <p class="text-base sm:text-lg lg:text-xl mt-3 text-gray-700">Here's an overview of your hiring
+                        activity.</p>
+                </div>
+                <!-- ************************CARDS ******************* -->
+                <div class="routetext  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <!-- *********************** -->
+                    <div
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
+
+                        <div class=" flex items-center gap-4">
+                            <div
+                                class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="ri-briefcase-4-line text-2xl lg:text-3xl text-blue-500"></i>
+                            </div>
+                            <div class="maintext">
+                                <h2 class="text-xl text-gray-500">Active Job Post</h2>
+                                <p class="text-4xl font-bold mt-1">12</p>
+                            </div>
+                        </div>
+                        <div class="routetag mt-3 ">
+                            <a href="" class="text-base font-medium text-blue-600 block text-center">
+                                View all jobs
+
+                            </a>
+
+                        </div>
+                    </div>
+
+
+                    <!-- ******************** -->
+                    <div
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
+
+                        <div class=" flex items-center gap-4">
+                            <div
+                                class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-green-200 flex items-center justify-center">
+                                <i class="ri-group-line text-2xl lg:text-3xl text-green-600"></i>
+                            </div>
+                            <div class="maintext">
+                                <h2 class="text-xl text-gray-500">Total Applicants</h2>
+                                <p class="text-4xl font-bold mt-1">138</p>
+                            </div>
+                        </div>
+                        <div class="routetag mt-3 ">
+                            <a href="" class="text-base font-medium text-blue-600 block text-center">
+                                View all applicants</a>
+
+                        </div>
+                    </div>
+
+                    <!-- *************** -->
+                    <div
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
+
+                        <div class=" flex items-center gap-4">
+                            <div
+                                class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-purple-300 flex items-center justify-center">
+                                <i class="ri-eye-line text-2xl lg:text-3xl text-purple-800"></i>
+                            </div>
+                            <div class="maintext">
+                                <h2 class="text-xl text-gray-500">Profile Views</h2>
+                                <p class="text-4xl font-bold mt-1">239</p>
+                            </div>
+                        </div>
+                        <div class="routetag mt-3 ">
+                            <a href="" class="text-base font-medium text-blue-600 block text-center">
+                                View analytics</a>
+
+                        </div>
+                    </div>
+
+                    <!-- *********************** -->
+                    <div
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
+
+                        <div class=" flex items-center gap-4">
+                            <div
+                                class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-orange-200 flex items-center justify-center">
+                                <i class="ri-bookmark-3-line text-2xl lg:text-3xl text-orange-500"></i>
+                            </div>
+                            <div class="maintext">
+                                <h2 class="text-xl text-gray-500">Shortlisted</h2>
+                                <p class="text-4xl font-bold mt-1">23</p>
+                            </div>
+                        </div>
+                        <div class="routetag mt-3">
+                            <a href="" class="text-base font-medium text-blue-600 block text-center">
+                                View shortlisted</a>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="tables grid grid-cols-1 xl:grid-cols-2 gap-6 px-6 pb-10 ">
+                <div class="companies bg-white rounded-3xl shadow-xl p-6 mt-6 min-h-[420px]  overflow-hidden">
+
+                    <div class="heading flex items-center justify-between mb-6 ">
+                        <h2 class="text-xl font-semibold">Recent Job Posts</h2>
+                        <a href="" class="text-blue-600 font-medium hover:underline text-lg">View All</a>
+                    </div>
+                    <div class="overflow-x-auto">
+
+                        <table class="w-full min-w-[950px]">
+
+                            <thead class="bg-gray-50 border-b">
+                                <tr>
+
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Title</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Applicants</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Posted On</th>
+                                    <th class="text-center px-6 py-4 text-sm font-semibold text-gray-600">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <!-- Row 1 -->
+                                <tr class="border-b hover:bg-gray-50 transition">
+
+
+                                    <td class="px-6 py-5 font-medium">Frontend Developer</td>
+
+                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
+
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                            Active
+                                        </span>
+                                    </td>
+
+                                    <td class="px-6 py-5 text-gray-600">
+                                        12 May 2026
+                                    </td>
+
+                                    <td class="px-6 py-5">
+                                        <div class="flex justify-center gap-2">
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
+                                                <i class="ri-eye-line"></i>
+                                            </button>
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
+                                                <i class="ri-pencil-line"></i>
+                                            </button>
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
+                                                <i class="ri-delete-bin-6-line"></i>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 2 -->
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-5 font-medium">Backend Developer</td>
+
+                                    <td class="px-6 py-5 text-gray-600 font-medium">13</td>
+
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                            Pending
+                                        </span>
+                                    </td>
+
+                                    <td class="px-6 py-5 text-gray-600">
+                                        10 May 2026
+                                    </td>
+
+                                    <td class="px-6 py-5">
+                                        <div class="flex justify-center gap-2">
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
+                                                <i class="ri-eye-line"></i>
+                                            </button>
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
+                                                <i class="ri-pencil-line"></i>
+                                            </button>
+
+                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
+                                                <i class="ri-delete-bin-6-line"></i>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 -->
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-5 font-medium">UI/UX Designer</td>
+                                    <td class="px-6 py-5 text-gray-600 font-medium">20</td>
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                            Expired
+                                        </span>
+                                    </td>
+
+                                    <td class="px-6 py-5 text-gray-600">
+                                        07 May 2026
+                                    </td>
+
+                                    <td class="px-6 py-5">
+                                        <div class="flex justify-center gap-2">
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
+                                                <i class="ri-eye-line"></i>
+                                            </button>
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
+                                                <i class="ri-pencil-line"></i>
+                                            </button>
+
+                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
+                                                <i class="ri-delete-bin-6-line"></i>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <!-- Row 4 -->
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-5 font-medium">Data Analyst</td>
+                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
+
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                            Active
+                                        </span>
+                                    </td>
+
+                                    <td class="px-6 py-5 text-gray-600">
+                                        08 May 2026
+                                    </td>
+
+                                    <td class="px-6 py-5">
+                                        <div class="flex justify-center gap-2">
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
+                                                <i class="ri-eye-line"></i>
+                                            </button>
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
+                                                <i class="ri-pencil-line"></i>
+                                            </button>
+
+                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
+                                                <i class="ri-delete-bin-6-line"></i>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 5 -->
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="px-6 py-5 font-medium">HR Executive</td>
+                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
+
+                                    <td class="px-6 py-5">
+                                        <span
+                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                            Pending
+                                        </span>
+                                    </td>
+
+                                    <td class="px-6 py-5 text-gray-600">
+                                        12 May 2026
+                                    </td>
+
+                                    <td class="px-6 py-5">
+                                        <div class="flex justify-center gap-2">
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
+                                                <i class="ri-eye-line"></i>
+                                            </button>
+
+                                            <button
+                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
+                                                <i class="ri-pencil-line"></i>
+                                            </button>
+
+                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
+                                                <i class="ri-delete-bin-6-line"></i>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- *******************RECENT Applicants **************** -->
+
+                <div class="users bg-white rounded-3xl shadow-xl p-6 mt-6 min-h-[420px]">
+
+                    <!-- Heading -->
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold">Recent Applicants</h2>
+                        <a href="" class="text-blue-600 font-medium hover:underline">View All</a>
+                    </div>
+
+                    <!-- Applicant 1 -->
+                    <div class="flex justify-between items-center py-4 border-b">
+                        <div class="flex items-center gap-3">
+                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+
+                            <div>
+                                <h3 class="font-medium">Anshul Goyal</h3>
+                                <p class="text-gray-500 text-sm">Frontend Developer</p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-500">12 May 2026</p>
+
+                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">
+                            New
+                        </span>
+                    </div>
+
+                    <!-- Applicant 2 -->
+                    <div class="flex justify-between items-center py-4 border-b">
+                        <div class="flex items-center gap-3">
+                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+
+                            <div>
+                                <h3 class="font-medium">Riya Sharma</h3>
+                                <p class="text-gray-500 text-sm">UI/UX Designer</p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-500">11 May 2026</p>
+
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
+                            Shortlisted
+                        </span>
+                    </div>
+
+                    <!-- Applicant 3 -->
+                    <div class="flex justify-between items-center py-4 border-b">
+                        <div class="flex items-center gap-3">
+                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+
+                            <div>
+                                <h3 class="font-medium">Mohit Verma</h3>
+                                <p class="text-gray-500 text-sm">Backend Developer</p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-500">10 May 2026</p>
+
+                        <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">
+                            Reviewing
+                        </span>
+                    </div>
+
+                    <!-- Applicant 4 -->
+                    <div class="flex justify-between items-center py-4 border-b">
+                        <div class="flex items-center gap-3">
+                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+
+                            <div>
+                                <h3 class="font-medium">Mahi Sharma</h3>
+                                <p class="text-gray-500 text-sm">Data Analyst</p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-500">13 May 2026</p>
+
+                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm text-nowrap">
+                            New
+                        </span>
+                    </div>
+
+                    <!-- Applicant 5 -->
+                    <div class="flex justify-between items-center py-4">
+                        <div class="flex items-center gap-3">
+                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+
+                            <div>
+                                <h3 class="font-medium">Kunal Garg</h3>
+                                <p class="text-gray-500 text-sm">Backend Developer</p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-500">8 May 2026</p>
+
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
+                            Shortlisted
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+      <script>
+        let menubtn = document.querySelector(".menubtn");
+        let sidebar = document.querySelector(".sidebar");
+        let cross = document.querySelector(".cross");
+        let overlay = document.querySelector(".overlay")
+
+        menubtn.addEventListener("click", () => {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        cross.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full")
+            overlay.classList.add("hidden");
+
+        })
+
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        })
+
+    </script>
+</body>
+
+</html>

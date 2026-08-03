@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="overflow-x-hidden">
+    <div class="w-full min-h-screen relative">
+        <div class="w-full min-h-screen relative bg-cover bg-center bg-no-repeat  inset-0"
+            style="background-image: url('/public/images/WhatsApp\ Image\ 2026-07-09\ at\ 3.40.54\ PM.jpeg');">
+
+            <div class="absolute inset-0 bg-white/80"></div>
+            <div class="relative z-10 pt-24 ">
+
+                <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
+                <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+                    <div class="menubtn">
+                        <i class="ri-menu-fill text-2xl"></i>
+                    </div>
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">My Profile</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <!-- notification k ley route bnana h -->
+                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                    </a>
+                    <div class="flex items-center gap-2">
+                        <img class="h-10 w-11 rounded-full"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
+                            alt="">
+                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                    </div>
+                </div>
+            </nav>
+            <!-- *********** FOr the menu list div ********-->
+               <div
+                class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4">
+
+                <div class="flex items-center ">
+                    <img class="h-8"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                        alt="">
+                    <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+                </div>
+                <div class="cross flex justify-end ">
+                    <i
+                        class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+                </div>
+                    <div class="list">
+                    <ul class=" space-y-3">
+                        <!-- yha pee user dashboard menu link attach krne h -->
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1 mt-1">
+                            <a href="">
+                                <i class="ri-home-3-line text-xl"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                            <a href="">
+                                <i class="ri-file-list-3-line text-xl"></i>
+                                <span>My Applications</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600 ">
+                            <a href="">
+                                <i class="ri-user-3-line text-xl"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-edit-2-line text-xl"></i>
+                                <span>Edit Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-logout-box-r-line text-xl"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+                </div>
+
+            <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
+
+
+                <div class=" px-4 max-w-5xl mx-auto pb-12">
+                    <h2 class="text-4xl font-bold mb-2">Edit Profile</h2>
+                    <p class="text-gray-700 text-xl mb-5">Update your personal information</p>
+
+                    <div class="bg-white shadow-2xl rounded-3xl p-8 mt-6 pb-12">
+
+                        <div>
+                            <h2 class="text-xl font-semibold">Profile Pic</h2>
+
+                            <div class="flex items-center gap-8 mt-8 pb-8 border-b border-gray-200">
+
+                                <!-- Preview -->
+                                <div id="previewBox"
+                                    class="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden bg-gray-50">
+
+                                    <i id="uploadIcon" class="ri-image-add-line text-4xl text-gray-400"></i>
+
+                                    <img id="logoPreview" src="" class="hidden w-full h-full object-cover">
+
+                                </div>
+
+                                <div>
+
+                                    <!-- Hidden Input -->
+                                    <input type="file" id="logoInput" accept="image/*" class="hidden" name="profileImage">
+
+                                    <button type="button" id="uploadBtn"
+                                        onclick="document.getElementById('logoInput').click()"
+                                        class="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+
+                                        <i class="ri-upload-cloud-2-line"></i>
+
+                                        <span id="btnText">Upload Profile Pic</span>
+
+                                    </button>
+
+                                    <p class="text-sm text-gray-500 mt-2">
+                                        PNG, JPG • Max 2 MB
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- ********************************* -->
+                      <form action="">
+                            <div class="grid grid-cols-1 md:grid-cols-2 mt-6 gap-6">
+                                <div class="label1">
+                                    <label class="text-lg font-medium mb-2 block">Full Name</label>
+                                    <input
+                                        class=" w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="text" placeholder="Enter Your Full Name" name="fullname">
+                                </div>
+
+                                <div class="label2">
+                                    <label class="text-lg font-medium mb-2 block">Username</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="text" placeholder="Enter Your Username" name="username">
+                                </div>
+
+                                <div class="label3">
+                                    <label class="text-lg font-medium mb-2 block">Email</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="email" placeholder="Enter Your Email" name="email">
+                                </div>
+
+                                <div class="label4">
+                                    <label class="text-lg font-medium mb-2 block" for="">Mobile Number</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="tel" placeholder="Enter Your Mobile Number" name="mobile">
+                                </div>
+
+                                <div class="label5">
+                                    <label class="text-lg font-medium mb-2 block " for=""> Date of Birth</label>
+                                    <input
+                                        class="text-gray-500  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="date" name="dob">
+
+                                </div>
+
+                                <div class="label6">
+                                    <label class="text-lg font-medium mb-2 block" for="">Gender</label>
+                                    <select name="gender" id=""
+                                        class="sm:w-4/5 w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 text-gray-500">
+                                        <option value="" selected disabled>Select your gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="label7">
+                                    <label class="text-lg font-medium mb-2 block" for="">Address</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="text" placeholder="Enter Your Address" name="address">
+                                </div>
+
+                                <div class="label8">
+                                    <label class="text-lg font-medium mb-2 block" for="">City</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="text" placeholder="Enter Your City" name="city">
+
+                                </div>
+
+                                <div class="label9">
+                                    <label class="text-lg font-medium mb-2 block" for="">State</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="text" placeholder="Enter Your State" name="state">
+                                </div>
+
+                                <div class="label10">
+                                    <label class="text-lg font-medium mb-2 block" for="">Pincode</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="number" placeholder="Enter Your Pincode" name="pincode">
+                                </div>
+
+                                <div>
+                                    <label class="text-lg font-medium mb-2 block" for="">Skills</label>
+                                    <input
+                                        class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="text" placeholder="e.g. HTML, CSS, JavaScript, Node.js" name="skills">
+                                </div>
+
+                                <div>
+                                    <label class="text-lg font-medium mb-2 block" for="">Resume</label>
+                                    <input
+                                        class="text-gray-500  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                                        type="file" name="resume">
+                                </div>
+                            </div>
+
+
+
+                            <div class="flex justify-end gap-4 mt-8">
+                                <button type="button"
+                                    class="px-6 py-3 rounded-xl border border-gray-300 hover:bg-gray-100">
+                                    Cancel
+                                </button>
+
+                                <button type="submit"
+                                    class="px-6 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700">
+                                    Save Changes
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        <script>
+                let menubtn = document.querySelector(".menubtn");
+                let sidebar = document.querySelector(".sidebar");
+                let cross = document.querySelector(".cross");
+                let overlay = document.querySelector(".overlay")
+
+
+
+                const input = document.getElementById("logoInput");
+                const preview = document.getElementById("logoPreview");
+                const icon = document.getElementById("uploadIcon");
+                const btnText = document.getElementById("btnText");
+
+                input.addEventListener("change", function () {
+
+                    const file = this.files[0];
+
+                    if (file) {
+
+                        preview.src = URL.createObjectURL(file);
+
+                        preview.classList.remove("hidden");
+
+                        icon.classList.add("hidden");
+
+                        btnText.textContent = "Change Profile Pic";
+
+                    }
+
+                });
+
+
+
+                menubtn.addEventListener("click", () => {
+                    sidebar.classList.remove("-translate-x-full");
+                    overlay.classList.remove("hidden");
+                });
+
+                cross.addEventListener("click", () => {
+                    sidebar.classList.add("-translate-x-full")
+                    overlay.classList.add("hidden");
+
+                })
+
+                overlay.addEventListener("click", () => {
+                    sidebar.classList.add("-translate-x-full");
+                    overlay.classList.add("hidden");
+                })
+
+            </script>
+</body>
+
+</html>

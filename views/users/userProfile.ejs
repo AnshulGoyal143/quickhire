@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="overflow-x-hidden">
+    <div class="w-full min-h-screen relative bg-gray-50">
+
+
+        <div class="relative  z-10 pb-20 pt-20">
+
+
+            <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0 z-30">
+                <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+                    <div class="menubtn">
+                        <i class="ri-menu-fill text-2xl"></i>
+                    </div>
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <!-- notification k ley route bnana h -->
+                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                    </a>
+                    <div class="flex items-center gap-2">
+                        <img class="h-10 w-11 rounded-full"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
+                            alt="">
+                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                    </div>
+                </div>
+            </nav>
+            <!-- *********** FOr the menu list div ********-->
+            <div
+                class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4">
+
+                <div class="flex items-center ">
+                    <img class="h-8"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                        alt="">
+                    <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+                </div>
+                <div class="cross flex justify-end ">
+                    <i
+                        class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+                </div>
+                 <div class="list">
+                    <ul class=" space-y-3">
+                        <!-- yha pee user dashboard menu link attach krne h -->
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1 mt-1">
+                            <a href="">
+                                <i class="ri-home-3-line text-xl"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                            <a href="">
+                                <i class="ri-file-list-3-line text-xl"></i>
+                                <span>My Applications</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600 ">
+                            <a href="">
+                                <i class="ri-user-3-line text-xl"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-edit-2-line text-xl"></i>
+                                <span>Edit Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-logout-box-r-line text-xl"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
+
+            <!-- ***************text over picture************* -->
+            <div class="  px-6 sm:px-8 lg:px-12  pb-10  transition-all duration-300">
+
+                <h2 class="md:text-4xl text-3xl  font-bold ">My Profile</h2>
+                <p class="text-gray-700 mt-2 text-xl mb-5">View and Manage your profile information</p>
+
+
+                <div
+                    class="card bg-white rounded-3xl shadow-xl hover:shadow-2xl  p-8 md:p-8 transition-all duration-300 mt-10 flex flex-col md:flex-row  items-center gap-6">
+                    <div class="circle h-24 w-24 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="ri-user-line text-4xl text-blue-500"></i>
+                    </div>
+                    <div class="text md:text-left flex-1">
+                        <h2 class="text-2xl font-bold text-gray-800">Anshul Goyal </h2>
+                        <p class="text-blue-600 font-medium mt-1">Job Seeker</p>
+                        <p class="flex items-center  mt-2 gap-2 text-gray-700">
+                            <i class="ri-mail-line"></i>
+                            <span>Anshulgoyal@gmail.com</span>
+                        </p>
+                        <p class="flex items-center gap-2 mt-1 text-gray-700">
+                            <i class="ri-map-pin-line "></i>
+                            <span>Faridabad, Haryana</span>
+                        </p>
+                        <div class="flex items-center justify-center md:justify-end mt-2  ">
+                            <a href="/users/edit-profile"
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 w-full md:w-auto inline-flex items-center gap-2">
+                                <i class="ri-edit-line"></i>
+                                Edit Profile
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- *******************PERSONAL INFO AND ACCOUNT INFOOOO -->
+            <div class="px-6 sm:px-8 lg:px-12  mt-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="personal-info bg-white rounded-3xl shadow-xl p-6   ">
+
+                        <h2 class="text-2xl border-b pb-4 font-medium ">Personal information</h2>
+
+                        <div class="space-y-5 mt-5">
+                            <h5 class="text-gray-700 text-xl ">Username
+                                <span>:</span>
+                                <span class="font-semibold">anshul123</span>
+                            </h5>
+                            <h5 class="text-gray-700 text-xl ">Date of Birth
+                                <span>:</span>
+                                <span class="font-semibold">20 july 2005</span>
+                            </h5>
+                            <h5 class="text-gray-700 text-xl ">Gender
+                                <span>:</span>
+                                <span class="font-semibold">Female</span>
+                            </h5>
+                            <h5 class="text-gray-700 text-xl ">Address
+                                <span>:</span>
+                                <span class="font-semibold">sector 12,Faridabad,Haryana</span>
+                            </h5>
+                        </div>
+
+                    </div>
+                    <div class="account-info bg-white rounded-3xl shadow-xl p-6  ">
+                        <h2 class="text-2xl border-b font-medium pb-4">Account information</h2>
+
+                        <div class="space-y-5 mt-6">
+                            <h5 class="text-gray-700 text-xl mt-2 ">Account Type
+                                <span>:</span>
+                                <span class="font-semibold">User</span>
+                            </h5>
+
+                            <h5 class="text-gray-700 text-xl mt-2">Member Since
+                                <span>:</span>
+                                <span class="font-semibold">18 July 2026</span>
+                            </h5>
+                            <h5 class="text-gray-700 text-xl mt-2">Applications Applied
+                                <span>:</span>
+                                <span class="font-semibold">12</span>
+                            </h5>
+                            <h5 class="text-gray-700 text-xl mt-2">Account Status
+                                <span>:</span>
+                                <span
+                                    class=" text-green-700 bg-green-100 px-3 py-2 rounded-full text-lg font-semibold">Active</span>
+
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- **************** JOB APPLICATION REPORT *************** -->
+           <div class="px-6 sm:px-8 lg:px-12">
+             <div class="jobapplication bg-white rounded-3xl shadow-xl p-6 mt-12   overflow-hidden ">
+
+                <div class="heading flex items-center justify-between mb-6 ">
+                    <h2 class="text-xl">Recent Applications</h2>
+                    <a href="" class="text-blue-600 font-medium hover:underline text-lg">View All</a>
+                </div>
+                <div class="tables overflow-x-auto">
+                    <table class="w-full min-w-[950px]">
+                        <!-- heading********** -->
+                        <thead class="bg-gray-50 border-b">
+                            <tr>
+                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Company</th>
+                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Role</th>
+                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Applied On</th>
+                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
+                            </tr>
+                        </thead>
+                        <!-- *****data********* -->
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50 transition">
+                                <td class="px-6 py-5 font-medium">Google</td>
+                                <td class="px-6 py-5 text-gray-600">Frontend Developer</td>
+                                <td class="px-6 py-5 text-gray-600">12 May 2026</td>
+                                <td class="py-5 px-6">
+                                    <span
+                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">In
+                                        Review</span>
+                                </td>
+                            </tr>
+
+                            <tr class="border-b hover:bg-gray-50 transition">
+                                <td class="px-6 py-5 font-medium">Infosis</td>
+                                <td class="px-6 py-5 text-gray-600">Software Engineer</td>
+                                <td class="px-6 py-5 text-gray-600">10 May 2026</td>
+                                <td class="py-5 px-6">
+                                    <span
+                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Shortlisted</span>
+                                </td>
+                            </tr>
+
+                            <tr class="border-b hover:bg-gray-50 transition">
+                                <td class="px-6 py-5 font-medium">Wipro</td>
+                                <td class="px-6 py-5 text-gray-600">Backend Developer</td>
+                                <td class="px-6 py-5 text-gray-600">7 May 2026</td>
+                                <td class="py-5 px-6">
+                                    <span
+                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold ">Rejected</span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+
+
+            </div>
+           </div>
+        </div>
+
+    </div>    
+        <script>
+            let menubtn = document.querySelector(".menubtn");
+            let sidebar = document.querySelector(".sidebar");
+            let cross = document.querySelector(".cross");
+            let overlay = document.querySelector(".overlay")
+
+            menubtn.addEventListener("click", () => {
+                sidebar.classList.remove("-translate-x-full");
+                overlay.classList.remove("hidden");
+            });
+
+            cross.addEventListener("click", () => {
+                sidebar.classList.add("-translate-x-full")
+                overlay.classList.add("hidden");
+
+            })
+
+            overlay.addEventListener("click", () => {
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("hidden");
+            })
+
+        </script>
+</body>
+
+</html>

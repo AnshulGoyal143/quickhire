@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100 ">
+    <div class="w-full min-h-screen relative bg-cover bg-center bg-no-repeat  inset-0 flex items-center justify-center"
+        style="background-image: url('/images/WhatsApp\ Image\ 2026-07-09\ at\ 3.40.54\ PM.jpeg');">
+
+        <div class="absolute inset-0 bg-white/80"></div>
+
+        <div class="maincontainer min-h-screen flex items-center justify-center p-8 flex-col absolute z-50">
+
+
+            <div
+                class="formbox bg-white rounded-3xl shadow-2xl w-full max-w-[700px] h-auto  overflow-hidden p-5 sm:p-8 md:p-10 ">
+
+                <div
+                    class=" slider flex bg-gradient-to-br from-blue-600 to-cyan-400 text-white  flex flex-col items-center justify-center text-center px-4 py-6 sm:py-8 rounded-2xl">
+                    <div class="flex items-center justify-center gap-1">
+                        <img class="h-8 sm:h-10 md:h-12"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                            alt="">
+                        <h5 class="text-2xl sm:text-3xl md:text-4xl font-semibold">Quick <span
+                                class="text-yellow-300">Hire</span></h5>
+                    </div>
+
+                    <h2 class="text-sm sm:text-lg md:text-xl mt-3 text-center px-2">Find your dream job. Build your
+                        future</h2>
+                </div>
+
+                <form action="/users/login" class="formfill flex flex-col gap-4 items-center" method="post">
+                    <h1 class="text-3xl font-bold text-gray-800 mt-5">Welcome Back!</h1>
+                    <p class="text-gray-500 mb-2">Login to your account</p>
+                    <input
+                        class="sm:w-4/5 w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                        type="text" placeholder="Email" name="email" >
+                    <input
+                        class="sm:w-4/5 w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                        type="password" placeholder="password" name="password">
+                    <input
+                        class="bg-blue-600 sm:w-4/5 w-full hover:bg-blue-700 text-white py-3 font-semibold transition cursor-pointer rounded-xl"
+                        type="submit" value="Sign In" class="sub">
+                    <p class="text-center text-gray-500 my-2">or continue with</p>
+                    <button
+                        class="sm:w-4/5 w-full border border-gray-300 rounded-xl py-3 flex items-center justify-center gap-3 hover:bg-gray-100 transition cursor-pointer">
+                        <img class="h-7" src="https://img.icons8.com/?size=96&id=17949&format=png" alt="">
+                        <span class="font-medium">Continue with Google</span>
+                    </button>
+
+                    <h2 class="text-gray-800 text-center">Don't have an account?
+                        <a href="/users/register"><span class="text-blue-600 font-semibold">Create
+                                Account</span></a>
+                    </h2>
+                </form>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+

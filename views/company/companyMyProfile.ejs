@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="overflow-x-hidden">
+    <div class="w-full min-h-screen relative bg-gray-50">
+
+
+        <div class="relative  z-10 pb-20 pt-20">
+
+
+            <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0 z-30">
+                <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+                    <div class="menubtn">
+                        <i class="ri-menu-fill text-2xl"></i>
+                    </div>
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <!-- notification k ley route bnana h -->
+                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                    </a>
+                    <div class="flex items-center gap-2">
+                        <img class="h-10 w-11 rounded-full"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
+                            alt="">
+                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                    </div>
+                </div>
+            </nav>
+            <!-- *********** FOr the menu list div ********-->
+            <div
+                class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4 overflow-y-auto">
+
+                <div class="flex items-center ">
+                    <img class="h-8"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                        alt="">
+                    <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+                </div>
+
+                <div class="cross flex justify-end mb-3">
+                    <i
+                        class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+                </div>
+                <div class="list">
+                    <ul class=" space-y-3">
+                        <!-- yha pee user dashboard menu link attach krne h -->
+
+                        <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1">
+                            <a href="">
+                                <i class="ri-home-3-line text-xl"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600  ">
+                            <a href="">
+                                <i class="ri-group-line text-xl"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-file-add-line text-xl"></i>
+                                <span>Post a Job</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-briefcase-4-line text-xl"></i>
+                                <span>Jobs Posts</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-team-line text-xl"></i>
+                                <span>Applicants</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-file-list-3-line text-xl"></i>
+                                <span>Applications</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-bookmark-line text-xl"></i>
+                                <span>Saved Candidates</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-chat-3-line text-xl"></i>
+                                <span>Messages</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-logout-box-r-line text-xl"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
+
+            <!-- ***************text over picture************* -->
+            <div class="  px-6 sm:px-8 lg:px-12  pb-10  transition-all duration-300">
+
+                <h2 class="md:text-4xl text-3xl  font-bold ">My Profile</h2>
+                <p class="text-gray-700 mt-2 text-xl mb-5">View and Manage your profile information</p>
+
+
+                <div
+                    class="card bg-white rounded-3xl shadow-xl hover:shadow-2xl  p-8 md:p-8 transition-all duration-300 mt-10 flex flex-col md:flex-row  items-center gap-6">
+                    <div class="circle h-24 w-24 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="ri-user-line text-4xl text-blue-500"></i>
+                    </div>
+                    <div class="text md:text-left flex-1">
+                        <h2 class="text-2xl font-bold text-gray-800"> TechNova Solutions </h2>
+                        <p class="mt-1 text-gray-700 font-medium">Company Account</p>
+                        <p class="flex items-center  mt-2 gap-2 text-gray-700">
+                            <i class="ri-mail-line"></i>
+                            <span>Anshulgoyal@gmail.com</span>
+                        </p>
+                        <p class="flex items-center gap-2 mt-1 text-gray-700">
+                            <i class="ri-map-pin-line "></i>
+                            <span>Faridabad, Haryana</span>
+                        </p>
+                        <div class="flex items-center justify-center md:justify-end mt-2  ">
+                            <a href="/users/edit-profile"
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 w-full md:w-auto inline-flex items-center gap-2">
+                                <i class="ri-edit-line"></i>
+                                Edit Profile
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- *********DETails************* -->
+            <div class="px-6 sm:px-8 lg:px-12">
+                <div class="bg-white rounded-2xl shadow-sm  p-8 mt-8">
+
+                    <h2 class="text-2xl font-semibold mb-8">
+                        Company Information
+                    </h2>
+
+                    <!-- Company Name -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Company Name
+                        </p>
+                        <p class="md:w-2/3 font-semibold text-gray-800">
+                            TechNova Solutions
+                        </p>
+                    </div>
+
+                    <!-- Industry -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Industry
+                        </p>
+                        <p class="md:w-2/3 text-gray-800">
+                            Information Technology
+                        </p>
+                    </div>
+
+                    <!-- Company Size -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Company Size
+                        </p>
+                        <p class="md:w-2/3 text-gray-800">
+                            51 - 200 Employees
+                        </p>
+                    </div>
+
+                    <!-- Founded -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Founded Year
+                        </p>
+                        <p class="md:w-2/3 text-gray-800">
+                            2022
+                        </p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Company Email
+                        </p>
+                        <p class="md:w-2/3 text-gray-800">
+                            info@technova.com
+                        </p>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Company Phone
+                        </p>
+                        <p class="md:w-2/3 text-gray-800">
+                            +91 9876543210
+                        </p>
+                    </div>
+
+                    <!-- Website -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Website
+                        </p>
+                        <a href="#" class="md:w-2/3 text-blue-600 hover:underline">
+                            www.technova.com
+                        </a>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="flex py-4 flex-col md:flex-row border-b border-gray-200">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            Location
+                        </p>
+                        <p class="md:w-2/3 text-gray-800">
+                            Gurugram, Haryana
+                        </p>
+                    </div>
+
+                    <!-- About -->
+                    <div class="flex py-4 flex-col md:flex-row">
+                        <p class="md:w-1/3 md:mb-0 mb-2 text-gray-500 font-medium">
+                            About Company
+                        </p>
+                        <p class="md:w-2/3 text-gray-800 leading-7">
+                            TechNova Solutions is a technology company specializing in
+                            recruitment and hiring solutions for businesses.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script>
+        let menubtn = document.querySelector(".menubtn");
+        let sidebar = document.querySelector(".sidebar");
+        let cross = document.querySelector(".cross");
+        let overlay = document.querySelector(".overlay")
+
+        menubtn.addEventListener("click", () => {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        cross.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full")
+            overlay.classList.add("hidden");
+
+        })
+
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        })
+
+    </script>
+</body>
+
+</html>

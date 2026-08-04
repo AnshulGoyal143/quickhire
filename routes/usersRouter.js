@@ -15,12 +15,27 @@ router.get("/register", (req, res) => {
    res.render("users/userRegister")
 });
 
-router.get("/userProfile", (req, res) => {
+router.get("/userDashboard",isLoggedIn, (req,res)=>{
+   res.render("users/userDashboard");
+});
+
+router.get("/userProfile",isLoggedIn, (req, res) => {
    res.render("users/userProfile");
 });
 
+router.get("/ProfileEdit",isLoggedIn, (req, res) => {
+   res.render("users/userProfileEdit");
+});
+
+router.post("/ProfileEdit",isLoggedIn,(req,res)=>{
+    
+   let{fullname,username,email,mobile,dob,gender,address,city,state,pincode,skills} = req.body;
+
+   
+})
+
 router.post("/register", async (req, res) => {
-   let { email, username, password, mobile } = req.body;
+   let { email, fullname, password, mobile } = req.body;
 
    let user = await userModel.findOne({ email });
    if (user) return res.status(500).send("Account already exists");
@@ -28,7 +43,7 @@ router.post("/register", async (req, res) => {
    bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, async (err, hash) => {
          let createdUser = await userModel.create({
-            username,
+            fullname,
             email,
             mobile,
             password: hash
@@ -37,7 +52,7 @@ router.post("/register", async (req, res) => {
 
          let token = jwt.sign({ email: email, userid: createdUser._id }, "shhhh");
          res.cookie("token", token);
-         res.redirect("/users/userProfile")
+         res.redirect("/users/userDashboard")
       })
    })
 
@@ -54,11 +69,32 @@ router.post("/login", async (req, res) => {
       if (result) {
          let token = jwt.sign({ email: email ,userid: user._id}, "shhhh");
          res.cookie("token", token);
-        return res.redirect("/users/userProfile");
+        return res.redirect("/users/userDashboard");
 
       }
       res.status(401).send("Something went wrong")
    })
+});
+
+router.get("/logout",(req,res)=>{
+   res.cookie("token","");
+   res.redirect("/login");
 })
+
+
+async function isLoggedIn(req, res, next) {
+    if (!req.cookies.token) {
+        return res.redirect("/users/login");
+    }
+
+    let data = jwt.verify(req.cookies.token, "shhhh");
+
+    let user = await userModel.findById(data.userid);
+
+    req.user = user;
+    res.locals.user = user;
+
+    next();
+}
 
 module.exports = router;

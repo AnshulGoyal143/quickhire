@@ -27,11 +27,25 @@ router.get("/ProfileEdit",isLoggedIn, (req, res) => {
    res.render("users/userProfileEdit");
 });
 
-router.post("/ProfileEdit",isLoggedIn,(req,res)=>{
+router.post("/ProfileEdit",isLoggedIn,async (req,res)=>{
     
    let{fullname,username,email,mobile,dob,gender,address,city,state,pincode,skills} = req.body;
 
-   
+   await userModel.findByIdAndUpdate(req.user._id,{
+      fullname,
+      username,
+      email,
+      mobile,
+      dob,
+      gender,
+      address,
+      city,
+      state,
+      pincode,
+      skills
+   },{new:true});
+
+   res.redirect("users/userProfile");
 })
 
 router.post("/register", async (req, res) => {

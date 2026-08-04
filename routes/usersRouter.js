@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
       if (result) {
          let token = jwt.sign({ email: email ,userid: user._id}, "shhhh");
          res.cookie("token", token);
-         res.redirect("/users/userProfile");
+        return res.redirect("/users/userProfile");
 
       }
       res.status(401).send("Something went wrong")

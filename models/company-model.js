@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const companySchema = new mongoose.Schema({
     companyName: String,
     industry: String,
-    CompanyEmail: String,
+    companyEmail: String,
     password: String,
 
     phone: String,

@@ -16,11 +16,11 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/companyDashboard",isLoggedIn, async (req,res)=>{
-   let company = await companyModel.findOne({companyEmail:req.company.companyEmail});
+   // let company = await companyModel.findOne({companyEmail:req.company.companyEmail});
    res.render("company/companyDashboard");
 });
 
-router.get("/companyProfile",isLoggedIn, (req, res) => {
+router.get("/companyMyProfile",isLoggedIn, (req, res) => {
    res.render("company/companyMyProfile");
 });
 
@@ -113,7 +113,7 @@ async function isLoggedIn(req, res, next) {
     let data = jwt.verify(req.cookies.token, "shhhh");
 
     let company = await companyModel.findById(data.companyid);
-
+   //  console.log(company)
     req.company = company;
     res.locals.company = company;
 

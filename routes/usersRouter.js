@@ -15,7 +15,8 @@ router.get("/register", (req, res) => {
    res.render("users/userRegister")
 });
 
-router.get("/userDashboard",isLoggedIn, (req,res)=>{
+router.get("/userDashboard",isLoggedIn, async (req,res)=>{
+   let user = await userModel.findOne({email:req.user.email});
    res.render("users/userDashboard");
 });
 
@@ -45,7 +46,7 @@ router.post("/ProfileEdit",isLoggedIn,async (req,res)=>{
       skills
    },{new:true});
 
-   res.redirect("users/userProfile");
+   res.redirect("/users/userProfile");
 })
 
 router.post("/register", async (req, res) => {

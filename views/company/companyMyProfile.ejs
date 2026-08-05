@@ -31,7 +31,7 @@
                         <img class="h-10 w-11 rounded-full"
                             src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
                             alt="">
-                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                        <h2 class="text-xl font-semibold hidden md:block "><%= company.companyName %></h2>
                         <a href=""><i class="ri-arrow-down-wide-line"></i></a>
                     </div>
                 </div>
@@ -143,11 +143,11 @@
                         <i class="ri-user-line text-4xl text-blue-500"></i>
                     </div>
                     <div class="text md:text-left flex-1">
-                        <h2 class="text-2xl font-bold text-gray-800"> TechNova Solutions </h2>
+                        <h2 class="text-2xl font-bold text-gray-800"> <%= company.companyName %> </h2>
                         <p class="mt-1 text-gray-700 font-medium">Company Account</p>
                         <p class="flex items-center  mt-2 gap-2 text-gray-700">
                             <i class="ri-mail-line"></i>
-                            <span>Anshulgoyal@gmail.com</span>
+                            <span><%= company.companyEmail %></span>
                         </p>
                         <p class="flex items-center gap-2 mt-1 text-gray-700">
                             <i class="ri-map-pin-line "></i>

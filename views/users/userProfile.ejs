@@ -31,7 +31,7 @@
                         <img class="h-10 w-11 rounded-full"
                             src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
                             alt="">
-                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                        <h2 class="text-xl font-semibold hidden md:block "><%= user.fullname %></h2>
                         <a href=""><i class="ri-arrow-down-wide-line"></i></a>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                         </p>
                         <p class="flex items-center gap-2 mt-1 text-gray-700">
                             <i class="ri-map-pin-line "></i>
-                            <span>Faridabad, Haryana</span>
+                            <span><%= user.address %></span>
                         </p>
                         <div class="flex items-center justify-center md:justify-end mt-2  ">
                             <a href="/users/edit-profile"
@@ -134,121 +134,8 @@
             </div>
 
             <!-- *******************PERSONAL INFO AND ACCOUNT INFOOOO -->
-            <div class="px-6 sm:px-8 lg:px-12  mt-12">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="personal-info bg-white rounded-3xl shadow-xl p-6   ">
-
-                        <h2 class="text-2xl border-b pb-4 font-medium ">Personal information</h2>
-
-                        <div class="space-y-5 mt-5">
-                            <h5 class="text-gray-700 text-xl ">Username
-                                <span>:</span>
-                                <span class="font-semibold">anshul123</span>
-                            </h5>
-                            <h5 class="text-gray-700 text-xl ">Date of Birth
-                                <span>:</span>
-                                <span class="font-semibold">20 july 2005</span>
-                            </h5>
-                            <h5 class="text-gray-700 text-xl ">Gender
-                                <span>:</span>
-                                <span class="font-semibold">Female</span>
-                            </h5>
-                            <h5 class="text-gray-700 text-xl ">Address
-                                <span>:</span>
-                                <span class="font-semibold">sector 12,Faridabad,Haryana</span>
-                            </h5>
-                        </div>
-
-                    </div>
-                    <div class="account-info bg-white rounded-3xl shadow-xl p-6  ">
-                        <h2 class="text-2xl border-b font-medium pb-4">Account information</h2>
-
-                        <div class="space-y-5 mt-6">
-                            <h5 class="text-gray-700 text-xl mt-2 ">Account Type
-                                <span>:</span>
-                                <span class="font-semibold">User</span>
-                            </h5>
-
-                            <h5 class="text-gray-700 text-xl mt-2">Member Since
-                                <span>:</span>
-                                <span class="font-semibold">18 July 2026</span>
-                            </h5>
-                            <h5 class="text-gray-700 text-xl mt-2">Applications Applied
-                                <span>:</span>
-                                <span class="font-semibold">12</span>
-                            </h5>
-                            <h5 class="text-gray-700 text-xl mt-2">Account Status
-                                <span>:</span>
-                                <span
-                                    class=" text-green-700 bg-green-100 px-3 py-2 rounded-full text-lg font-semibold">Active</span>
-
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- **************** JOB APPLICATION REPORT *************** -->
-           <div class="px-6 sm:px-8 lg:px-12">
-             <div class="jobapplication bg-white rounded-3xl shadow-xl p-6 mt-12   overflow-hidden ">
-
-                <div class="heading flex items-center justify-between mb-6 ">
-                    <h2 class="text-xl">Recent Applications</h2>
-                    <a href="" class="text-blue-600 font-medium hover:underline text-lg">View All</a>
-                </div>
-                <div class="tables overflow-x-auto">
-                    <table class="w-full min-w-[950px]">
-                        <!-- heading********** -->
-                        <thead class="bg-gray-50 border-b">
-                            <tr>
-                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Company</th>
-                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Role</th>
-                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Applied On</th>
-                                <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
-                            </tr>
-                        </thead>
-                        <!-- *****data********* -->
-                        <tbody>
-                            <tr class="border-b hover:bg-gray-50 transition">
-                                <td class="px-6 py-5 font-medium">Google</td>
-                                <td class="px-6 py-5 text-gray-600">Frontend Developer</td>
-                                <td class="px-6 py-5 text-gray-600">12 May 2026</td>
-                                <td class="py-5 px-6">
-                                    <span
-                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">In
-                                        Review</span>
-                                </td>
-                            </tr>
-
-                            <tr class="border-b hover:bg-gray-50 transition">
-                                <td class="px-6 py-5 font-medium">Infosis</td>
-                                <td class="px-6 py-5 text-gray-600">Software Engineer</td>
-                                <td class="px-6 py-5 text-gray-600">10 May 2026</td>
-                                <td class="py-5 px-6">
-                                    <span
-                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Shortlisted</span>
-                                </td>
-                            </tr>
-
-                            <tr class="border-b hover:bg-gray-50 transition">
-                                <td class="px-6 py-5 font-medium">Wipro</td>
-                                <td class="px-6 py-5 text-gray-600">Backend Developer</td>
-                                <td class="px-6 py-5 text-gray-600">7 May 2026</td>
-                                <td class="py-5 px-6">
-                                    <span
-                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold ">Rejected</span>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-
-
-                </div>
-
-
-            </div>
-           </div>
+         
+            
         </div>
 
     </div>    
@@ -277,4 +164,4 @@
         </script>
 </body>
 
-</html>
+</html>>

@@ -74,7 +74,7 @@ router.post("/register", async (req, res) => {
 
 
          let token = jwt.sign({ companyEmail: companyEmail, companyid: createdCompany._id }, "shhhh");
-         res.cookie("token", token);
+         res.cookie("companyToken", token);
          res.redirect("/company/companyDashboard")
       })
    })
@@ -91,7 +91,7 @@ router.post("/login", async (req, res) => {
 
       if (result) {
          let token = jwt.sign({ companyEmail: companyEmail ,companyid: company._id}, "shhhh");
-         res.cookie("token", token);
+         res.cookie("companyToken", token);
         return res.redirect("/company/companyDashboard");
 
       }

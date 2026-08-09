@@ -7,6 +7,10 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const userModel = require('../models/user-model');
 
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({storage});
+
 router.get("/login", (req, res) => {
    res.render("users/userLogin");
 });
@@ -28,26 +32,112 @@ router.get("/ProfileEdit",isLoggedIn, (req, res) => {
    res.render("users/userProfileEdit");
 });
 
-router.post("/ProfileEdit",isLoggedIn,async (req,res)=>{
+// user s edit page k infooooo
+router.post("/ProfileEdit", isLoggedIn, upload.fields([{name:"profileImage",maxCount:1},{name:"resume",maxCount:1}]), async (req, res) => {
+
+    let {
+        fullname,
+        username,
+        email,
+        mobile,
+        dob,
+        gender,
+        address,
+        city,
+        state,
+        pincode,
+        skills,
+        aboutme
+    } = req.body;
+
+    let updateData = {
+        fullname,
+        username,
+        email,
+        mobile,
+        dob,
+        gender,
+        address,
+        city,
+        state,
+        pincode,
+        aboutme
+    };
+    // Skills ko array me convert karna
+    if (req.body.skills !== undefined) {
+    updateData.skills = req.body.skills
+        .split(",")
+        .map(skill => skill.trim())
+        .filter(skill => skill !== "");
+    }
+      // Profile Image
+        if (req.files?.profileImage) {
+
+            let file = req.files.profileImage[0];
+
+            updateData.profileImage = {
+                data: file.buffer,
+                contentType: file.mimetype
+            };
+        }
+
+        // Resume
+        if (req.files?.resume) {
+
+            let file = req.files.resume[0];
+
+            // Sirf PDF allow
+            if (file.mimetype !== "application/pdf") {
+                return res.status(400).send("Only PDF resume is allowed");
+            }
+
+            updateData.resume = {
+                data: file.buffer,
+                contentType: file.mimetype,
+                originalName: file.originalname
+            };
+        }
+
+    await userModel.findByIdAndUpdate(
+        req.user._id,
+        updateData,
+        { new: true }
+    );
     
-   let{fullname,username,email,mobile,dob,gender,address,city,state,pincode,skills} = req.body;
+    res.redirect("/users/userProfile");
+});
 
-   await userModel.findByIdAndUpdate(req.user._id,{
-      fullname,
-      username,
-      email,
-      mobile,
-      dob,
-      gender,
-      address,
-      city,
-      state,
-      pincode,
-      skills
-   },{new:true});
+// profile image route multer wla
+router.get("/profile-image", isLoggedIn, async (req, res) => {
+    let user = await userModel.findById(req.user._id);
 
-   res.redirect("/users/userProfile");
-})
+   //      console.log("USER:", user);
+   //  console.log("PROFILE IMAGE:", user.profileImage);
+   //  console.log("IMAGE TYPE:", user.profileImage?.contentType);
+   //  console.log("IMAGE DATA EXISTS:", !!user.profileImage?.data);
+    
+    if (!user.profileImage || !user.profileImage.data) {
+        return res.status(404).send("Image not found");
+    }
+
+    res.set("Content-Type", user.profileImage.contentType);
+    res.send(user.profileImage.data);
+});
+
+// profile image route multer wla
+router.get("/resume", isLoggedIn, async (req, res) => {
+    let user = await userModel.findById(req.user._id);
+
+ 
+    
+    if (!user.resume || !user.resume.data) {
+        return res.status(404).send("Resume not found");
+    }
+
+    res.set("Content-Type", user.resume.contentType);
+    res.set("Content-Disposition",`inline; filename="${user.resume.originalName|| "resume.pdf"}`)
+    res.send(user.resume.data);
+});
 
 router.post("/register", async (req, res) => {
    let { email, fullname, password, mobile } = req.body;
@@ -96,7 +186,7 @@ router.get("/logout",(req,res)=>{
    res.redirect("/login");
 })
 
-
+// **********************************************
 async function isLoggedIn(req, res, next) {
     if (!req.cookies.token) {
         return res.redirect("/users/login");

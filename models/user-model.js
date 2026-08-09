@@ -15,16 +15,28 @@ const userSchema = new mongoose.Schema({
     state:String,
     pincode:String,
 
-    skills:[String],
+    skills:{
+       type: [String],
+       default:[]
+    },
     resume:{
-        type:String
+        data: Buffer,
+        contentType: String,
+        originalName:String,
     },
 
-    profileImage:String,
+      profileImage: {
+
+        data: Buffer,
+
+        contentType: String
+
+    },
     createdAt:{
         type:Date,
         default:Date.now
-    }
+    },
+    aboutme:String
 });
 
 module.exports = mongoose.model("user",userSchema);

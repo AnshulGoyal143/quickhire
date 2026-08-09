@@ -58,7 +58,7 @@
 
                         <li
                             class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1 mt-1">
-                            <a href="">
+                            <a href="/users/userDashboard">
                                 <i class="ri-home-3-line text-xl"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -74,14 +74,14 @@
 
                         <li
                             class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600 ">
-                            <a href="">
+                            <a href="/users/userProfile">
                                 <i class="ri-user-3-line text-xl"></i>
                                 <span>My Profile</span>
                             </a>
                         </li>
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="">
+                            <a href="/users/ProfileEdit">
                                 <i class="ri-edit-2-line text-xl"></i>
                                 <span>Edit Profile</span>
                             </a>
@@ -110,9 +110,14 @@
 
                 <div
                     class="card bg-white rounded-3xl shadow-xl hover:shadow-2xl  p-8 md:p-8 transition-all duration-300 mt-10 flex flex-col md:flex-row  items-center gap-6">
-                    <div class="circle h-24 w-24 bg-blue-100 rounded-full flex items-center justify-center">
-                        <i class="ri-user-line text-4xl text-blue-500"></i>
+                    <div
+                        class="h-36 w-36 rounded-2xl bg-blue-100 border-4 border-white shadow-md overflow-hidden flex items-center justify-center">
+                        <img src="/users/profile-image" alt="Profile Image" class="w-full h-full object-cover"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                        <i class="ri-user-3-line text-4xl text-blue-500 hidden"></i>
                     </div>
+
                     <div class="text md:text-left flex-1">
                         <h2 class="text-2xl font-bold text-gray-800">
                             <%=user.fullname %>
@@ -131,7 +136,7 @@
                             </span>
                         </p>
                         <div class="flex items-center justify-center md:justify-end mt-2  ">
-                            <a href="/users/edit-profile"
+                            <a href="/users/ProfileEdit"
                                 class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 w-full md:w-auto inline-flex items-center gap-2">
                                 <i class="ri-edit-line"></i>
                                 Edit Profile
@@ -261,40 +266,98 @@
 
                         <div class="flex flex-wrap gap-3">
 
-                            <span class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full">HTML</span>
+                            <div class="flex flex-wrap gap-3">
 
-                            <span class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full">CSS</span>
+                                <% if (user.skills && user.skills.length> 0) { %>
 
-                            <span class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full">JavaScript</span>
+                                    <% user.skills.forEach(skill=> { %>
 
-                            <span class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full">React.js</span>
+                                        <span class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full">
+                                            <%= skill %>
+                                        </span>
+
+                                        <% }) %>
+
+                                            <% } else { %>
+
+                                                <p class="text-gray-500">No skills added</p>
+
+                                                <% } %>
+
+                            </div>
 
                         </div>
 
                         <div class="mt-10">
 
-                            <h4 class="font-semibold mb-3">Resume</h4>
+                            
+                            <h4 class="font-semibold text-gray-800 mb-3">Resume</h4>
 
-                            <div class="border rounded-2xl p-4 flex justify-between items-center">
+                            <% if (user.resume && user.resume.data) { %>
 
-                                <div class="flex gap-3 items-center">
+                                <div
+                                    class="border border-gray-200 rounded-xl p-4 flex items-center justify-between bg-white">
 
-                                    <i class="ri-file-pdf-2-line text-red-500 text-3xl"></i>
+                                    <!-- Resume Info -->
+                                    <div class="flex items-center gap-3">
 
-                                    <div>
-                                        <h5 class="font-semibold">resume.pdf</h5>
-                                        <p class="text-gray-500 text-sm">PDF</p>
+                                        <div class="w-11 h-11 bg-red-50 rounded-lg flex items-center justify-center">
+                                            <i class="ri-file-pdf-2-line text-red-500 text-2xl"></i>
+                                        </div>
+
+                                        <div>
+                                            <h5 class="font-medium text-gray-800">
+                                                <%= user.resume.originalName || "Resume.pdf" %>
+                                            </h5>
+
+                                            <p class="text-sm text-gray-500">
+                                                PDF Resume
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Actions -->
+                                    <div class="flex items-center gap-2">
+
+                                        <!-- View -->
+                                        <a href="/users/resume" target="_blank"
+                                            class="w-10 h-10 border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-50"
+                                            title="View Resume">
+
+                                            <i class="ri-eye-line text-lg text-gray-600"></i>
+
+                                        </a>
+
+                                        <!-- Download -->
+                                        <a href="/users/resume" download
+                                            class="w-10 h-10 border border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-50"
+                                            title="Download Resume">
+
+                                            <i class="ri-download-line text-lg text-gray-600"></i>
+
+                                        </a>
+
                                     </div>
 
                                 </div>
 
-                                <button class="border rounded-xl p-3 hover:bg-gray-100">
+                                <% } else { %>
 
-                                    <i class="ri-download-line text-xl"></i>
+                                    <!-- No Resume -->
+                                    <div class="border border-dashed border-gray-300 rounded-xl p-6 text-center">
 
-                                </button>
+                                        <i class="ri-file-pdf-line text-3xl text-gray-400"></i>
 
-                            </div>
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            Resume not uploaded
+                                        </p>
+
+                                    </div>
+
+                                    <% } %>
+                                        
 
                         </div>
 
@@ -303,7 +366,7 @@
                             <h4 class="font-semibold mb-3">About Me</h4>
 
                             <p class="text-gray-600 leading-7">
-                                <%= user.about %>
+                                <%= user.aboutme %>
                             </p>
 
                         </div>

@@ -5,7 +5,13 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 
 const path = require('path');
-const companyModel = require('../models/company-model')
+const companyModel = require('../models/company-model');
+
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({storage});
+
+
 
 router.get("/login", (req, res) => {
    res.render("company/companyLogin");
@@ -15,47 +21,75 @@ router.get("/register", (req, res) => {
    res.render("company/companyRegister")
 });
 
-router.get("/companyDashboard",isLoggedIn, async (req,res)=>{
+router.get("/companyDashboard",isCompanyLoggedIn, async (req,res)=>{
    // let company = await companyModel.findOne({companyEmail:req.company.companyEmail});
    res.render("company/companyDashboard");
 });
 
-router.get("/companyMyProfile",isLoggedIn, (req, res) => {
+router.get("/companyMyProfile",isCompanyLoggedIn, (req, res) => {
    res.render("company/companyMyProfile");
 });
 
-router.get("/EditProfile",isLoggedIn, (req, res) => {
+router.get("/EditProfile",isCompanyLoggedIn, (req, res) => {
    res.render("company/companyEditProfile");
 });
 
-router.post("/EditProfile",isLoggedIn,async (req,res)=>{
+router.post( "/EditProfile", isCompanyLoggedIn, upload.single("companyProfile"), async (req, res) => {
+
+        let {
+            companyName,
+            industry,
+            companyEmail,
+            phone,
+            companySize,
+            foundedYear,
+            website,
+            location,
+            about
+        } = req.body;
+
+        let updateDetails = {
+            companyName,
+            industry,
+            companyEmail,
+            phone,
+            companySize,
+            foundedYear,
+            website,
+            location,
+            about
+        };
+
+        // Company Profile Image
+        if (req.file) {
+            updateDetails.companyProfile = {
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            };
+        }
+
+        await companyModel.findByIdAndUpdate(
+            req.company._id,
+            updateDetails,
+            { new: true }
+        );
+
+        res.redirect("/company/companyMyProfile");
+    }
+);
+
+// profile image of company route multer wla
+router.get("/company-profile", isCompanyLoggedIn, async (req, res) => {
+    let company = await companyModel.findById(req.company._id);
     
-   let{
-      companyName,
-      industry,
-      companyEmail,
-       phone,
-       companySize,
-        foundedYear,
-        website,
-        location,
-        about
-      } = req.body;
+    if (!company.companyProfile || !company.companyProfile.data) {
+        return res.status(404).send("No Profile Pic");
+    }
 
-   await companyModel.findByIdAndUpdate(req.company._id,{
-     companyName,
-      industry,
-      companyEmail,
-       phone,
-       companySize,
-        foundedYear,
-        website,
-        location,
-        about
-   },{new:true});
+    res.set("Content-Type", company.companyProfile.contentType);
+    res.send(company.companyProfile.data);
+});
 
-   res.redirect("/company/companyMyProfile");
-})
 
 router.post("/register", async (req, res) => {
    let { companyEmail, companyName, password, phone } = req.body;
@@ -99,21 +133,22 @@ router.post("/login", async (req, res) => {
    })
 });
 
-router.get("/logout",(req,res)=>{
-   res.cookie("token","");
-   res.redirect("/login");
-})
+router.get("/logout", (req, res) => {
+    res.cookie("companyToken", "");
+    res.redirect("/company/login");
+});
 
+// *----------------------function-------------
+async function isCompanyLoggedIn(req, res, next) {
 
-async function isLoggedIn(req, res, next) {
-    if (!req.cookies.token) {
+    if (!req.cookies.companyToken) {
         return res.redirect("/company/login");
     }
 
-    let data = jwt.verify(req.cookies.token, "shhhh");
+    let data = jwt.verify(req.cookies.companyToken, "shhhh");
 
     let company = await companyModel.findById(data.companyid);
-   //  console.log(company)
+
     req.company = company;
     res.locals.company = company;
 

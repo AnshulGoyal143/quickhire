@@ -124,7 +124,7 @@ router.get("/profile-image", isLoggedIn, async (req, res) => {
     res.send(user.profileImage.data);
 });
 
-// profile image route multer wla
+// resume route multer wla
 router.get("/resume", isLoggedIn, async (req, res) => {
     let user = await userModel.findById(req.user._id);
 

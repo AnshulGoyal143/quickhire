@@ -139,57 +139,79 @@
 
                     <div class="bg-white shadow-lg rounded-3xl p-8 mt-6 pb-12">
 
-                        <div>
-                            <h2 class="text-xl font-semibold">Company Logo / Initials</h2>
-
-                            <div class="flex items-center gap-8 mt-8 pb-8 border-b border-gray-200">
-
-                                <!-- Preview -->
-                                <div id="previewBox"
-                                    class="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden bg-gray-50">
-
-                                    <i id="uploadIcon" class="ri-image-add-line text-4xl text-gray-400"></i>
-
-                                    <img id="logoPreview" src="" class="hidden w-full h-full object-cover">
-
-                                </div>
-
-                                <div>
-
-                                    <!-- Hidden Input -->
-                                    <input type="file" id="logoInput" accept="image/*" class="hidden" name="companyProfile">
-
-                                    <button type="button" id="uploadBtn"
-                                        onclick="document.getElementById('logoInput').click()"
-                                        class="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
-
-                                        <i class="ri-upload-cloud-2-line"></i>
-
-                                        <span id="btnText">Upload Logo</span>
-
-                                    </button>
-
-                                    <p class="text-sm text-gray-500 mt-2">
-                                        PNG, JPG • Max 2 MB
-                                    </p>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-
-
-                       
 
                         <!-- ********************************* -->
-                        <form action="">
+                        <form action="/company/EditProfile" method="post" enctype="multipart/form-data">
+
+                            <div>
+                                <h2 class="text-xl font-semibold">Profile Pic</h2>
+
+                                <div class="flex items-center gap-8 mt-8 pb-8 border-b border-gray-200">
+
+                                    <!-- Preview -->
+                                    <div id="previewBox"
+                                        class="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden bg-gray-50">
+
+                                        <% if (company.companyProfile && company.companyProfile.data) { %>
+
+                                            <!-- Existing Profile Pic -->
+                                            <img id="logoPreview" src="/company/company-profile" alt="Company Profile"
+                                                class="w-full h-full object-cover">
+
+                                            <!-- Hidden until new image is selected -->
+                                            <i id="uploadIcon"
+                                                class="ri-image-add-line text-4xl text-gray-400 hidden"></i>
+
+                                            <% } else { %>
+
+                                                <!-- No Profile Pic -->
+                                                <i id="uploadIcon" class="ri-image-add-line text-4xl text-gray-400"></i>
+
+                                                <img id="logoPreview" src="" alt="Company Profile"
+                                                    class="hidden w-full h-full object-cover">
+
+                                                <% } %>
+
+                                    </div>
+
+                                    <div>
+
+                                        <!-- Hidden Input -->
+                                        <input type="file" id="logoInput" name="companyProfile"
+                                            accept="image/png,image/jpeg" class="hidden">
+
+                                        <!-- Upload Button -->
+                                        <button type="button" id="uploadBtn"
+                                            onclick="document.getElementById('logoInput').click()"
+                                            class="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+
+                                            <i class="ri-upload-cloud-2-line"></i>
+
+                                            <span id="btnText">
+                                                <%= company.companyProfile && company.companyProfile.data ? "Change Logo"
+                                                    : "Upload Logo" %>
+                                            </span>
+
+                                        </button>
+
+                                        <p class="text-sm text-gray-500 mt-2">
+                                            PNG, JPG • Max 2 MB
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <!-- ***************************************** -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 mt-6 gap-6">
+
                                 <div class="label1">
                                     <label class="text-lg font-medium mb-2 block ">Company Name</label>
                                     <input
                                         class=" w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500"
-                                        type="text" placeholder="Enter Company Name" name="companyName">
+                                        type="text" placeholder="Enter Company Name" name="companyName"> value="<%= company?.companyName || '' %>"
                                 </div>
 
                                 <div class="label2">
@@ -198,16 +220,16 @@
                                     <select name="industry"
                                         class="w-full border border-gray-300 rounded-xl px-4 py-3 mt-2 outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500">
                                         <option value="" selected disabled>Select Industry</option>
-                                        <option>Information Technology</option>
-                                        <option>Software Development</option>
-                                        <option>Finance</option>
-                                        <option>Healthcare</option>
-                                        <option>Education</option>
-                                        <option>E-commerce</option>
-                                        <option>Manufacturing</option>
-                                        <option>Marketing</option>
-                                        <option>Real Estate</option>
-                                        <option>Other</option>
+                                        <option  <%= company?.industry === "Information Technology" ? "selected" : "" %> >Information Technology</option>
+                                        <option   <%= company?.industry === "Software Development" ? "selected" : "" %> >Software Development</option>
+                                        <option    <%= company?.industry === "Finance" ? "selected" : "" %>>Finance</option>
+                                        <option    <%= company?.industry === "Healthcare" ? "selected" : "" %>>Healthcare</option>
+                                        <option    <%= company?.industry === "Education" ? "selected" : "" %> >Education</option>
+                                        <option    <%= company?.industry === "E-commerce" ? "selected" : "" %>>E-commerce</option>
+                                        <option   <%= company?.industry === "Manufacturing" ? "selected" : "" %>>Manufacturing</option>
+                                        <option   <%= company?.industry === "Marketing" ? "selected" : "" %>>Marketing</option>
+                                        <option   <%= company?.industry === "Real Estate" ? "selected" : "" %>>Real Estate</option>
+                                        <option   <%= company?.industry === "Other" ? "selected" : "" %>>Other</option>
                                     </select>
                                 </div>
 
@@ -215,14 +237,14 @@
                                     <label class="text-lg font-medium mb-2 block">Company Email</label>
                                     <input
                                         class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500"
-                                        type="email" placeholder="Enter Company Email" name="companyEmail">
+                                        type="email" placeholder="Enter Company Email" name="companyEmail"> value="<%= company?.companyEmail || '' %>"
                                 </div>
 
                                 <div class="label4">
                                     <label class="text-lg font-medium mb-2 block" for="">Company Phone</label>
                                     <input
                                         class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500"
-                                        type="tel" placeholder="Enter Company Phone Number" name="phone">
+                                        type="tel" placeholder="Enter Company Phone Number" name="phone"> value="<%= company?.phone || '' %>"
                                 </div>
 
                                 <div class="label5">
@@ -231,12 +253,12 @@
                                     <select name="companySize"
                                         class="w-full border border-gray-300  rounded-lg px-4 py-3 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500">
                                         <option value="" selected disabled>Select Company Size</option>
-                                        <option>1 - 10 Employees</option>
-                                        <option>11 - 50 Employees</option>
-                                        <option>51 - 200 Employees</option>
-                                        <option>201 - 500 Employees</option>
-                                        <option>501 - 1000 Employees</option>
-                                        <option>1000+ Employees</option>
+                                        <option   <%= company?.companySize === "1 - 10 Employees" ? "selected" : "" %> >1 - 10 Employees</option>
+                                        <option <%= company?.companySize === "11 - 50 Employees" ? "selected" : "" %>>11 - 50 Employees</option>
+                                        <option <%= company?.companySize === "51 - 200 Employees" ? "selected" : "" %>>51 - 200 Employees</option>
+                                        <option <%= company?.companySize === "201 - 500 Employees" ? "selected" : "" %>>201 - 500 Employees</option>
+                                        <option <%= company?.companySize === "501 - 1000 Employees" ? "selected" : "" %>>501 - 1000 Employees</option>
+                                        <option <%= company?.companySize === "1000+ Employees" ? "selected" : "" %>>1000+ Employees</option>
                                     </select>
 
                                 </div>
@@ -245,7 +267,7 @@
                                     <label class="text-lg font-medium mb-2 block" for="">Founded Year</label>
                                     <input
                                         class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500"
-                                        type="number" placeholder="e.g. 2022" maxlength="4" name="foundedYear">
+                                        type="number" placeholder="e.g. 2022" maxlength="4" name="foundedYear"> value="<%= company?.foundedYear || '' %>"
                                 </div>
 
 
@@ -254,7 +276,7 @@
                                     <label class="text-lg font-medium mb-2 block" for="">Website</label>
                                     <input
                                         class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500"
-                                        type="url" placeholder="https://www.company.com" name="website">
+                                        type="url" placeholder="https://www.company.com" name="website"> value="<%= company?.website || '' %>"
 
                                 </div>
 
@@ -262,7 +284,7 @@
                                     <label class="text-lg font-medium mb-2 block" for="">Location</label>
                                     <input
                                         class="  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 text-gray-800 placeholder:text-gray-500"
-                                        type="text" placeholder="Enter Company Location" name="location">
+                                        type="text" placeholder="Enter Company Location" name="location"> value="<%= company?.location || '' %>"
                                 </div>
 
 
@@ -270,7 +292,8 @@
                                     <label class="text-lg font-medium mb-2 block" for="">About Company </label>
                                     <textarea
                                         class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 resize-none h-32 text-gray-700 placeholder:text-gray-500"
-                                        placeholder="Write a short description about your company" name="about"></textarea>
+                                        placeholder="Write a short description about your company"
+                                        name="about"> <%= company?.about || '' %></textarea>
                                 </div>
 
 

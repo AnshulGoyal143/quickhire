@@ -106,10 +106,9 @@
                     <h2 class="text-4xl font-bold mb-2">Edit Profile</h2>
                     <p class="text-gray-700 text-xl mb-5">Update your personal information</p>
 
-
-                    <form action="/users/ProfileEdit" method="post" enctype="multipart/form-data">
-                        <div class="bg-white shadow-2xl rounded-3xl p-8 mt-6 pb-12">
-
+                     <div class="bg-white shadow-2xl rounded-3xl p-8 mt-6 pb-12">
+                        <form action="/users/ProfileEdit" method="post" enctype="multipart/form-data">
+                       
                             <div>
                                 <h2 class="text-xl font-semibold">Profile Pic</h2>
 
@@ -119,9 +118,20 @@
                                     <div id="previewBox"
                                         class="w-24 h-24 rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden bg-gray-50">
 
-                                        <i id="uploadIcon" class="ri-image-add-line text-4xl text-gray-400"></i>
+                                        <% if (user.profileImage && user.profileImage.data) { %>
 
-                                        <img id="logoPreview" src="" class="hidden w-full h-full object-cover">
+                                            <!-- Existing Profile Pic -->
+                                            <img id="logoPreview" src="/users/profile-image"
+                                                class="w-full h-full object-cover">
+
+                                            <% } else { %>
+
+                                                <!-- No Profile Pic -->
+                                                <i id="uploadIcon" class="ri-image-add-line text-4xl text-gray-400"></i>
+
+                                                <img id="logoPreview" src="" class="hidden w-full h-full object-cover">
+
+                                                <% } %>
 
                                     </div>
 
@@ -137,7 +147,10 @@
 
                                             <i class="ri-upload-cloud-2-line"></i>
 
-                                            <span id="btnText">Upload Profile Pic</span>
+                                            <span id="btnText">
+                                                <%= user.profileImage && user.profileImage.data ? "Change Profile Pic"
+                                                    : "Upload Profile Pic" %>
+                                            </span>
 
                                         </button>
 
@@ -189,7 +202,7 @@
                                     <label class="text-lg font-medium mb-2 block " for=""> Date of Birth</label>
                                     <input
                                         class="text-gray-500  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
-                                        type="date" name="dob" value="<%= user?.dob || '' %>">
+                                        type="date" name="dob"    value="<%= user?.dob ? new Date(user.dob).toISOString().split('T')[0] : '' %>">
 
                                 </div>
 
@@ -255,14 +268,64 @@
                                 </div>
 
                                 <div>
-                                    <label class="text-lg font-medium mb-2 block" for="">Resume</label>
-                                    <input type="file" name="resume" accept="application/pdf"
-                                        class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 ">
+                                    <h2 class="text-xl font-semibold">Resume</h2>
 
-                                    <p class="text-sm text-gray-500 mt-2">
-                                        Upload your resume in PDF format
-                                    </p>
+                                    <div class="flex items-center gap-8 mt-8 pb-8 border-b border-gray-200">
 
+                                        <!-- Existing Resume -->
+                                        <div class="flex items-center gap-3">
+
+                                            <i class="ri-file-pdf-2-line text-red-500 text-3xl"></i>
+
+                                            <div>
+                                                <% if (user.resume && user.resume.data) { %>
+
+                                                    <p class="font-medium text-gray-800">
+                                                        Resume uploaded
+                                                    </p>
+
+                                                    <a href="/users/resume" target="_blank"
+                                                        class="text-sm text-blue-600 hover:underline">
+                                                        View Resume
+                                                    </a>
+
+                                                    <% } else { %>
+
+                                                        <p class="font-medium text-gray-500">
+                                                            No resume uploaded
+                                                        </p>
+
+                                                        <% } %>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Upload / Change Resume -->
+                                        <div>
+
+                                            <input type="file" id="resumeInput" name="resume" accept=".pdf"
+                                                class="hidden">
+
+                                            <button type="button"
+                                                onclick="document.getElementById('resumeInput').click()"
+                                                class="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+
+                                                <i class="ri-upload-cloud-2-line"></i>
+
+                                                <span id="resumeBtnText">
+                                                    <%= user.resume && user.resume.data ? "Change Resume"
+                                                        : "Upload Resume" %>
+                                                </span>
+
+                                            </button>
+
+                                            <p class="text-sm text-gray-500 mt-2">
+                                                Upload your resume in PDF format
+                                            </p>
+
+                                        </div>
+
+                                    </div>
                                 </div>
 
                                 <div>
@@ -270,7 +333,7 @@
                                     <textarea
                                         class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 resize-none h-32 text-gray-700 placeholder:text-gray-500"
                                         placeholder="Write a short description about yourself" name="aboutme"
-                                        value="<%= user?.aboutme || '' %>"></textarea>
+                                         > <%= user?.aboutme || '' %> </textarea>
                                 </div>
                             </div>
 
@@ -289,6 +352,10 @@
                             </div>
 
                     </form>
+                    
+                     </div>
+
+                    
                 </div>
             </div>
 
@@ -299,6 +366,22 @@
             let cross = document.querySelector(".cross");
             let overlay = document.querySelector(".overlay")
 
+
+            menubtn.addEventListener("click", () => {
+                sidebar.classList.remove("-translate-x-full");
+                overlay.classList.remove("hidden");
+            });
+
+            cross.addEventListener("click", () => {
+                sidebar.classList.add("-translate-x-full")
+                overlay.classList.add("hidden");
+
+            })
+
+            overlay.addEventListener("click", () => {
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("hidden");
+            })
 
 
             const input = document.getElementById("logoInput");
@@ -325,22 +408,16 @@
             });
 
 
+            const resumeInput = document.getElementById("resumeInput");
+            const resumeBtnText = document.getElementById("resumeBtnText");
 
-            menubtn.addEventListener("click", () => {
-                sidebar.classList.remove("-translate-x-full");
-                overlay.classList.remove("hidden");
+            resumeInput.addEventListener("change", function () {
+
+                if (this.files[0]) {
+                    resumeBtnText.textContent = "Change Resume";
+                }
+
             });
-
-            cross.addEventListener("click", () => {
-                sidebar.classList.add("-translate-x-full")
-                overlay.classList.add("hidden");
-
-            })
-
-            overlay.addEventListener("click", () => {
-                sidebar.classList.add("-translate-x-full");
-                overlay.classList.add("hidden");
-            })
 
         </script>
 </body>

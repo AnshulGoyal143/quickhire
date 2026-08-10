@@ -15,7 +15,12 @@ const companySchema = new mongoose.Schema({
     about: String,
     
 
-    companyProfile: String,
+    companyProfile:{
+        
+        data: Buffer,
+
+        contentType: String
+    },
     createdAt: {
         type: Date,
         default: Date.now

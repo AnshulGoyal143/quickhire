@@ -155,7 +155,7 @@ router.post("/register", async (req, res) => {
          });
 
 
-         let token = jwt.sign({ email: email, userid: createdUser._id }, "shhhh");
+         let token = jwt.sign({ email: email, userid: createdUser._id }, process.env.USER_JWT_SECRET);
          res.cookie("token", token);
          res.redirect("/users/userDashboard")
       })
@@ -172,7 +172,7 @@ router.post("/login", async (req, res) => {
    bcrypt.compare(password, user.password, function (err, result) {
 
       if (result) {
-         let token = jwt.sign({ email: email ,userid: user._id}, "shhhh");
+         let token = jwt.sign({ email: email ,userid: user._id}, process.env.USER_JWT_SECRET);
          res.cookie("token", token);
         return res.redirect("/users/userDashboard");
 
@@ -192,7 +192,7 @@ async function isLoggedIn(req, res, next) {
         return res.redirect("/users/login");
     }
 
-    let data = jwt.verify(req.cookies.token, "shhhh");
+    let data = jwt.verify(req.cookies.token, process.env.USER_JWT_SECRET);
 
     let user = await userModel.findById(data.userid);
 

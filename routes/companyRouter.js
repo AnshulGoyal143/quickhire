@@ -6,20 +6,71 @@ const cookieParser = require('cookie-parser');
 
 const path = require('path');
 const companyModel = require('../models/company-model');
+const jobModel = require('../models/job-model');
 
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 
 
-
+//---------------------------login--------------------
 router.get("/login", (req, res) => {
    res.render("company/companyLogin");
 });
 
+router.post("/login", async (req, res) => {
+   let { companyEmail, password } = req.body;
+
+   let company = await companyModel.findOne({ companyEmail });
+   if (!company) return res.status(500).send("Something went wrong");
+
+   bcrypt.compare(password, company.password, function (err, result) {
+
+      if (result) {
+         let token = jwt.sign({ companyEmail: companyEmail ,companyid: company._id}, process.env.COMPANY_JWT_SECRET);
+         res.cookie("companyToken", token);
+        return res.redirect("/company/companyDashboard");
+
+      }
+      res.status(401).send("Something went wrong")
+   })
+});
+
+//--------------------register----------------------------
 router.get("/register", (req, res) => {
    res.render("company/companyRegister")
 });
+
+router.post("/register", async (req, res) => {
+   let { companyEmail, companyName, password, phone } = req.body;
+
+   let company = await companyModel.findOne({ companyEmail });
+   if (company) return res.status(500).send("Account already exists");
+
+   bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, async (err, hash) => {
+         let createdCompany = await companyModel.create({
+           companyEmail, 
+           companyName, 
+           password :hash,
+            phone
+         });
+
+
+         let token = jwt.sign({ companyEmail: companyEmail, companyid: createdCompany._id }, process.env.COMPANY_JWT_SECRET);
+         res.cookie("companyToken", token);
+         res.redirect("/company/companyDashboard")
+      })
+   })
+
+});
+
+// --------------------logout------------------
+router.get("/logout", (req, res) => {
+    res.cookie("companyToken", "");
+    res.redirect("/company/login");
+});
+//  --------------------------------------------------
 
 router.get("/companyDashboard",isCompanyLoggedIn, async (req,res)=>{
    // let company = await companyModel.findOne({companyEmail:req.company.companyEmail});
@@ -30,6 +81,18 @@ router.get("/companyMyProfile",isCompanyLoggedIn, (req, res) => {
    res.render("company/companyMyProfile");
 });
 
+//---------------application -----------
+router.get("/companyApplication",isCompanyLoggedIn, (req, res) => {
+   res.render("company/companyApplication");
+});
+
+//-------------applicants ---------
+
+router.get("/companyApplicants",isCompanyLoggedIn, (req, res) => {
+   res.render("company/companyApplicants");
+});
+
+//--------------------edit profile-------------------------------------
 router.get("/EditProfile",isCompanyLoggedIn, (req, res) => {
    res.render("company/companyEditProfile");
 });
@@ -90,68 +153,154 @@ router.get("/company-profile", isCompanyLoggedIn, async (req, res) => {
     res.send(company.companyProfile.data);
 });
 
+//-------------------------
 
-router.post("/register", async (req, res) => {
-   let { companyEmail, companyName, password, phone } = req.body;
+ router.get("/companyJobPosted",isCompanyLoggedIn, (req,res)=>{
+    res.render("company/companyJobPosted");
+ })
 
-   let company = await companyModel.findOne({ companyEmail });
-   if (company) return res.status(500).send("Account already exists");
+// post a job
+ router.get("/PostJob",isCompanyLoggedIn,(req,res)=>{
+    res.render("company/companyPostJob")
+ })
 
-   bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, async (err, hash) => {
-         let createdCompany = await companyModel.create({
-           companyEmail, 
-           companyName, 
-           password :hash,
-            phone
-         });
+router.post("/PostJob",isCompanyLoggedIn,async (req,res)=>{
+    
+    let {
 
+            jobTitle,
+    jobCategory ,
+    jobType ,
+    experience ,
+    salary ,
+    companyLocation ,
+    jobDescription ,
+    addSkills,
+    vacancies,
+    deadline,
+    workMode ,
+    education ,
+    Gender
+    
+    } = req.body;
 
-         let token = jwt.sign({ companyEmail: companyEmail, companyid: createdCompany._id }, "shhhh");
-         res.cookie("companyToken", token);
-         res.redirect("/company/companyDashboard")
-      })
-   })
+    let job = new jobModel({
 
-})
+        company: req.company._id,
 
-router.post("/login", async (req, res) => {
-   let { companyEmail, password } = req.body;
+    jobTitle,
+    jobCategory ,
+    jobType ,
+    experience ,
+    salary ,
+    companyLocation ,
+    jobDescription ,
+    addSkills,
+    vacancies,
+    deadline,
+    workMode ,
+    // new job directly active
+    status: "active"
+    });
 
-   let company = await companyModel.findOne({ companyEmail });
-   if (!company) return res.status(500).send("Something went wrong");
+    await job.save();
 
-   bcrypt.compare(password, company.password, function (err, result) {
-
-      if (result) {
-         let token = jwt.sign({ companyEmail: companyEmail ,companyid: company._id}, "shhhh");
-         res.cookie("companyToken", token);
-        return res.redirect("/company/companyDashboard");
-
-      }
-      res.status(401).send("Something went wrong")
-   })
-});
-
-router.get("/logout", (req, res) => {
-    res.cookie("companyToken", "");
-    res.redirect("/company/login");
-});
-
+    res.redirect("/company/companyJobPosted")
+ })
+ 
 // *----------------------function-------------
 async function isCompanyLoggedIn(req, res, next) {
 
+    // 🔐 Check if company login token exists
     if (!req.cookies.companyToken) {
         return res.redirect("/company/login");
     }
 
-    let data = jwt.verify(req.cookies.companyToken, "shhhh");
+    // 🔑 Verify JWT token and get company ID
+    let data = jwt.verify(
+        req.cookies.companyToken,
+        process.env.COMPANY_JWT_SECRET
+    );
 
+    // 🏢 Find logged-in company from database
     let company = await companyModel.findById(data.companyid);
 
+    // 📌 Store company data in request and make it available in all EJS files
     req.company = company;
     res.locals.company = company;
 
+
+    // =========================================================
+    // 📋 RECENT JOBS
+    // Get latest 3 jobs posted by the logged-in company
+    // =========================================================
+
+    const jobs = await jobModel.find({
+        company: company._id
+    })
+    .sort({ createdAt: -1 })
+    .limit(3);
+
+    // Make recent jobs available in EJS
+    res.locals.jobs = jobs;
+
+
+    // =========================================================
+    // 📊 JOB COUNTS
+    // =========================================================
+
+    // 🔢 Total number of jobs posted by this company
+    const totalJobs = await jobModel.countDocuments({
+        company: company._id
+    });
+
+
+    // 🟢 Active Jobs
+    // Job must have status "active"
+    // AND deadline should not have passed
+    const activeJobs = await jobModel.countDocuments({
+        company: company._id,
+        status: "active",
+        deadline: { $gte: new Date() }
+    });
+
+
+    // 🔴 Expired Jobs
+    // Job must have status "active"
+    // AND deadline has already passed
+    const expiredJobs = await jobModel.countDocuments({
+        company: company._id,
+        status: "active",
+        deadline: { $lt: new Date() }
+    });
+
+
+    // 📝 Draft Jobs
+    // Jobs that are saved as draft
+    const draftJobs = await jobModel.countDocuments({
+        company: company._id,
+        status: "draft"
+    });
+
+
+    // =========================================================
+    // 📤 SEND COUNTS TO EJS
+    // =========================================================
+
+    // Total Jobs count available in EJS
+    res.locals.totalJobs = totalJobs;
+
+    // Active Jobs count available in EJS
+    res.locals.activeJobs = activeJobs;
+
+    // Expired Jobs count available in EJS
+    res.locals.expiredJobs = expiredJobs;
+
+    // Draft Jobs count available in EJS
+    res.locals.draftJobs = draftJobs;
+
+
+    // ➡️ Continue to the requested route
     next();
 }
 

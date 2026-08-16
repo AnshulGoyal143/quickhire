@@ -140,7 +140,7 @@
                     <div class="bg-white shadow-lg rounded-3xl p-8 mt-6 pb-12">
 
                         <!-- ************ ********* -->
-                        <form action="" method="">
+                        <form action="/company/PostJob" method="post">
 
                             <!-- ************ JOB DETAILS********* -->
                             <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
@@ -164,7 +164,7 @@
                                             Job Title <span class="text-red-500">*</span>
                                         </label>
 
-                                        <input type="text" placeholder="Enter job title"
+                                        <input type="text" placeholder="Enter job title" name="jobTitle"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
                                     </div>
 
@@ -174,7 +174,7 @@
                                             Job Category <span class="text-red-500">*</span>
                                         </label>
 
-                                        <select
+                                        <select name="jobCategory"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                             <option>Select category</option>
@@ -191,7 +191,7 @@
                                             Job Type <span class="text-red-500">*</span>
                                         </label>
 
-                                        <select
+                                        <select name="jobType"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                             <option>Select job type</option>
@@ -208,7 +208,7 @@
                                             Experience <span class="text-red-500">*</span>
                                         </label>
 
-                                        <select
+                                        <select name="experience"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                             <option>Select experience</option>
@@ -225,7 +225,7 @@
                                             Salary Range <span class="text-red-500">*</span>
                                         </label>
 
-                                        <select
+                                        <select name="salary"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                             <option>Select salary range</option>
@@ -242,7 +242,7 @@
                                             Location <span class="text-red-500">*</span>
                                         </label>
 
-                                        <input type="text" placeholder="Enter location"
+                                        <input type="text" placeholder="Enter location" name="companyLocation"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
                                     </div>
 
@@ -267,7 +267,7 @@
 
                                 <div class="relative">
 
-                                    <textarea maxlength="1000" rows="7"
+                                    <textarea maxlength="1000" rows="7" name="jobDescription"
                                         placeholder="Write a detailed job description..."
                                         class="w-full border border-gray-300 rounded-xl px-4 py-4 resize-none outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"></textarea>
 
@@ -296,7 +296,7 @@
                                 </div>
 
                                 <!-- Input -->
-                                <input type="text" placeholder="Add skills (e.g. React, Node.js, Python)"
+                                <input type="text" placeholder="Add skills (e.g. React, Node.js, Python)" name="addSkills"
                                     class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                 <!-- Skills Tags -->
@@ -354,7 +354,7 @@
                                             Number of Vacancies
                                         </label>
 
-                                        <input type="number" name="vacancies" placeholder="e.g. 5"
+                                        <input type="number" name="vacancies" placeholder="e.g. 5" 
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-500">
                                     </div>
 
@@ -401,7 +401,7 @@
                                             Gender Preference
                                         </label>
 
-                                        <select name="gender"
+                                        <select name="Gender"
                                             class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-500">
 
                                             <option>No Preference</option>

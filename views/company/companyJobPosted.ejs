@@ -52,9 +52,8 @@
                     <ul class=" space-y-3">
                         <!-- yha pee user dashboard menu link attach krne h -->
 
-                        <li
-                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1">
-                            <a href="">
+                        <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1">
+                            <a href="/company/companyDashboard">
                                 <i class="ri-home-3-line text-xl"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -62,25 +61,33 @@
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
-                            <a href="">
+                            <a href="/company/companyMyProfile">
                                 <i class="ri-group-line text-xl"></i>
-                                <span>Users</span>
+                                <span>My Profile</span>
                             </a>
                         </li>
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="/company/companyPostJob">
+                                <i class="ri-file-add-line text-xl"></i>
+                                <span>Post a Job</span>
+                            </a>
+                        </li>
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600 ">
                             <a href="">
-                                <i class="ri-building-2-line text-xl"></i>
-                                <span>Companies</span>
+                                <i class="ri-briefcase-4-line text-xl"></i>
+                                <span>Jobs Posts</span>
                             </a>
                         </li>
 
 
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600 ">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
                             <a href="">
-                                <i class="ri-briefcase-4-line text-xl"></i>
-                                <span>Jobs</span>
+                                <i class="ri-team-line text-xl"></i>
+                                <span>Applicants</span>
                             </a>
                         </li>
 
@@ -92,10 +99,22 @@
                             </a>
                         </li>
 
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-bookmark-line text-xl"></i>
+                                <span>Saved Candidates</span>
+                            </a>
+                        </li>
 
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="">
+                                <i class="ri-chat-3-line text-xl"></i>
+                                <span>Messages</span>
+                            </a>
+                        </li>
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
-                            <a href="">
+                            <a href="/company/logout">
                                 <i class="ri-logout-box-r-line text-xl"></i>
                                 <span>Logout</span>
                             </a>
@@ -130,7 +149,7 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Total Jobs</h2>
-                                <p class="text-4xl font-bold mt-1">63</p>
+                                <p class="text-4xl font-bold mt-1"><%= totalJobs %></p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -152,7 +171,7 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Active Jobs</h2>
-                                <p class="text-4xl font-bold mt-1">38</p>
+                                <p class="text-4xl font-bold mt-1"><%= activeJobs %></p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -169,11 +188,11 @@
                         <div class=" flex items-center gap-4">
                             <div
                                 class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-orange-100  flex items-center justify-center">
-                                <i class="ri-time-line text-2xl lg:text-3xl text-orange-500 "></i>
+                                <i class="ri-close-circle-line text-2xl lg:text-3xl text-orange-500 "></i>
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Expired Jobs</h2>
-                                <p class="text-4xl font-bold mt-1">12</p>
+                                <p class="text-4xl font-bold mt-1"><%= expiredJobs %></p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -193,8 +212,8 @@
                                 <i class="ri-pause-circle-line text-2xl lg:text-3xl text-purple-800"></i>
                             </div>
                             <div class="maintext">
-                                <h2 class="text-xl text-gray-500">Paused Jobs</h2>
-                                <p class="text-4xl font-bold mt-1"> 10</p>
+                                <h2 class="text-xl text-gray-500">Draft Jobs</h2>
+                                <p class="text-4xl font-bold mt-1"> <%= draftJobs %></p>
                             </div>
                         </div>
                         <div class="routetag mt-3">
@@ -219,7 +238,7 @@
                     <div class="relative w-full md:w-[420px]">
                         <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
 
-                        <input type="text" placeholder="Search by title,company or location..."
+                        <input type="text" placeholder="Search jobs..."
                             class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
                     </div>
 
@@ -266,7 +285,7 @@
                                 <tr>
 
                                     <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Title</th>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Company</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Type</th>
                                     <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Location</th>
                                     <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Category</th>
                                     <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Applicants</th>
@@ -278,253 +297,112 @@
 
                             <tbody>
 
-                                <!-- Row 1 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
+                                <% if (jobs && jobs.length> 0) { %>
 
+                                    <% jobs.forEach(job=> { %>
 
-                                    <td class="px-6 py-5 font-medium">Frontend Developer</td>
-                                    <td class="px-6 py-5 text-gray-600">TechNova Solutions</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Noida,UP</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">IT
-                                            & Software</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
+                                        <tr class="border-b hover:bg-gray-50 transition">
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
+                                            <!-- Job Title -->
+                                            <td class="px-6 py-5 font-medium">
+                                                <%= job.jobTitle %>
+                                            </td>
 
-                                    <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
+                                            <!-- Job Type -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <%= job.jobType %>
+                                            </td>
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
+                                            <!-- Location -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <div class="flex items-center gap-2">
+                                                    <i class="ri-map-pin-line"></i>
+                                                    <span>
+                                                        <%= job.companyLocation %>
+                                                    </span>
+                                                </div>
+                                            </td>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                                            <!-- Category -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full
+                                 font-medium whitespace-nowrap text-sm">
+                                                    <%= job.jobCategory %>
+                                                </span>
+                                            </td>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
+                                            <!-- Applicants -->
+                                            <td class="px-6 py-5 text-gray-600 font-medium">
+                                                0
+                                            </td>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                                            <!-- Status -->
+                                            <td class="px-6 py-5">
+                                                <span class="bg-green-100 text-green-700 px-3 py-1
+                                 rounded-full text-xs font-semibold">
+                                                    Active
+                                                </span>
+                                            </td>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                                            <!-- Posted On -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <%= new Date(job.createdAt).toLocaleDateString("en-IN", { day: "2-digit"
+                                                    , month: "short" , year: "numeric" }) %>
+                                            </td>
 
-                                <!-- Row 2 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">Backend Developer</td>
-                                    <td class="px-6 py-5 text-gray-600">InnovateX Labs</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Banglore,KA</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">IT
-                                            & Software</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">13</td>
+                                            <!-- Actions -->
+                                            <td class="px-6 py-5">
+                                                <div class="flex justify-center gap-2">
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Pending
-                                        </span>
-                                    </td>
+                                                    <a href="/company/job/<%= job._id %>" class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600
+                                  hover:bg-blue-100 flex items-center justify-center">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
 
-                                    <td class="px-6 py-5 text-gray-600">
-                                        10 May 2026
-                                    </td>
+                                                    <a href="/company/job/edit/<%= job._id %>" class="w-9 h-9 rounded-lg bg-green-50 text-green-600
+                                  hover:bg-green-100 flex items-center justify-center">
+                                                        <i class="ri-pencil-line"></i>
+                                                    </a>
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
+                                                    <form action="/company/job/delete/<%= job._id %>" method="POST">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                                                        <button type="submit" class="w-9 h-9 rounded-lg bg-red-50 text-red-600
+                                           hover:bg-red-100">
+                                                            <i class="ri-delete-bin-6-line"></i>
+                                                        </button>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
+                                                    </form>
 
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                                                </div>
+                                            </td>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </tr>
 
-                                <!-- Row 3 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">UI/UX Designer</td>
-                                    <td class="px-6 py-5 text-gray-600">Bright Future Pvt ltd</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Mumbai,MH</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">
-                                            Design</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">20</td>
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Expired
-                                        </span>
-                                    </td>
+                                        <% }) %>
 
-                                    <td class="px-6 py-5 text-gray-600">
-                                        07 May 2026
-                                    </td>
+                                            <% } else { %>
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
+                                                <tr>
+                                                    <td colspan="8" class="px-6 py-12 text-center">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                                                        <div class="flex flex-col items-center">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
+                                                            <i class="ri-briefcase-line text-5xl text-gray-300"></i>
 
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                                                            <h3 class="text-lg font-semibold text-gray-700 mt-4">
+                                                                No Jobs Posted Yet
+                                                            </h3>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                                                            <p class="text-sm text-gray-500 mt-1">
+                                                                Your posted jobs will appear here.
+                                                            </p>
 
+                                                        </div>
 
-                                <!-- Row 4 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">Data Analyst</td>
-                                    <td class="px-6 py-5 text-gray-600">Alpha Tech</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Chennai,TN</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-pink-100 text-pink-500 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">
-                                            Analytics</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
+                                                    </td>
+                                                </tr>
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
-
-                                    <td class="px-6 py-5 text-gray-600">
-                                        08 May 2026
-                                    </td>
-
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
-
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <!-- Row 5 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">HR Executive</td>
-                                    <td class="px-6 py-5 text-gray-600">DreamWorks pvt.ltd</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Kolkata,WB</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">
-                                            Human resources</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
-
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Pending
-                                        </span>
-                                    </td>
-
-                                    <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
-
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
-
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
+                                                <% } %>
 
                             </tbody>
 
@@ -537,8 +415,11 @@
                         class="flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-4 border-t bg-white">
 
                         <p class="text-sm text-gray-500">
-                            Showing <span class="font-semibold">1–8</span> of
-                            <span class="font-semibold">123</span> jobs
+                            Showing
+                            <span class="font-semibold">
+                                <%= jobs.length %>
+                            </span>
+                            jobs
                         </p>
 
                         <div class="flex items-center gap-2">

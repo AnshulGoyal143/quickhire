@@ -22,7 +22,7 @@ const adminModel =  require('../models/admin-model');
       bcrypt.compare(password, admin.password, function (err, result) {
    
          if (result) {
-            let token = jwt.sign({ adminEmail: adminEmail ,adminid: admin._id}, "shhhh");
+            let token = jwt.sign({ adminEmail: adminEmail ,adminid: admin._id}, process.env.ADMIN_JWT_SECRET);
             res.cookie("adminToken", token);
            return res.redirect("/admin/adminDashboard");
    
@@ -44,7 +44,7 @@ const adminModel =  require('../models/admin-model');
            return res.redirect("/admin/login");
        }
    
-       let data = jwt.verify(req.cookies.adminToken, "shhhh");
+       let data = jwt.verify(req.cookies.adminToken, process.env.ADMIN_JWT_SECRET);
    
        let admin = await adminModel.findById(data.adminid);
    

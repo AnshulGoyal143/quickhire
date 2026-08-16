@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -7,6 +9,8 @@ const db = require("./config/mongoose-connection");
 const adminRouter = require("./routes/adminRouter");
 const companyRouter = require("./routes/companyRouter");
 const usersRouter = require("./routes/usersRouter");
+
+
 
 
 app.set("view engine","ejs");

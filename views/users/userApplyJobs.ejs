@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply for Job | QuickHire</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
+        <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+            <div class="menubtn">
+                <i class="ri-menu-fill text-2xl"></i>
+            </div>
+            <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+        </div>
+        <div class="flex items-center gap-6">
+            <!-- notification k ley route bnana h -->
+            <a href=""><i class="ri-notification-3-line text-2xl"></i>
+            </a>
+            <div class="flex items-center gap-2">
+                <img class="h-10 w-11 rounded-full"
+                    src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
+                    alt="">
+                <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+            </div>
+        </div>
+    </nav>
+    <!-- *********** FOr the menu list div ********-->
+    <div
+        class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4">
+
+        <div class="flex items-center ">
+            <img class="h-8"
+                src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                alt="">
+            <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+        </div>
+        <div class="cross flex justify-end ">
+            <i
+                class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+        </div>
+        <div class="list">
+            <ul class=" space-y-3">
+                <!-- yha pee user dashboard menu link attach krne h -->
+
+                <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1 mt-1">
+                    <a href="/users/userDashboard">
+                        <i class="ri-home-3-line text-xl"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600  ">
+                    <a href="">
+                        <i class="ri-file-list-3-line text-xl"></i>
+                        <span>My Applications</span>
+                    </a>
+                </li>
+
+                <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                    <a href="">
+                        <i class="ri-briefcase-line text-xl"></i>
+                        <span>Browse Jobs</span>
+                    </a>
+                </li>
+
+                <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                    <a href="/users/userProfile">
+                        <i class="ri-user-3-line text-xl"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+
+                <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                    <a href="/users/ProfileEdit">
+                        <i class="ri-edit-2-line text-xl"></i>
+                        <span>Edit Profile</span>
+                    </a>
+                </li>
+
+                <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                    <a href="/logout">
+                        <i class="ri-logout-box-r-line text-xl"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="overlay fixed inset-0 bg-black/30 hidden z-40 lg:hidden">
+    </div>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="lg:ml-56 xl:ml-64 pt-16 min-h-screen">
+
+        <div class="w-full  px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+
+            <!-- BACK TO JOBS -->
+
+            <div class="mb-5">
+
+                <a href="/users/jobs" class="inline-flex items-center gap-2 text-blue-600 text-sm font-medium">
+
+                    <i class="ri-arrow-left-line text-lg"></i>
+
+                    Back to Jobs
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ================= JOB HEADER ================= -->
+
+            <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 mb-5">
+
+                <div class="flex items-center gap-4">
+
+                    <!-- Company Logo -->
+
+                    <div class="w-16 h-16 rounded-xl border border-gray-200 flex items-center justify-center shrink-0">
+
+                        <span class="text-4xl font-bold text-blue-500">
+
+                            G
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- Job Info -->
+
+                    <div>
+
+                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+
+                            Apply for Frontend Developer
+
+                        </h1>
+
+
+                        <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-2 text-sm text-gray-600">
+
+                            <span class="font-semibold text-gray-800">
+
+                                Google
+
+                            </span>
+
+
+                            <i class="ri-verified-badge-fill text-blue-600">
+                            </i>
+
+
+                            <span>•</span>
+
+
+                            <span class="flex items-center gap-1">
+
+                                <i class="ri-map-pin-line"></i>
+
+                                Bengaluru, India
+
+                            </span>
+
+
+                            <span>•</span>
+
+
+                            <span class="flex items-center gap-1">
+
+                                <i class="ri-briefcase-line"></i>
+
+                                Full-time
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= FORM ================= -->
+
+            <form action="/users/applyJob" method="POST" enctype="multipart/form-data" class="space-y-5">
+
+
+
+                <!-- ================= PERSONAL INFO ================= -->
+
+                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                            <i class="ri-user-line text-lg"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2 class="text-lg font-bold">
+
+                                1. Personal Information
+
+                            </h2>
+
+                            <p class="text-sm text-gray-500">
+
+                                Enter your basic details
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                        <!-- Full Name -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Full Name
+                                <span class="text-red-500">*</span>
+
+                            </label>
+
+
+                            <input type="text" name="fullname" value="Anshul Goyal"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                        </div>
+
+
+
+                        <!-- Email -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Email Address
+                                <span class="text-red-500">*</span>
+
+                            </label>
+
+
+                            <input type="email" name="email" value="anshul.goyal@example.com"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                        </div>
+
+
+
+                        <!-- Phone -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Phone Number
+                                <span class="text-red-500">*</span>
+
+                            </label>
+
+
+                            <input type="tel" name="mobile" value="+91 98765 43210"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                        </div>
+
+
+
+                        <!-- Location -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Current Location
+                                <span class="text-red-500">*</span>
+
+                            </label>
+
+
+                            <input type="text" name="location" value="Bengaluru, India"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                        </div>
+
+
+
+                        <!-- LinkedIn -->
+
+                        <div class="md:col-span-2">
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                LinkedIn Profile
+                                <span class="text-gray-400">
+                                    (Optional)
+                                </span>
+
+                            </label>
+
+
+                            <input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourprofile"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ================= EXPERIENCE + SKILLS ================= -->
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+
+                    <!-- EXPERIENCE -->
+
+                    <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+
+                        <div class="flex items-center gap-3 mb-5">
+
+                            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                                <i class="ri-briefcase-line"></i>
+
+                            </div>
+
+
+                            <h2 class="text-lg font-bold">
+
+                                2. Experience
+
+                            </h2>
+
+                        </div>
+
+
+
+                        <div class="space-y-4">
+
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+
+                                <!-- Experience Level -->
+
+                                <div>
+
+                                    <label class="block text-sm font-medium mb-2">
+
+                                        Experience Level
+
+                                    </label>
+
+
+                                    <select name="experienceLevel"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white outline-none focus:border-blue-500">
+
+                                        <option>
+                                            Fresher
+                                        </option>
+
+                                        <option>
+                                            0 - 1 Year
+                                        </option>
+
+                                        <option>
+                                            1 - 3 Years
+                                        </option>
+
+                                        <option>
+                                            3 - 5 Years
+                                        </option>
+
+                                        <option>
+                                            5+ Years
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <!-- Total Experience -->
+
+                                <div>
+
+                                    <label class="block text-sm font-medium mb-2">
+
+                                        Total Experience
+
+                                    </label>
+
+
+                                    <select name="totalExperience"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white outline-none focus:border-blue-500">
+
+                                        <option>
+                                            0 Year
+                                        </option>
+
+                                        <option>
+                                            1 Year
+                                        </option>
+
+                                        <option>
+                                            2 Years
+                                        </option>
+
+                                        <option>
+                                            3 Years
+                                        </option>
+
+                                        <option>
+                                            4+ Years
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Previous Job -->
+
+                            <div>
+
+                                <label class="block text-sm font-medium mb-2">
+
+                                    Current / Previous Job Title
+
+                                    <span class="text-gray-400">
+                                        (Optional)
+                                    </span>
+
+                                </label>
+
+
+                                <input type="text" name="previousJobTitle" placeholder="e.g. Frontend Developer"
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                            </div>
+
+
+
+                            <!-- Company -->
+
+                            <div>
+
+                                <label class="block text-sm font-medium mb-2">
+
+                                    Company Name
+
+                                    <span class="text-gray-400">
+                                        (Optional)
+                                    </span>
+
+                                </label>
+
+
+                                <input type="text" name="previousCompany" placeholder="e.g. ABC Technologies"
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                            </div>
+
+
+
+                            <!-- Employment -->
+
+                            <div>
+
+                                <label class="block text-sm font-medium mb-2">
+
+                                    Employment Type
+
+                                </label>
+
+
+                                <select name="employmentType"
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white outline-none focus:border-blue-500">
+
+                                    <option>
+                                        Full-time
+                                    </option>
+
+                                    <option>
+                                        Part-time
+                                    </option>
+
+                                    <option>
+                                        Internship
+                                    </option>
+
+                                    <option>
+                                        Freelance
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- ================= SKILLS ================= -->
+
+                    <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+
+                        <div class="flex items-center gap-3 mb-5">
+
+                            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                                <i class="ri-code-s-slash-line"></i>
+
+                            </div>
+
+
+                            <h2 class="text-lg font-bold">
+
+                                3. Skills
+
+                            </h2>
+
+                        </div>
+
+
+                        <label class="block text-sm font-medium mb-2">
+
+                            Your Skills
+
+                        </label>
+
+
+                        <textarea name="skills" rows="7" placeholder="HTML, CSS, JavaScript, React.js, Node.js..."
+                            class="w-full border border-gray-300 rounded-lg px-4 py-3 resize-none outline-none focus:border-blue-500"></textarea>
+
+
+                        <p class="text-xs text-gray-500 mt-2">
+
+                            Add skills relevant to this job.
+
+                        </p>
+
+                    </section>
+
+                </div>
+
+
+
+                <!-- ================= RESUME + COVER LETTER ================= -->
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+
+                    <!-- RESUME -->
+
+                    <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+
+                        <div class="flex items-center gap-3 mb-5">
+
+                            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                                <i class="ri-file-text-line"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2 class="text-lg font-bold">
+
+                                    4. Resume
+                                    <span class="text-red-500">*</span>
+
+                                </h2>
+
+
+                                <p class="text-sm text-gray-500">
+
+                                    Upload your latest resume
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <label
+                            class="block border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400">
+
+                            <i class="ri-upload-cloud-2-line text-3xl text-blue-500">
+                            </i>
+
+
+                            <p class="font-medium mt-2">
+
+                                Click to upload
+
+                            </p>
+
+
+                            <p class="text-xs text-gray-500 mt-1">
+
+                                PDF, DOC, DOCX (Max. 5MB)
+
+                            </p>
+
+
+                            <input type="file" name="resume" accept=".pdf,.doc,.docx" class="hidden">
+
+                        </label>
+
+                    </section>
+
+
+
+                    <!-- COVER LETTER -->
+
+                    <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+
+                        <div class="flex items-center gap-3 mb-5">
+
+                            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                                <i class="ri-edit-line"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2 class="text-lg font-bold">
+
+                                    5. Cover Letter
+
+                                    <span class="text-gray-400 text-sm font-normal">
+
+                                        (Optional)
+
+                                    </span>
+
+                                </h2>
+
+
+                                <p class="text-sm text-gray-500">
+
+                                    Tell us why you're a great fit
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <textarea name="coverLetter" rows="7" maxlength="1000" placeholder="Write your cover letter..."
+                            class="w-full border border-gray-300 rounded-lg px-4 py-3 resize-none outline-none focus:border-blue-500"></textarea>
+
+
+                        <p class="text-right text-xs text-gray-400 mt-1">
+
+                            0 / 1000
+
+                        </p>
+
+                    </section>
+
+                </div>
+
+
+
+                <!-- ================= ADDITIONAL INFORMATION ================= -->
+
+                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                            <i class="ri-information-line"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2 class="text-lg font-bold">
+
+                                6. Additional Information
+
+                            </h2>
+
+
+                            <p class="text-sm text-gray-500">
+
+                                A few additional details
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                        <!-- Notice -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Notice Period
+
+                            </label>
+
+
+                            <select name="noticePeriod"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white outline-none focus:border-blue-500">
+
+                                <option>
+                                    Immediate
+                                </option>
+
+                                <option>
+                                    15 Days
+                                </option>
+
+                                <option>
+                                    30 Days
+                                </option>
+
+                                <option>
+                                    60 Days
+                                </option>
+
+                                <option>
+                                    90+ Days
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Salary -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Expected Salary
+
+                            </label>
+
+
+                            <input type="text" name="expectedSalary" placeholder="e.g. ₹8 - ₹12 LPA"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                        </div>
+
+
+
+                        <!-- Relocate -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Willing to Relocate?
+
+                            </label>
+
+
+                            <select name="relocate"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white outline-none focus:border-blue-500">
+
+                                <option>
+                                    Yes
+                                </option>
+
+                                <option>
+                                    No
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Availability -->
+
+                        <div>
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Availability
+
+                            </label>
+
+
+                            <select name="availability"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white outline-none focus:border-blue-500">
+
+                                <option>
+                                    Immediately
+                                </option>
+
+                                <option>
+                                    Within 15 Days
+                                </option>
+
+                                <option>
+                                    Within 30 Days
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Portfolio -->
+
+                        <div class="md:col-span-2">
+
+                            <label class="block text-sm font-medium mb-2">
+
+                                Portfolio / GitHub / Website
+
+                                <span class="text-gray-400">
+                                    (Optional)
+                                </span>
+
+                            </label>
+
+
+                            <input type="url" name="portfolio" placeholder="https://github.com/yourusername"
+                                class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ================= ATTACHMENTS ================= -->
+
+                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+
+                    <div class="flex items-center justify-between mb-5">
+
+                        <div class="flex items-center gap-3">
+
+                            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                                <i class="ri-attachment-2"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2 class="text-lg font-bold">
+
+                                    7. Attachments
+
+                                    <span class="text-gray-400 text-sm font-normal">
+
+                                        (Optional)
+
+                                    </span>
+
+                                </h2>
+
+
+                                <p class="text-sm text-gray-500">
+
+                                    Upload any other relevant documents
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <label
+                        class="block border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400">
+
+                        <i class="ri-upload-cloud-2-line text-3xl text-blue-500">
+                        </i>
+
+
+                        <p class="font-medium mt-2">
+
+                            Click to upload
+
+                        </p>
+
+
+                        <p class="text-xs text-gray-500 mt-1">
+
+                            PDF, DOC, DOCX (Max. 5MB)
+
+                        </p>
+
+
+                        <input type="file" name="attachments" multiple accept=".pdf,.doc,.docx" class="hidden">
+
+                    </label>
+
+                </section>
+
+
+
+                <!-- ================= SUBMIT ================= -->
+
+                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5">
+
+
+                    <label class="flex items-start gap-3 cursor-pointer">
+
+                        <input type="checkbox" name="confirm" required class="mt-1 w-4 h-4 accent-blue-600">
+
+
+                        <span class="text-sm text-gray-600">
+
+                            I confirm that the information provided
+                            is correct to the best of my knowledge.
+
+                        </span>
+
+                    </label>
+
+
+
+                    <div
+                        class="flex flex-col-reverse sm:flex-row justify-between gap-3 mt-5 pt-5 border-t border-gray-100">
+
+
+                        <a href="/users/jobs"
+                            class="px-5 py-2.5 rounded-lg border border-gray-300 text-sm font-medium text-center hover:bg-gray-50">
+
+                            Cancel
+
+                        </a>
+
+
+                        <button type="submit"
+                            class="px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold flex items-center justify-center gap-2">
+
+                            Submit Application
+
+                            <i class="ri-send-plane-line"></i>
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </form>
+
+
+
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= SIDEBAR SCRIPT ================= -->
+
+    <script>
+
+        const menuBtn =
+            document.querySelector(".menubtn");
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const closeBtn =
+            document.querySelector(".cross");
+
+        const overlay =
+            document.querySelector(".overlay");
+
+
+        menuBtn?.addEventListener("click", () => {
+
+            sidebar.classList.remove("-translate-x-full");
+
+            overlay.classList.remove("hidden");
+
+        });
+
+
+        closeBtn?.addEventListener("click", () => {
+
+            sidebar.classList.add("-translate-x-full");
+
+            overlay.classList.add("hidden");
+
+        });
+
+
+        overlay?.addEventListener("click", () => {
+
+            sidebar.classList.add("-translate-x-full");
+
+            overlay.classList.add("hidden");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

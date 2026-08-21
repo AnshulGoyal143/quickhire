@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="overflow-x-hidden">
+    <div class="w-full min-h-screen relative bg-gray-50">
+
+        <div class="relative z-10 ">
+
+            <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
+                <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+                    <div class="menubtn">
+                        <i class="ri-menu-fill text-2xl"></i>
+                    </div>
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <!-- notification k ley route bnana h -->
+                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                    </a>
+                    <div class="flex items-center gap-2">
+                        <img class="h-10 w-11 rounded-full"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
+                            alt="">
+                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                    </div>
+                </div>
+            </nav>
+            <!-- *********** FOr the menu list div ********-->
+            <div
+                class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4">
+
+                <div class="flex items-center ">
+                    <img class="h-8"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                        alt="">
+                    <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+                </div>
+                <div class="cross flex justify-end ">
+                    <i
+                        class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+                </div>
+                <div class="list">
+                    <ul class=" space-y-3">
+                        <!-- yha pee user dashboard menu link attach krne h -->
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1 mt-1">
+                            <a href="/users/userDashboard">
+                                <i class="ri-home-3-line text-xl"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600  ">
+                            <a href="">
+                                <i class="ri-file-list-3-line text-xl"></i>
+                                <span>My Applications</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                            <a href="">
+                                <i class="ri-briefcase-line text-xl"></i>
+                                <span>Browse Jobs</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="/users/userProfile">
+                                <i class="ri-user-3-line text-xl"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="/users/ProfileEdit">
+                                <i class="ri-edit-2-line text-xl"></i>
+                                <span>Edit Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                            <a href="/logout">
+                                <i class="ri-logout-box-r-line text-xl"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
+
+
+
+            <!-- ===================== BROWSE JOBS ===================== -->
+
+            <div class="textcontainer w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12
+           pt-24 sm:pt-28 lg:pt-32 pb-8
+           transition-all duration-300">
+
+                <!-- ================= PAGE HEADER ================= -->
+
+                <div class="mb-6 sm:mb-8">
+
+                    <h4 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+                        Browse Jobs
+                    </h4>
+
+                    <p class="text-sm sm:text-base lg:text-lg mt-2 text-gray-500">
+                        Find the right opportunity and take the next step in your career.
+                    </p>
+
+                </div>
+
+
+                <!-- ================= SEARCH BOX ================= -->
+
+                <div class="bg-white border border-gray-200 rounded-2xl
+               shadow-sm p-3 sm:p-4 mb-6">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+
+                        <!-- Search -->
+
+                        <div class="relative md:col-span-2 xl:col-span-1">
+
+                            <i class="ri-search-line absolute left-4 top-1/2
+                           -translate-y-1/2 text-gray-400 text-lg">
+                            </i>
+
+                            <input type="text" placeholder="Search by job title, company..." class="w-full h-12 border border-gray-200
+                           rounded-xl pl-11 pr-4
+                           text-sm sm:text-base text-gray-700
+                           outline-none
+                           focus:border-blue-500
+                           focus:ring-2 focus:ring-blue-100
+                           transition">
+                        </div>
+
+
+                        <!-- Location -->
+
+                        <div class="relative">
+
+                            <i class="ri-map-pin-line absolute left-4 top-1/2
+                           -translate-y-1/2 text-gray-400 text-lg">
+                            </i>
+
+                            <select class="w-full h-12 appearance-none
+                           border border-gray-200 rounded-xl
+                           pl-11 pr-10
+                           text-sm sm:text-base text-gray-600
+                           outline-none bg-white
+                           focus:border-blue-500
+                           focus:ring-2 focus:ring-blue-100">
+
+                                <option>All Locations</option>
+                                <option>Delhi</option>
+                                <option>Bengaluru</option>
+                                <option>Hyderabad</option>
+                                <option>Pune</option>
+                                <option>Mumbai</option>
+
+                            </select>
+
+                            <i class="ri-arrow-down-s-line absolute right-4
+                           top-1/2 -translate-y-1/2
+                           text-gray-500 pointer-events-none">
+                            </i>
+
+                        </div>
+
+
+                        <!-- Job Type -->
+
+                        <div class="relative">
+
+                            <i class="ri-briefcase-line absolute left-4 top-1/2
+                           -translate-y-1/2 text-gray-400 text-lg">
+                            </i>
+
+                            <select class="w-full h-12 appearance-none
+                           border border-gray-200 rounded-xl
+                           pl-11 pr-10
+                           text-sm sm:text-base text-gray-600
+                           outline-none bg-white
+                           focus:border-blue-500
+                           focus:ring-2 focus:ring-blue-100">
+
+                                <option>Job Type</option>
+                                <option>Full-time</option>
+                                <option>Part-time</option>
+                                <option>Remote</option>
+                                <option>Internship</option>
+
+                            </select>
+
+                            <i class="ri-arrow-down-s-line absolute right-4
+                           top-1/2 -translate-y-1/2
+                           text-gray-500 pointer-events-none">
+                            </i>
+
+                        </div>
+
+
+                        <!-- Search Button -->
+
+                        <button class="h-12 bg-blue-600 hover:bg-blue-700
+                       text-white rounded-xl
+                       flex items-center justify-center gap-2
+                       font-medium text-sm sm:text-base
+                       transition">
+
+                            <i class="ri-search-line text-lg"></i>
+
+                            <span>Search</span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= JOB TABS ================= -->
+
+                <div class="flex items-center justify-between
+               border-b border-gray-200 mb-5">
+
+                    <!-- Tabs -->
+
+                    <div class="flex items-center gap-6 sm:gap-8
+                   overflow-x-auto scrollbar-hide">
+
+                        <!-- All -->
+
+                        <button class="flex-shrink-0 pb-3
+                       text-blue-600 font-semibold
+                       text-sm
+                       border-b-2 border-blue-600">
+
+                            All Jobs
+
+                        </button>
+
+
+                        <!-- Full Time -->
+
+                        <button class="flex-shrink-0 pb-3
+                       text-gray-500 hover:text-gray-900
+                       font-medium text-sm transition">
+
+                            Full-time
+
+                        </button>
+
+
+                        <!-- Part Time -->
+
+                        <button class="flex-shrink-0 pb-3
+                       text-gray-500 hover:text-gray-900
+                       font-medium text-sm transition">
+
+                            Part-time
+
+                        </button>
+
+
+                        <!-- Remote -->
+
+                        <button class="flex-shrink-0 pb-3
+                       text-gray-500 hover:text-gray-900
+                       font-medium text-sm transition">
+
+                            Remote
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Count -->
+
+                    <p class="hidden sm:block flex-shrink-0
+                   text-sm text-gray-500 ml-4">
+
+                        24 jobs found
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================= MOBILE JOB COUNT ================= -->
+
+                <div class="sm:hidden mb-4">
+
+                    <p class="text-sm text-gray-500">
+                        24 jobs found
+                    </p>
+
+                </div>
+
+
+                <!-- ================= JOB LIST ================= -->
+
+                <div class="space-y-3 sm:space-y-4">
+
+
+                    <!-- ================= JOB 1 ================= -->
+
+                    <div class="bg-white border border-gray-200
+                   rounded-2xl sm:rounded-3xl
+                   p-4 sm:p-5
+                   hover:shadow-md
+                   transition">
+
+                        <div class="flex flex-col lg:flex-row
+                       lg:items-center gap-4">
+
+                            <!-- LEFT -->
+
+                            <div class="flex items-start gap-4 flex-1 min-w-0">
+
+                                <!-- Company Logo -->
+
+                                <div class="w-14 h-14 sm:w-16 sm:h-16
+                               flex-shrink-0
+                               rounded-xl
+                               border border-gray-200
+                               bg-white
+                               flex items-center justify-center
+                               overflow-hidden">
+
+                                    <i class="ri-google-fill
+                                   text-3xl sm:text-4xl
+                                   text-red-500">
+                                    </i>
+
+                                </div>
+
+
+                                <!-- Job Info -->
+
+                                <div class="min-w-0">
+
+                                    <div class="flex flex-wrap items-center
+                                   gap-2">
+
+                                        <h2 class="text-base sm:text-lg
+                                       font-semibold
+                                       text-gray-900">
+
+                                            Frontend Developer
+
+                                        </h2>
+
+                                        <span class="bg-green-50
+                                       text-green-600
+                                       px-2 py-1
+                                       rounded-full
+                                       text-[10px] sm:text-xs
+                                       font-semibold">
+
+                                            New
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <p class="text-sm font-medium
+                                   text-gray-800 mt-1">
+
+                                        Google
+                                        <i class="ri-verified-badge-fill
+                                       text-blue-500 ml-1">
+                                        </i>
+
+                                    </p>
+
+
+                                    <!-- Meta -->
+
+                                    <div class="flex flex-wrap
+                                   items-center gap-x-4
+                                   gap-y-2 mt-2
+                                   text-xs sm:text-sm
+                                   text-gray-500">
+
+                                        <span class="flex items-center gap-1.5">
+
+                                            <i class="ri-map-pin-line"></i>
+
+                                            Bengaluru, India
+
+                                        </span>
+
+
+                                        <span class="hidden sm:block text-gray-300">
+                                            |
+                                        </span>
+
+
+                                        <span class="flex items-center gap-1.5">
+
+                                            <i class="ri-briefcase-line"></i>
+
+                                            Full-time
+
+                                        </span>
+
+
+                                        <span class="hidden md:block text-gray-300">
+                                            |
+                                        </span>
+
+
+                                        <span class="flex items-center gap-1.5">
+
+                                            <i class="ri-bar-chart-line"></i>
+
+                                            2 - 4 Years
+
+                                        </span>
+
+
+                                        <span class="hidden lg:block text-gray-300">
+                                            |
+                                        </span>
+
+
+                                        <span class="flex items-center gap-1.5">
+
+                                            <i class="ri-time-line"></i>
+
+                                            Posted 2 hours ago
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- RIGHT -->
+
+                            <div class="flex items-center
+                           justify-between lg:justify-end
+                           gap-3 lg:flex-shrink-0">
+
+                                <!-- Bookmark -->
+
+                                <button class="w-10 h-10
+                               flex items-center justify-center
+                               border border-gray-200
+                               rounded-xl
+                               text-gray-500
+                               hover:text-blue-600
+                               hover:bg-blue-50
+                               transition">
+
+                                    <i class="ri-bookmark-line text-lg"></i>
+
+                                </button>
+
+
+                                <!-- Details -->
+
+                                <a href="#" class="flex-1 sm:flex-none
+                               h-10 px-4 sm:px-5
+                               rounded-xl
+                               bg-blue-50
+                               hover:bg-blue-100
+                               text-blue-600
+                               font-medium
+                               text-sm
+                               flex items-center
+                               justify-center gap-2
+                               transition">
+
+                                    <span>View Details</span>
+
+                                    <i class="ri-arrow-right-line"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= JOB 2 ================= -->
+
+                    <div class="bg-white border border-gray-200
+                   rounded-2xl sm:rounded-3xl
+                   p-4 sm:p-5
+                   hover:shadow-md transition">
+
+                        <div class="flex flex-col lg:flex-row
+                       lg:items-center gap-4">
+
+                            <div class="flex items-start gap-4 flex-1 min-w-0">
+
+                                <div class="w-14 h-14 sm:w-16 sm:h-16
+                               flex-shrink-0
+                               rounded-xl border
+                               border-gray-200
+                               flex items-center justify-center">
+
+                                    <span class="text-blue-500
+                                   font-bold text-lg sm:text-xl">
+
+                                        infosys
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="min-w-0">
+
+                                    <h2 class="text-base sm:text-lg
+                                   font-semibold text-gray-900">
+
+                                        System Engineer
+
+                                    </h2>
+
+                                    <p class="text-sm font-medium
+                                   text-gray-800 mt-1">
+
+                                        Infosys
+                                        <i class="ri-verified-badge-fill
+                                       text-blue-500 ml-1">
+                                        </i>
+
+                                    </p>
+
+
+                                    <div class="flex flex-wrap
+                                   items-center gap-x-4
+                                   gap-y-2 mt-2
+                                   text-xs sm:text-sm
+                                   text-gray-500">
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-map-pin-line"></i>
+                                            Pune, India
+                                        </span>
+
+                                        <span class="hidden sm:block text-gray-300">
+                                            |
+                                        </span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-briefcase-line"></i>
+                                            Full-time
+                                        </span>
+
+                                        <span class="hidden md:block text-gray-300">
+                                            |
+                                        </span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-bar-chart-line"></i>
+                                            1 - 3 Years
+                                        </span>
+
+                                        <span class="hidden lg:block text-gray-300">
+                                            |
+                                        </span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-time-line"></i>
+                                            Posted 5 hours ago
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex items-center
+                           justify-between lg:justify-end
+                           gap-3">
+
+                                <button class="w-10 h-10 flex-shrink-0
+                               flex items-center justify-center
+                               border border-gray-200
+                               rounded-xl text-gray-500
+                               hover:text-blue-600
+                               hover:bg-blue-50">
+
+                                    <i class="ri-bookmark-line"></i>
+
+                                </button>
+
+
+                                <a href="#" class="flex-1 sm:flex-none
+                               h-10 px-4 sm:px-5
+                               rounded-xl bg-blue-50
+                               text-blue-600
+                               font-medium text-sm
+                               flex items-center
+                               justify-center gap-2
+                               hover:bg-blue-100">
+
+                                    View Details
+
+                                    <i class="ri-arrow-right-line"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= JOB 3 ================= -->
+
+                    <div class="bg-white border border-gray-200
+                   rounded-2xl sm:rounded-3xl
+                   p-4 sm:p-5
+                   hover:shadow-md transition">
+
+                        <div class="flex flex-col lg:flex-row
+                       lg:items-center gap-4">
+
+                            <div class="flex items-start gap-4 flex-1 min-w-0">
+
+                                <div class="w-14 h-14 sm:w-16 sm:h-16
+                               flex-shrink-0
+                               rounded-xl border
+                               border-gray-200
+                               flex items-center justify-center">
+
+                                    <i class="ri-microsoft-fill
+                                   text-blue-500
+                                   text-3xl">
+                                    </i>
+
+                                </div>
+
+
+                                <div class="min-w-0">
+
+                                    <div class="flex flex-wrap gap-2 items-center">
+
+                                        <h2 class="text-base sm:text-lg
+                                       font-semibold text-gray-900">
+
+                                            Full Stack Developer
+
+                                        </h2>
+
+                                        <span class="bg-green-50 text-green-600
+                                       px-2 py-1 rounded-full
+                                       text-[10px] sm:text-xs
+                                       font-semibold">
+
+                                            New
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <p class="text-sm font-medium
+                                   text-gray-800 mt-1">
+
+                                        Microsoft
+                                        <i class="ri-verified-badge-fill
+                                       text-blue-500 ml-1">
+                                        </i>
+
+                                    </p>
+
+
+                                    <div class="flex flex-wrap
+                                   items-center gap-x-4
+                                   gap-y-2 mt-2
+                                   text-xs sm:text-sm
+                                   text-gray-500">
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-map-pin-line"></i>
+                                            Hyderabad, India
+                                        </span>
+
+                                        <span class="hidden sm:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-briefcase-line"></i>
+                                            Full-time
+                                        </span>
+
+                                        <span class="hidden md:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-bar-chart-line"></i>
+                                            3 - 5 Years
+                                        </span>
+
+                                        <span class="hidden lg:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-time-line"></i>
+                                            Posted 1 day ago
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex items-center
+                           justify-between lg:justify-end
+                           gap-3">
+
+                                <button class="w-10 h-10 flex-shrink-0
+                               flex items-center justify-center
+                               border border-gray-200
+                               rounded-xl text-gray-500
+                               hover:text-blue-600
+                               hover:bg-blue-50">
+
+                                    <i class="ri-bookmark-line"></i>
+
+                                </button>
+
+
+                                <a href="#" class="flex-1 sm:flex-none
+                               h-10 px-4 sm:px-5
+                               rounded-xl bg-blue-50
+                               text-blue-600
+                               font-medium text-sm
+                               flex items-center
+                               justify-center gap-2
+                               hover:bg-blue-100">
+
+                                    View Details
+
+                                    <i class="ri-arrow-right-line"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= JOB 4 ================= -->
+
+                    <div class="bg-white border border-gray-200
+                   rounded-2xl sm:rounded-3xl
+                   p-4 sm:p-5
+                   hover:shadow-md transition">
+
+                        <div class="flex flex-col lg:flex-row
+                       lg:items-center gap-4">
+
+                            <div class="flex items-start gap-4 flex-1 min-w-0">
+
+                                <div class="w-14 h-14 sm:w-16 sm:h-16
+                               flex-shrink-0
+                               rounded-xl border
+                               border-gray-200
+                               flex items-center justify-center">
+
+                                    <span class="font-bold text-blue-600
+                                   text-xl">
+
+                                        wipro
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="min-w-0">
+
+                                    <h2 class="text-base sm:text-lg
+                                   font-semibold text-gray-900">
+
+                                        Software Developer
+
+                                    </h2>
+
+                                    <p class="text-sm font-medium
+                                   text-gray-800 mt-1">
+
+                                        Wipro
+                                        <i class="ri-verified-badge-fill
+                                       text-blue-500 ml-1">
+                                        </i>
+
+                                    </p>
+
+
+                                    <div class="flex flex-wrap
+                                   items-center gap-x-4
+                                   gap-y-2 mt-2
+                                   text-xs sm:text-sm
+                                   text-gray-500">
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-map-pin-line"></i>
+                                            Bengaluru, India
+                                        </span>
+
+                                        <span class="hidden sm:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-briefcase-line"></i>
+                                            Full-time
+                                        </span>
+
+                                        <span class="hidden md:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-bar-chart-line"></i>
+                                            1 - 2 Years
+                                        </span>
+
+                                        <span class="hidden lg:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-time-line"></i>
+                                            Posted 2 days ago
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex items-center
+                           justify-between lg:justify-end
+                           gap-3">
+
+                                <button class="w-10 h-10 flex-shrink-0
+                               flex items-center justify-center
+                               border border-gray-200
+                               rounded-xl text-gray-500
+                               hover:text-blue-600
+                               hover:bg-blue-50">
+
+                                    <i class="ri-bookmark-line"></i>
+
+                                </button>
+
+
+                                <a href="#" class="flex-1 sm:flex-none
+                               h-10 px-4 sm:px-5
+                               rounded-xl bg-blue-50
+                               text-blue-600
+                               font-medium text-sm
+                               flex items-center
+                               justify-center gap-2
+                               hover:bg-blue-100">
+
+                                    View Details
+
+                                    <i class="ri-arrow-right-line"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= JOB 5 ================= -->
+
+                    <div class="bg-white border border-gray-200
+                   rounded-2xl sm:rounded-3xl
+                   p-4 sm:p-5
+                   hover:shadow-md transition">
+
+                        <div class="flex flex-col lg:flex-row
+                       lg:items-center gap-4">
+
+                            <div class="flex items-start gap-4 flex-1 min-w-0">
+
+                                <div class="w-14 h-14 sm:w-16 sm:h-16
+                               flex-shrink-0
+                               rounded-xl border
+                               border-gray-200
+                               flex items-center justify-center">
+
+                                    <i class="ri-amazon-fill
+                                   text-4xl text-gray-800">
+                                    </i>
+
+                                </div>
+
+
+                                <div class="min-w-0">
+
+                                    <h2 class="text-base sm:text-lg
+                                   font-semibold text-gray-900">
+
+                                        Backend Developer
+
+                                    </h2>
+
+                                    <p class="text-sm font-medium
+                                   text-gray-800 mt-1">
+
+                                        Amazon
+                                        <i class="ri-verified-badge-fill
+                                       text-blue-500 ml-1">
+                                        </i>
+
+                                    </p>
+
+
+                                    <div class="flex flex-wrap
+                                   items-center gap-x-4
+                                   gap-y-2 mt-2
+                                   text-xs sm:text-sm
+                                   text-gray-500">
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-map-pin-line"></i>
+                                            Chennai, India
+                                        </span>
+
+                                        <span class="hidden sm:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-briefcase-line"></i>
+                                            Full-time
+                                        </span>
+
+                                        <span class="hidden md:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-bar-chart-line"></i>
+                                            2 - 4 Years
+                                        </span>
+
+                                        <span class="hidden lg:block text-gray-300">|</span>
+
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="ri-time-line"></i>
+                                            Posted 2 days ago
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex items-center
+                           justify-between lg:justify-end
+                           gap-3">
+
+                                <button class="w-10 h-10 flex-shrink-0
+                               flex items-center justify-center
+                               border border-gray-200
+                               rounded-xl text-gray-500
+                               hover:text-blue-600
+                               hover:bg-blue-50">
+
+                                    <i class="ri-bookmark-line"></i>
+
+                                </button>
+
+
+                                <a href="#" class="flex-1 sm:flex-none
+                               h-10 px-4 sm:px-5
+                               rounded-xl bg-blue-50
+                               text-blue-600
+                               font-medium text-sm
+                               flex items-center
+                               justify-center gap-2
+                               hover:bg-blue-100">
+
+                                    View Details
+
+                                    <i class="ri-arrow-right-line"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= PAGINATION ================= -->
+
+                <div class="flex flex-col sm:flex-row
+               items-center justify-between
+               gap-4 mt-6">
+
+                    <p class="text-sm text-gray-500">
+                        Showing
+                        <span class="font-semibold text-gray-700">1–5</span>
+                        of
+                        <span class="font-semibold text-gray-700">24</span>
+                        jobs
+                    </p>
+
+
+                    <div class="flex items-center gap-2">
+
+                        <button class="w-9 h-9 rounded-lg
+                       border border-gray-200
+                       flex items-center justify-center
+                       text-gray-500
+                       hover:bg-gray-50">
+
+                            <i class="ri-arrow-left-s-line"></i>
+
+                        </button>
+
+
+                        <button class="w-9 h-9 rounded-lg
+                       bg-blue-600 text-white
+                       flex items-center justify-center
+                       text-sm font-medium">
+
+                            1
+
+                        </button>
+
+
+                        <button class="w-9 h-9 rounded-lg
+                       border border-gray-200
+                       text-gray-600
+                       hover:bg-gray-50">
+
+                            2
+
+                        </button>
+
+
+                        <button class="w-9 h-9 rounded-lg
+                       border border-gray-200
+                       text-gray-600
+                       hover:bg-gray-50">
+
+                            3
+
+                        </button>
+
+
+                        <span class="px-1 text-gray-400">
+                            ...
+                        </span>
+
+
+                        <button class="w-9 h-9 rounded-lg
+                       border border-gray-200
+                       text-gray-600
+                       hover:bg-gray-50">
+
+                            6
+
+                        </button>
+
+
+                        <button class="w-9 h-9 rounded-lg
+                       border border-gray-200
+                       flex items-center justify-center
+                       text-gray-500
+                       hover:bg-gray-50">
+
+                            <i class="ri-arrow-right-s-line"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+    <script>
+        let menubtn = document.querySelector(".menubtn");
+        let sidebar = document.querySelector(".sidebar");
+        let cross = document.querySelector(".cross");
+        let overlay = document.querySelector(".overlay")
+
+        menubtn.addEventListener("click", () => {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        cross.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full")
+            overlay.classList.add("hidden");
+
+        })
+
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        })
+
+    </script>
+</body>
+
+</html>

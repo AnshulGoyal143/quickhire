@@ -317,105 +317,197 @@
 
                 <!-- *******************RECENT Applicants **************** -->
 
-                <div class="users bg-white rounded-3xl shadow-xl p-6 mt-6 min-h-[420px]">
+               <div class="users bg-white rounded-3xl shadow-xl p-6 mt-6">
 
-                    <!-- Heading -->
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-xl font-semibold">Recent Applicants</h2>
-                        <a href="" class="text-blue-600 font-medium hover:underline">View All</a>
-                    </div>
+    <!-- HEADER -->
+    <div class="flex items-center justify-between mb-6">
 
-                    <!-- Applicant 1 -->
-                    <div class="flex justify-between items-center py-4 border-b">
-                        <div class="flex items-center gap-3">
-                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+        <div>
+            <h2 class="text-xl font-semibold text-gray-800">
+                Recent Applicants
+            </h2>
 
-                            <div>
-                                <h3 class="font-medium">Anshul Goyal</h3>
-                                <p class="text-gray-500 text-sm">Frontend Developer</p>
-                            </div>
+            <p class="text-sm text-gray-500 mt-1">
+                Latest applications received for your jobs
+            </p>
+        </div>
+
+        <a href="/company/applicants"
+           class="text-blue-600 font-medium hover:underline text-sm">
+            View All
+        </a>
+
+    </div>
+
+
+    <!-- APPLICANTS -->
+    <div class="divide-y divide-gray-100">
+
+        <% if (applications && applications.length > 0) { %>
+
+            <% applications.forEach(application => { %>
+
+                <div class="flex flex-col sm:flex-row
+                            sm:items-center
+                            justify-between
+                            gap-4 py-4">
+
+                    <!-- LEFT : APPLICANT -->
+                    <div class="flex items-center gap-3 min-w-0">
+
+                        <!-- PROFILE IMAGE -->
+                        <div class="w-12 h-12 rounded-full
+                                    overflow-hidden
+                                    bg-blue-50
+                                    flex items-center justify-center
+                                    shrink-0">
+
+                            <% if (
+                                application.applicant &&
+                                application.applicant.profileImage &&
+                                application.applicant.profileImage.data
+                            ) { %>
+
+                                <img
+                                    src="data:<%= application.applicant.profileImage.contentType %>;base64,<%= application.applicant.profileImage.data.toString('base64') %>"
+                                    class="w-full h-full object-cover"
+                                    alt="Applicant">
+
+                            <% } else { %>
+
+                                <i class="ri-user-line text-xl text-blue-500"></i>
+
+                            <% } %>
+
                         </div>
 
-                        <p class="text-sm text-gray-500">12 May 2026</p>
 
-                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">
-                            New
-                        </span>
-                    </div>
+                        <!-- APPLICANT INFO -->
+                        <div class="min-w-0">
 
-                    <!-- Applicant 2 -->
-                    <div class="flex justify-between items-center py-4 border-b">
-                        <div class="flex items-center gap-3">
-                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+                            <h3 class="font-semibold text-gray-800 truncate">
+                                <%= application.applicant?.fullname || "Unknown Applicant" %>
+                            </h3>
 
-                            <div>
-                                <h3 class="font-medium">Riya Sharma</h3>
-                                <p class="text-gray-500 text-sm">UI/UX Designer</p>
-                            </div>
+                            <p class="text-sm text-gray-500 truncate">
+                                Applied for:
+                                <span class="text-gray-700">
+                                    <%= application.job?.jobTitle || "Job" %>
+                                </span>
+                            </p>
+
                         </div>
 
-                        <p class="text-sm text-gray-500">11 May 2026</p>
-
-                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
-                            Shortlisted
-                        </span>
                     </div>
 
-                    <!-- Applicant 3 -->
-                    <div class="flex justify-between items-center py-4 border-b">
-                        <div class="flex items-center gap-3">
-                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
 
-                            <div>
-                                <h3 class="font-medium">Mohit Verma</h3>
-                                <p class="text-gray-500 text-sm">Backend Developer</p>
-                            </div>
-                        </div>
+                    <!-- MIDDLE : DATE -->
+                    <div class="text-sm text-gray-500 sm:text-center">
 
-                        <p class="text-sm text-gray-500">10 May 2026</p>
+                        <p>
+                            <i class="ri-calendar-line mr-1"></i>
 
-                        <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">
-                            Reviewing
-                        </span>
+                            <%= application.appliedAt
+                                ? new Date(application.appliedAt).toLocaleDateString("en-IN", {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                })
+                                : "Recently" %>
+                        </p>
+
                     </div>
 
-                    <!-- Applicant 4 -->
-                    <div class="flex justify-between items-center py-4 border-b">
-                        <div class="flex items-center gap-3">
-                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
 
-                            <div>
-                                <h3 class="font-medium">Mahi Sharma</h3>
-                                <p class="text-gray-500 text-sm">Data Analyst</p>
-                            </div>
-                        </div>
+                    <!-- RIGHT : STATUS + VIEW -->
+                    <div class="flex items-center gap-3">
 
-                        <p class="text-sm text-gray-500">13 May 2026</p>
+                        <!-- STATUS -->
+                        <% if (application.status === "Shortlisted") { %>
 
-                        <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm text-nowrap">
-                            New
-                        </span>
-                    </div>
+                            <span class="bg-blue-100 text-blue-600
+                                         px-3 py-1 rounded-full
+                                         text-xs font-medium">
+                                Shortlisted
+                            </span>
 
-                    <!-- Applicant 5 -->
-                    <div class="flex justify-between items-center py-4">
-                        <div class="flex items-center gap-3">
-                            <img src="profile.jpg" class="w-12 h-12 rounded-full">
+                        <% } else if (application.status === "Rejected") { %>
 
-                            <div>
-                                <h3 class="font-medium">Kunal Garg</h3>
-                                <p class="text-gray-500 text-sm">Backend Developer</p>
-                            </div>
-                        </div>
+                            <span class="bg-red-100 text-red-600
+                                         px-3 py-1 rounded-full
+                                         text-xs font-medium">
+                                Rejected
+                            </span>
 
-                        <p class="text-sm text-gray-500">8 May 2026</p>
+                        <% } else if (application.status === "Selected") { %>
 
-                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
-                            Shortlisted
-                        </span>
+                            <span class="bg-green-100 text-green-600
+                                         px-3 py-1 rounded-full
+                                         text-xs font-medium">
+                                Selected
+                            </span>
+
+                        <% } else { %>
+
+                            <span class="bg-yellow-100 text-yellow-600
+                                         px-3 py-1 rounded-full
+                                         text-xs font-medium">
+                                <%= application.status || "New" %>
+                            </span>
+
+                        <% } %>
+
+
+                        <!-- VIEW -->
+                        <a href="/company/application/<%= application._id %>"
+                           class="w-9 h-9 rounded-lg
+                                  border border-gray-200
+                                  flex items-center justify-center
+                                  text-gray-500
+                                  hover:text-blue-600
+                                  hover:bg-blue-50
+                                  transition"
+                           title="View Applicant">
+
+                            <i class="ri-eye-line"></i>
+
+                        </a>
+
                     </div>
 
                 </div>
+
+            <% }) %>
+
+        <% } else { %>
+
+            <!-- NO APPLICANTS -->
+            <div class="py-14 text-center">
+
+                <div class="w-14 h-14 mx-auto
+                            rounded-full bg-gray-100
+                            flex items-center justify-center">
+
+                    <i class="ri-user-search-line
+                              text-2xl text-gray-400"></i>
+
+                </div>
+
+                <h3 class="font-semibold text-gray-700 mt-4">
+                    No applicants yet
+                </h3>
+
+                <p class="text-sm text-gray-500 mt-1">
+                    Applicants will appear here when they apply for your jobs.
+                </p>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+</div>
 
             </div>
 

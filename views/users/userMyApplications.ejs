@@ -48,7 +48,7 @@
                     <i
                         class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
                 </div>
-                 <div class="list">
+                <div class="list">
                     <ul class=" space-y-3">
                         <!-- yha pee user dashboard menu link attach krne h -->
 
@@ -61,7 +61,8 @@
                         </li>
 
 
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600  ">
+                        <li
+                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600  ">
                             <a href="">
                                 <i class="ri-file-list-3-line text-xl"></i>
                                 <span>My Applications</span>
@@ -103,7 +104,7 @@
 
             <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
 
-        
+
 
             <div class="textcontainer px-6 sm:px-8 lg:px-12 py-2 pt-28 pb-10 transition-all duration-300">
 
@@ -239,489 +240,174 @@
 
 
                             <!-- TABLE BODY -->
-
                             <tbody>
 
+                                <% if (applications && applications.length> 0) { %>
 
-                                <!-- ================= ROW 1 ================= -->
+                                    <% applications.forEach(application=> { %>
 
-                                <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
+                                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition">
 
-                                    <!-- Job Details -->
+                                            <!-- JOB DETAILS -->
+                                            <td class="px-6 py-5">
 
-                                    <td class="px-6 py-5">
+                                                <div class="flex items-center gap-4">
 
-                                        <div class="flex items-center gap-4">
+                                                    <!-- Company Logo -->
+                                                    <div
+                                                        class="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center bg-gray-50 overflow-hidden shrink-0">
 
-                                            <!-- Company Logo -->
+                                                        <% if ( application.company &&
+                                                            application.company.companyProfile &&
+                                                            application.company.companyProfile.data ) { %>
 
-                                            <div
-                                                class="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center bg-white overflow-hidden">
+                                                            <img src="data:<%= application.company.companyProfile.contentType %>;base64,<%= application.company.companyProfile.data.toString('base64') %>"
+                                                                alt="Company Logo" class="w-full h-full object-cover">
 
-                                                <img src="" alt="" class="object-cover">
+                                                            <% } else { %>
 
-                                            </div>
+                                                                <i class="ri-building-line text-2xl text-gray-400"></i>
+
+                                                                <% } %>
+
+                                                    </div>
 
 
-                                            <!-- Job Info -->
+                                                    <!-- Job Info -->
+                                                    <div>
 
-                                            <div>
+                                                        <h3 class="font-semibold text-gray-900 text-base">
 
-                                                <h3 class="font-semibold text-gray-900 text-base">
+                                                            <%= application.job.jobTitle %>
 
-                                                    Frontend Developer
+                                                        </h3>
 
-                                                </h3>
 
-                                                <div class="flex items-center gap-2 mt-1 text-sm text-gray-500">
+                                                        <div class="flex items-center gap-2 mt-1 text-sm text-gray-500">
 
-                                                    <span>Google</span>
+                                                            <span>
+                                                                <%= application.company.companyName %>
+                                                            </span>
 
-                                                    <span>•</span>
+                                                            <span>•</span>
 
-                                                    <i class="ri-map-pin-line"></i>
+                                                            <i class="ri-map-pin-line"></i>
 
-                                                    <span>
-                                                        Bengaluru, India
-                                                    </span>
+                                                            <span>
+                                                                <%= application.job.companyLocation %>
+                                                            </span>
+
+                                                        </div>
+
+                                                    </div>
 
                                                 </div>
 
-                                            </div>
-
-                                        </div>
-
-                                    </td>
+                                            </td>
 
 
-                                    <!-- Applied On -->
+                                            <!-- APPLIED ON -->
+                                            <td class="px-6 py-5 text-sm text-gray-600">
 
-                                    <td class="px-6 py-5 text-sm text-gray-600">
+                                                <%= new Date(application.appliedAt).toLocaleDateString("en-IN", {
+                                                    day: "2-digit" , month: "short" , year: "numeric" }) %>
 
-                                        12 May 2025
-
-                                    </td>
-
-
-                                    <!-- Status -->
-
-                                    <td class="px-6 py-5">
-
-                                        <span
-                                            class="inline-flex items-center px-3 py-1.5 rounded-lg bg-orange-100 text-orange-600 text-xs font-semibold">
-
-                                            In Review
-
-                                        </span>
-
-                                    </td>
+                                            </td>
 
 
-                                    <!-- Action -->
+                                            <!-- STATUS -->
+                                            <td class="px-6 py-5">
 
-                                    <td class="px-6 py-5">
+                                                <% if (application.status==="Shortlisted" ) { %>
 
-                                        <div class="flex items-center gap-3">
+                                                    <span class="inline-flex items-center px-3 py-1.5
+                                     rounded-lg bg-green-100 text-green-600
+                                     text-xs font-semibold">
 
-                                            <a href="#" class="px-4 py-2 rounded-lg
-                                           border border-gray-200
-                                           text-blue-600
-                                           text-sm font-medium
-                                           hover:bg-blue-50
-                                           transition">
+                                                        Shortlisted
 
-                                                View Details
-
-                                            </a>
-
-                                            <button class="text-gray-500
-                                           hover:text-gray-800">
-
-                                                <i class="ri-more-2-fill text-xl">
-                                                </i>
-
-                                            </button>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-
-
-                                <!-- ================= ROW 2 ================= -->
-
-                                <tr class="border-b border-gray-200
-                               hover:bg-gray-50 transition">
-
-                                    <td class="px-6 py-5">
-
-                                        <div class="flex items-center gap-4">
-
-                                            <div class="w-14 h-14 rounded-full
-                                           border border-gray-200
-                                           flex items-center justify-center
-                                           bg-white">
-
-                                                <img src="" alt="" class="object-cover">
-
-                                            </div>
-
-                                            <div>
-
-                                                <h3 class="font-semibold text-gray-900">
-
-                                                    System Engineer
-
-                                                </h3>
-
-                                                <div class="flex items-center gap-2
-                                               mt-1 text-sm text-gray-500">
-
-                                                    <span>Infosys</span>
-
-                                                    <span>•</span>
-
-                                                    <i class="ri-map-pin-line"></i>
-
-                                                    <span>
-                                                        Pune, India
                                                     </span>
+
+                                                    <% } else if (application.status==="Rejected" ) { %>
+
+                                                        <span class="inline-flex items-center px-3 py-1.5
+                                     rounded-lg bg-red-100 text-red-600
+                                     text-xs font-semibold">
+
+                                                            Rejected
+
+                                                        </span>
+
+                                                        <% } else { %>
+
+                                                            <span class="inline-flex items-center px-3 py-1.5
+                                     rounded-lg bg-orange-100 text-orange-600
+                                     text-xs font-semibold">
+
+                                                                In Review
+
+                                                            </span>
+
+                                                            <% } %>
+
+                                            </td>
+
+
+                                            <!-- ACTION -->
+                                            <td class="px-6 py-5">
+
+                                                <div class="flex items-center gap-3">
+
+                                                    <a href="/users/application/<%= application._id %>" class="px-4 py-2 rounded-lg
+                                   border border-gray-200
+                                   text-blue-600 text-sm font-medium
+                                   hover:bg-blue-50 transition">
+
+                                                        View Details
+
+                                                    </a>
+
+                                                    <button class="text-gray-500 hover:text-gray-800">
+
+                                                        <i class="ri-more-2-fill text-xl"></i>
+
+                                                    </button>
 
                                                 </div>
 
-                                            </div>
+                                            </td>
 
-                                        </div>
+                                        </tr>
 
-                                    </td>
+                                        <% }) %>
 
 
-                                    <td class="px-6 py-5 text-sm text-gray-600">
-                                        10 May 2025
-                                    </td>
+                                            <% } else { %>
 
+                                                <!-- NO APPLICATIONS -->
+                                                <tr>
 
-                                    <td class="px-6 py-5">
+                                                    <td colspan="4" class="px-6 py-16 text-center">
 
-                                        <span class="inline-flex items-center
-                                       px-3 py-1.5 rounded-lg
-                                       bg-green-100
-                                       text-green-600
-                                       text-xs font-semibold">
+                                                        <div class="flex flex-col items-center">
 
-                                            Shortlisted
+                                                            <i class="ri-file-list-3-line text-5xl text-gray-300"></i>
 
-                                        </span>
+                                                            <h3 class="mt-4 text-lg font-semibold text-gray-700">
+                                                                No Applications Yet
+                                                            </h3>
 
-                                    </td>
+                                                            <p class="mt-1 text-sm text-gray-500">
+                                                                You haven't applied for any jobs yet.
+                                                            </p>
 
+                                                        </div>
 
-                                    <td class="px-6 py-5">
+                                                    </td>
 
-                                        <div class="flex items-center gap-3">
+                                                </tr>
 
-                                            <a href="#" class="px-4 py-2 rounded-lg
-                                           border border-gray-200
-                                           text-blue-600
-                                           text-sm font-medium
-                                           hover:bg-blue-50">
-
-                                                View Details
-
-                                            </a>
-
-                                            <button class="text-gray-500">
-
-                                                <i class="ri-more-2-fill text-xl">
-                                                </i>
-
-                                            </button>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-
-
-                                <!-- ================= ROW 3 ================= -->
-
-                                <tr class="border-b border-gray-200
-                               hover:bg-gray-50 transition">
-
-                                    <td class="px-6 py-5">
-
-                                        <div class="flex items-center gap-4">
-
-                                            <div class="w-14 h-14 rounded-full
-                                           border border-gray-200
-                                           flex items-center justify-center
-                                           bg-white">
-
-                                                <img src="" alt="" class="object-cover">
-
-                                            </div>
-
-                                            <div>
-
-                                                <h3 class="font-semibold text-gray-900">
-
-                                                    Software Developer
-
-                                                </h3>
-
-                                                <div class="flex items-center gap-2
-                                               mt-1 text-sm text-gray-500">
-
-                                                    <span>Wipro</span>
-
-                                                    <span>•</span>
-
-                                                    <i class="ri-map-pin-line"></i>
-
-                                                    <span>
-                                                        Bengaluru, India
-                                                    </span>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </td>
-
-
-                                    <td class="px-6 py-5 text-sm text-gray-600">
-                                        08 May 2025
-                                    </td>
-
-
-                                    <td class="px-6 py-5">
-
-                                        <span class="inline-flex items-center
-                                       px-3 py-1.5 rounded-lg
-                                       bg-red-100
-                                       text-red-600
-                                       text-xs font-semibold">
-
-                                            Rejected
-
-                                        </span>
-
-                                    </td>
-
-
-                                    <td class="px-6 py-5">
-
-                                        <div class="flex items-center gap-3">
-
-                                            <a href="#" class="px-4 py-2 rounded-lg
-                                           border border-gray-200
-                                           text-blue-600
-                                           text-sm font-medium
-                                           hover:bg-blue-50">
-
-                                                View Details
-
-                                            </a>
-
-                                            <button class="text-gray-500">
-
-                                                <i class="ri-more-2-fill text-xl">
-                                                </i>
-
-                                            </button>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-
-
-                                <!-- ================= ROW 4 ================= -->
-
-                                <tr class="border-b border-gray-200
-                               hover:bg-gray-50 transition">
-
-                                    <td class="px-6 py-5">
-
-                                        <div class="flex items-center gap-4">
-
-                                            <div
-                                                class="w-14 h-14 rounded-full  border border-gray-200 flex items-center justify-center  bg-white">
-                                                <img src="" alt="" class="object-cover">
-
-                                            </div>
-
-                                            <div>
-
-                                                <h3 class="font-semibold text-gray-900">
-
-                                                    Full Stack Developer
-
-                                                </h3>
-
-                                                <div class="flex items-center gap-2 mt-1 text-sm text-gray-500">
-
-                                                    <span>Microsoft</span>
-
-                                                    <span>•</span>
-
-                                                    <i class="ri-map-pin-line"></i>
-
-                                                    <span>
-                                                        Hyderabad, India
-                                                    </span>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </td>
-
-
-                                    <td class="px-6 py-5 text-sm text-gray-600">
-                                        05 May 2025
-                                    </td>
-
-
-                                    <td class="px-6 py-5">
-
-                                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg bg-orange-100 text-orange-600 text-xs font-semibold">
-
-                                            In Review
-
-                                        </span>
-
-                                    </td>
-
-
-                                    <td class="px-6 py-5">
-
-                                        <div class="flex items-center gap-3">
-
-                                            <a href="#" class="px-4 py-2 rounded-lg border border-gray-200 text-blue-600 text-sm font-medium hover:bg-blue-50">
-
-                                                View Details
-
-                                            </a>
-
-                                            <button class="text-gray-500">
-
-                                                <i class="ri-more-2-fill text-xl">
-                                                </i>
-
-                                            </button>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-
-
-
-                                <!-- ================= ROW 5 ================= -->
-
-                                <tr class="hover:bg-gray-50 transition">
-
-                                    <td class="px-6 py-5">
-
-                                        <div class="flex items-center gap-4">
-
-                                            <div class="w-14 h-14 rounded-full
-                                           border border-gray-200
-                                           flex items-center justify-center
-                                           bg-white">
-
-                                                <img src="" alt="" class="object-cover">
-
-                                            </div>
-
-                                            <div>
-
-                                                <h3 class="font-semibold text-gray-900">
-
-                                                    Backend Developer
-
-                                                </h3>
-
-                                                <div class="flex items-center gap-2
-                                               mt-1 text-sm text-gray-500">
-
-                                                    <span>Amazon</span>
-
-                                                    <span>•</span>
-
-                                                    <i class="ri-map-pin-line"></i>
-
-                                                    <span>
-                                                        Chennai, India
-                                                    </span>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </td>
-
-
-                                    <td class="px-6 py-5 text-sm text-gray-600">
-                                        02 May 2025
-                                    </td>
-
-
-                                    <td class="px-6 py-5">
-
-                                        <span class="inline-flex items-center
-                                       px-3 py-1.5 rounded-lg
-                                       bg-green-100
-                                       text-green-600
-                                       text-xs font-semibold">
-
-                                            Shortlisted
-
-                                        </span>
-
-                                    </td>
-
-
-                                    <td class="px-6 py-5">
-
-                                        <div class="flex items-center gap-3">
-
-                                            <a href="#" class="px-4 py-2 rounded-lg
-                                           border border-gray-200
-                                           text-blue-600
-                                           text-sm font-medium
-                                           hover:bg-blue-50">
-
-                                                View Details
-
-                                            </a>
-
-                                            <button class="text-gray-500">
-
-                                                <i class="ri-more-2-fill text-xl">
-                                                </i>
-
-                                            </button>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
+                                                <% } %>
 
                             </tbody>
 
@@ -730,85 +416,134 @@
                     </div>
 
 
+
+
                     <!-- ================= PAGINATION ================= -->
 
-                    <div class="flex flex-col sm:flex-row items-center
-                   justify-between gap-4 px-6 py-4
-                   border-t border-gray-200">
+                    <% if (totalPages> 1) { %>
 
-                        <!-- Previous -->
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-gray-200">
 
-                        <button class="flex items-center gap-2
-                       px-5 py-2.5 rounded-lg
+                            <!-- LEFT SIDE -->
+                            <div class="text-sm text-gray-500">
+                                Page <span class="font-semibold text-gray-700">
+                                    <%= currentPage %>
+                                </span>
+                                of
+                                <span class="font-semibold text-gray-700">
+                                    <%= totalPages %>
+                                </span>
+                            </div>
+
+
+                            <!-- PAGINATION -->
+                            <div class="flex items-center gap-2">
+
+                                <!-- PREVIOUS -->
+                                <% if (currentPage> 1) { %>
+
+                                    <a href="/users/userMyApplications?page=<%= currentPage - 1 %>" class="flex items-center gap-2 px-4 py-2.5 rounded-lg
+                      border border-gray-200
+                      text-gray-700
+                      hover:bg-gray-50 transition">
+
+                                        <i class="ri-arrow-left-line"></i>
+                                        Previous
+
+                                    </a>
+
+                                    <% } else { %>
+
+                                        <span class="flex items-center gap-2 px-4 py-2.5 rounded-lg
                        border border-gray-200
                        text-gray-400
                        cursor-not-allowed">
 
-                            <i class="ri-arrow-left-line"></i>
+                                            <i class="ri-arrow-left-line"></i>
+                                            Previous
 
-                            Previous
+                                        </span>
 
-                        </button>
+                                        <% } %>
 
 
-                        <!-- Pages -->
+                                            <!-- PAGE NUMBERS -->
 
-                        <div class="flex items-center gap-2">
+                                            <div class="flex items-center gap-2">
 
-                            <button class="w-10 h-10 rounded-lg
-                           bg-blue-50 text-blue-600
-                           font-semibold">
+                                                <% for(let i=1; i <=totalPages; i++) { %>
 
-                                1
+                                                    <% if(i===currentPage) { %>
 
-                            </button>
+                                                        <a href="/users/userMyApplications?page=<%= i %>" class="w-10 h-10 rounded-lg
+                              bg-blue-50
+                              text-blue-600
+                              border border-blue-200
+                              font-semibold
+                              flex items-center justify-center">
 
-                            <button class="w-10 h-10 rounded-lg
-                           border border-gray-200
-                           text-gray-600 hover:bg-gray-50">
+                                                            <%= i %>
 
-                                2
+                                                        </a>
 
-                            </button>
+                                                        <% } else { %>
 
-                            <button class="w-10 h-10 rounded-lg
-                           border border-gray-200
-                           text-gray-600 hover:bg-gray-50">
+                                                            <a href="/users/userMyApplications?page=<%= i %>" class="w-10 h-10 rounded-lg
+                              border border-gray-200
+                              text-gray-600
+                              hover:bg-gray-50
+                              flex items-center justify-center
+                              transition">
 
-                                <i class="ri-arrow-right-line"></i>
+                                                                <%= i %>
 
-                            </button>
+                                                            </a>
+
+                                                            <% } %>
+
+                                                                <% } %>
+
+                                            </div>
+
+
+                                            <!-- NEXT -->
+                                            <% if (currentPage < totalPages) { %>
+
+                                                <a href="/users/userMyApplications?page=<%= currentPage + 1 %>" class="flex items-center gap-2 px-4 py-2.5 rounded-lg
+                      border border-gray-200
+                      text-gray-700
+                      hover:bg-gray-50 transition">
+
+                                                    Next
+                                                    <i class="ri-arrow-right-line"></i>
+
+                                                </a>
+
+                                                <% } else { %>
+
+                                                    <span class="flex items-center gap-2 px-4 py-2.5 rounded-lg
+                       border border-gray-200
+                       text-gray-400
+                       cursor-not-allowed">
+
+                                                        Next
+                                                        <i class="ri-arrow-right-line"></i>
+
+                                                    </span>
+
+                                                    <% } %>
+
+                            </div>
 
                         </div>
 
-
-                        <!-- Next -->
-
-                        <button class="flex items-center gap-2
-                       px-7 py-2.5 rounded-lg
-                       border border-gray-200
-                       text-gray-700 hover:bg-gray-50">
-
-                            Next
-
-                            <i class="ri-arrow-right-line"></i>
-
-                        </button>
-
-                    </div>
+                        <% } %>
 
                 </div>
 
 
-                <!-- ================= FOOTER ================= -->
-
-                <div class="text-center mt-8">
-
-                    <p class="text-sm text-gray-500">
-                        © 2025 QuickHire. All rights reserved.
-                    </p>
-
-                </div>
+             
 
             </div>
 

@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const companyModel = require('../models/company-model');
 const jobModel = require('../models/job-model');
+const applicationModel = require('../models/application-model');
 
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -72,10 +73,22 @@ router.get("/logout", (req, res) => {
 });
 //  --------------------------------------------------
 
-router.get("/companyDashboard",isCompanyLoggedIn, async (req,res)=>{
-   // let company = await companyModel.findOne({companyEmail:req.company.companyEmail});
-   res.render("company/companyDashboard");
+router.get("/companyDashboard", isCompanyLoggedIn, async (req, res) => {
+
+    const applications = await applicationModel
+        .find({ company: req.company._id })
+        .populate("applicant")
+        .populate("job")
+        .sort({ appliedAt: -1 })
+        .limit(5);
+
+    res.render("company/companyDashboard", {
+        applications
+    });
+
 });
+
+// ---------------------------------
 
 router.get("/companyMyProfile",isCompanyLoggedIn, (req, res) => {
    res.render("company/companyMyProfile");
@@ -200,7 +213,7 @@ router.post("/PostJob",isCompanyLoggedIn,async (req,res)=>{
     deadline,
     workMode ,
     // new job directly active
-    status: "active"
+    status: "Active"
     });
 
     await job.save();

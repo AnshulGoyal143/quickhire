@@ -19,11 +19,7 @@ const userSchema = new mongoose.Schema({
        type: [String],
        default:[]
     },
-    resume:{
-        data: Buffer,
-        contentType: String,
-        originalName:String,
-    },
+   
 
       profileImage: {
 

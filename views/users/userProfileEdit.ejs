@@ -274,66 +274,7 @@
                                         value="<%= user?.skills || '' %>">
                                 </div>
 
-                                <div>
-                                    <h2 class="text-xl font-semibold">Resume</h2>
-
-                                    <div class="flex items-center gap-8 mt-8 pb-8 border-b border-gray-200">
-
-                                        <!-- Existing Resume -->
-                                        <div class="flex items-center gap-3">
-
-                                            <i class="ri-file-pdf-2-line text-red-500 text-3xl"></i>
-
-                                            <div>
-                                                <% if (user.resume && user.resume.data) { %>
-
-                                                    <p class="font-medium text-gray-800">
-                                                        Resume uploaded
-                                                    </p>
-
-                                                    <a href="/users/resume" target="_blank"
-                                                        class="text-sm text-blue-600 hover:underline">
-                                                        View Resume
-                                                    </a>
-
-                                                    <% } else { %>
-
-                                                        <p class="font-medium text-gray-500">
-                                                            No resume uploaded
-                                                        </p>
-
-                                                        <% } %>
-                                            </div>
-
-                                        </div>
-
-                                        <!-- Upload / Change Resume -->
-                                        <div>
-
-                                            <input type="file" id="resumeInput" name="resume" accept=".pdf"
-                                                class="hidden">
-
-                                            <button type="button"
-                                                onclick="document.getElementById('resumeInput').click()"
-                                                class="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
-
-                                                <i class="ri-upload-cloud-2-line"></i>
-
-                                                <span id="resumeBtnText">
-                                                    <%= user.resume && user.resume.data ? "Change Resume"
-                                                        : "Upload Resume" %>
-                                                </span>
-
-                                            </button>
-
-                                            <p class="text-sm text-gray-500 mt-2">
-                                                Upload your resume in PDF format
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-                                </div>
+                             
 
                                 <div>
                                     <label class="text-lg font-medium mb-2 block" for="">About Me </label>

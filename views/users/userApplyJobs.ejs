@@ -13,7 +13,7 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-    <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
+    <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0 left-0 z-30">
         <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
             <div class="menubtn">
                 <i class="ri-menu-fill text-2xl"></i>
@@ -107,7 +107,7 @@
 
     <!-- ================= MAIN ================= -->
 
-    <main class="lg:ml-56 xl:ml-64 pt-16 min-h-screen">
+    <main class="w-full min-w-0 pt-16 min-h-screen">
 
         <div class="w-full  px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
 
@@ -130,69 +130,121 @@
 
             <!-- ================= JOB HEADER ================= -->
 
-            <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 mb-5">
+            <!-- ================= JOB APPLY HEADER ================= -->
+            <section class="bg-white border border-gray-200 rounded-2xl shadow-sm
+                p-5 sm:p-6 lg:p-7 mb-5">
 
-                <div class="flex items-center gap-4">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-5">
 
-                    <!-- Company Logo -->
 
-                    <div class="w-16 h-16 rounded-xl border border-gray-200 flex items-center justify-center shrink-0">
+                    <!-- ================= COMPANY LOGO ================= -->
+                    <div class="w-20 h-20 sm:w-24 sm:h-24
+                    rounded-2xl border border-gray-200
+                    bg-gray-50
+                    flex items-center justify-center
+                    shrink-0 overflow-hidden">
 
-                        <span class="text-4xl font-bold text-blue-500">
+                        <% if (job.company.companyProfile && job.company.companyProfile.data) { %>
 
-                            G
+                            <img src="data:<%= job.company.companyProfile.contentType %>;base64,<%= job.company.companyProfile.data.toString('base64') %>"
+                                alt="<%= job.company.companyName %>" class="w-full h-full object-cover">
 
-                        </span>
+                            <% } else { %>
+
+                                <span class="text-4xl sm:text-5xl font-bold text-blue-600">
+                                    <%= job.company.companyName.charAt(0).toUpperCase() %>
+                                </span>
+
+                                <% } %>
 
                     </div>
 
 
-                    <!-- Job Info -->
+                    <!-- ================= JOB INFORMATION ================= -->
+                    <div class="flex-1 min-w-0">
 
-                    <div>
 
-                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+                        <!-- JOB TITLE -->
+                        <h1 class="text-2xl sm:text-3xl lg:text-4xl
+                       font-bold text-gray-900 leading-tight">
 
-                            Apply for Frontend Developer
+                            Apply for <%= job.jobTitle %>
 
                         </h1>
 
 
-                        <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-2 text-sm text-gray-600">
+                        <!-- COMPANY -->
+                        <div class="flex items-center gap-2 mt-2">
 
-                            <span class="font-semibold text-gray-800">
-
-                                Google
-
+                            <span class="text-base sm:text-lg font-semibold text-gray-700">
+                                <%= job.company.companyName %>
                             </span>
 
-
-                            <i class="ri-verified-badge-fill text-blue-600">
+                            <i class="ri-verified-badge-fill
+                          text-blue-600 text-lg">
                             </i>
 
-
-                            <span>•</span>
-
-
-                            <span class="flex items-center gap-1">
-
-                                <i class="ri-map-pin-line"></i>
-
-                                Bengaluru, India
-
-                            </span>
+                        </div>
 
 
-                            <span>•</span>
+                        <!-- ================= JOB META ================= -->
+                        <div class="flex flex-wrap items-center gap-2.5 mt-4">
 
 
-                            <span class="flex items-center gap-1">
+                            <!-- LOCATION -->
+                            <div class="inline-flex items-center gap-2
+                            px-3 py-2
+                            rounded-lg
+                            bg-gray-50
+                            border border-gray-200
+                            text-sm text-gray-600">
 
-                                <i class="ri-briefcase-line"></i>
+                                <i class="ri-map-pin-line text-blue-600"></i>
 
-                                Full-time
+                                <span>
+                                    <%= job.companyLocation %>
+                                </span>
 
-                            </span>
+                            </div>
+
+
+                            <!-- JOB TYPE -->
+                            <div class="inline-flex items-center gap-2
+                            px-3 py-2
+                            rounded-lg
+                            bg-gray-50
+                            border border-gray-200
+                            text-sm text-gray-600">
+
+                                <i class="ri-briefcase-line text-blue-600"></i>
+
+                                <span>
+                                    <%= job.jobType %>
+                                </span>
+
+                            </div>
+
+
+                            <!-- EXPERIENCE -->
+                            <% if (job.experience) { %>
+
+                                <div class="inline-flex items-center gap-2
+                                px-3 py-2
+                                rounded-lg
+                                bg-gray-50
+                                border border-gray-200
+                                text-sm text-gray-600">
+
+                                    <i class="ri-user-line text-blue-600"></i>
+
+                                    <span>
+                                        <%= job.experience %>
+                                    </span>
+
+                                </div>
+
+                                <% } %>
+
 
                         </div>
 
@@ -206,9 +258,10 @@
 
             <!-- ================= FORM ================= -->
 
-            <form action="/users/applyJob" method="POST" enctype="multipart/form-data" class="space-y-5">
+            <form action="/users/userApplyJobs" method="POST" enctype="multipart/form-data" class="space-y-5">
 
 
+                <input type="hidden" name="jobId" value="<%= job._id %>">
 
                 <!-- ================= PERSONAL INFO ================= -->
 
@@ -258,7 +311,7 @@
                             </label>
 
 
-                            <input type="text" name="fullname" value="Anshul Goyal"
+                            <input type="text" name="fullname" value=""
                                 class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
 
                         </div>
@@ -277,7 +330,7 @@
                             </label>
 
 
-                            <input type="email" name="email" value="anshul.goyal@example.com"
+                            <input type="email" name="email"
                                 class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
 
                         </div>
@@ -296,7 +349,7 @@
                             </label>
 
 
-                            <input type="tel" name="mobile" value="+91 98765 43210"
+                            <input type="tel" name="mobile"
                                 class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
 
                         </div>
@@ -315,7 +368,7 @@
                             </label>
 
 
-                            <input type="text" name="location" value="Bengaluru, India"
+                            <input type="text" name="address"
                                 class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500">
 
                         </div>
@@ -599,65 +652,121 @@
 
                     <!-- RESUME -->
 
-                    <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
+                    <section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-5 sm:p-6">
 
-                        <div class="flex items-center gap-3 mb-5">
+                        <!-- HEADER -->
+                        <div class="flex items-start gap-3 mb-6">
 
-                            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+                            <!-- ICON -->
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600
+                    flex items-center justify-center shrink-0">
 
-                                <i class="ri-file-text-line"></i>
+                                <i class="ri-file-text-line text-xl"></i>
 
                             </div>
 
-
+                            <!-- TITLE -->
                             <div>
-
-                                <h2 class="text-lg font-bold">
-
-                                    4. Resume
-                                    <span class="text-red-500">*</span>
-
+                                <h2 class="text-lg font-semibold text-gray-800">
+                                    Resume
                                 </h2>
 
-
-                                <p class="text-sm text-gray-500">
-
-                                    Upload your latest resume
-
+                                <p class="text-sm text-gray-500 mt-1">
+                                    Upload your latest resume for this application
                                 </p>
-
                             </div>
 
                         </div>
 
 
+                        <!-- UPLOAD AREA -->
+                        <label for="resumeInput" class="group block border-2 border-dashed border-gray-300
+               rounded-xl p-7 sm:p-8 text-center cursor-pointer
+               hover:border-blue-400 hover:bg-blue-50/30
+               transition duration-200">
 
-                        <label
-                            class="block border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400">
+                            <!-- UPLOAD ICON -->
+                            <div class="w-14 h-14 mx-auto rounded-xl
+                    bg-blue-50 text-blue-600
+                    flex items-center justify-center
+                    group-hover:bg-blue-100
+                    transition">
 
-                            <i class="ri-upload-cloud-2-line text-3xl text-blue-500">
-                            </i>
+                                <i class="ri-upload-cloud-2-line text-3xl"></i>
+
+                            </div>
 
 
-                            <p class="font-medium mt-2">
+                            <!-- TEXT -->
+                            <p class="font-semibold text-gray-800 mt-4">
+                                Upload your resume
+                            </p>
 
-                                Click to upload
+                            <p class="text-sm text-gray-500 mt-1">
+                                Click here or drag and drop your file
+                            </p>
 
+                            <p class="text-xs text-gray-400 mt-2">
+                                PDF only · Maximum size 5MB
                             </p>
 
 
-                            <p class="text-xs text-gray-500 mt-1">
-
-                                PDF, DOC, DOCX (Max. 5MB)
-
-                            </p>
-
-
-                            <input type="file" name="resume" accept=".pdf,.doc,.docx" class="hidden">
+                            <!-- FILE INPUT -->
+                            <input type="file" id="resumeInput" name="resume" accept=".pdf,application/pdf"
+                                class="hidden" required onchange="showResumeName(this)" />
 
                         </label>
 
+
+                        <!-- SELECTED FILE -->
+                        <div id="resumePreview" class="hidden mt-4 border border-green-200
+                bg-green-50 rounded-xl p-4">
+
+                            <div class="flex items-center justify-between gap-3">
+
+                                <!-- FILE INFO -->
+                                <div class="flex items-center gap-3 min-w-0">
+
+                                    <div class="w-10 h-10 rounded-lg bg-white
+                            border border-green-200
+                            text-red-500
+                            flex items-center justify-center
+                            shrink-0">
+
+                                        <i class="ri-file-pdf-line text-xl"></i>
+
+                                    </div>
+
+
+                                    <div class="min-w-0">
+
+                                        <p class="text-sm font-semibold text-gray-800">
+                                            Resume selected
+                                        </p>
+
+                                        <p id="resumeName" class="text-xs text-gray-500 mt-1 truncate">
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- CHECK ICON -->
+                                <div class="text-green-600 shrink-0">
+
+                                    <i class="ri-checkbox-circle-fill text-xl"></i>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </section>
+
+
+
 
 
 
@@ -826,11 +935,11 @@
                             <select name="relocate"
                                 class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white outline-none focus:border-blue-500">
 
-                                <option>
+                                <option value="true">
                                     Yes
                                 </option>
 
-                                <option>
+                                <option value="false">
                                     No
                                 </option>
 
@@ -898,77 +1007,6 @@
 
 
 
-                <!-- ================= ATTACHMENTS ================= -->
-
-                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6">
-
-                    <div class="flex items-center justify-between mb-5">
-
-                        <div class="flex items-center gap-3">
-
-                            <div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-
-                                <i class="ri-attachment-2"></i>
-
-                            </div>
-
-
-                            <div>
-
-                                <h2 class="text-lg font-bold">
-
-                                    7. Attachments
-
-                                    <span class="text-gray-400 text-sm font-normal">
-
-                                        (Optional)
-
-                                    </span>
-
-                                </h2>
-
-
-                                <p class="text-sm text-gray-500">
-
-                                    Upload any other relevant documents
-
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <label
-                        class="block border border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400">
-
-                        <i class="ri-upload-cloud-2-line text-3xl text-blue-500">
-                        </i>
-
-
-                        <p class="font-medium mt-2">
-
-                            Click to upload
-
-                        </p>
-
-
-                        <p class="text-xs text-gray-500 mt-1">
-
-                            PDF, DOC, DOCX (Max. 5MB)
-
-                        </p>
-
-
-                        <input type="file" name="attachments" multiple accept=".pdf,.doc,.docx" class="hidden">
-
-                    </label>
-
-                </section>
-
 
 
                 <!-- ================= SUBMIT ================= -->
@@ -996,7 +1034,7 @@
                         class="flex flex-col-reverse sm:flex-row justify-between gap-3 mt-5 pt-5 border-t border-gray-100">
 
 
-                        <a href="/users/jobs"
+                        <a href="/users/userBrowseJobs"
                             class="px-5 py-2.5 rounded-lg border border-gray-300 text-sm font-medium text-center hover:bg-gray-50">
 
                             Cancel
@@ -1071,6 +1109,52 @@
             overlay.classList.add("hidden");
 
         });
+
+
+        function showResumeName(input) {
+
+            const preview = document.getElementById("resumePreview");
+            const fileName = document.getElementById("resumeName");
+
+            if (input.files && input.files.length > 0) {
+
+                const file = input.files[0];
+
+                // PDF check
+                if (file.type !== "application/pdf") {
+
+                    alert("Only PDF resume is allowed");
+
+                    input.value = "";
+
+                    preview.classList.add("hidden");
+
+                    return;
+                }
+
+                // 5MB check
+                if (file.size > 5 * 1024 * 1024) {
+
+                    alert("Resume size must be less than 5MB");
+
+                    input.value = "";
+
+                    preview.classList.add("hidden");
+
+                    return;
+                }
+
+                fileName.textContent = file.name;
+
+                preview.classList.remove("hidden");
+
+            } else {
+
+                preview.classList.add("hidden");
+
+            }
+        }
+
 
     </script>
 

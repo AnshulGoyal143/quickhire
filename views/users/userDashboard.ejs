@@ -62,14 +62,14 @@
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
-                            <a href="">
+                            <a href="/users/userMyApplications">
                                 <i class="ri-file-list-3-line text-xl"></i>
                                 <span>My Applications</span>
                             </a>
                         </li>
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
-                            <a href="">
+                            <a href="/users/userBrowseJobs">
                                 <i class="ri-briefcase-line text-xl"></i>
                                 <span>Browse Jobs</span>
                             </a>
@@ -126,7 +126,7 @@
                             <p class="text-gray-600 mt-2">View all companies you applied to</p>
                         </div>
                         <div class="routetag ">
-                            <a href=""><i class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
+                            <a href="/users/userMyApplications"><i class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
                         </div>
                     </div>
 
@@ -176,55 +176,118 @@
                         <h2 class="text-xl">Recent Applications</h2>
                         <a href="" class="text-blue-600 font-medium hover:underline text-lg">View All</a>
                     </div>
-                    <div class="tables overflow-x-auto">
-                        <table class="w-full min-w-[950px]">
-                            <!-- heading********** -->
-                            <thead class="bg-gray-50 border-b">
-                                <tr>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Company</th>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Role</th>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Applied On</th>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
-                                </tr>
-                            </thead>
-                            <!-- *****data********* -->
-                            <tbody>
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">Google</td>
-                                    <td class="px-6 py-5 text-gray-600">Frontend Developer</td>
-                                    <td class="px-6 py-5 text-gray-600">12 May 2026</td>
-                                    <td class="py-5 px-6">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">In
-                                            Review</span>
-                                    </td>
-                                </tr>
 
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">Infosis</td>
-                                    <td class="px-6 py-5 text-gray-600">Software Engineer</td>
-                                    <td class="px-6 py-5 text-gray-600">10 May 2026</td>
-                                    <td class="py-5 px-6">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Shortlisted</span>
-                                    </td>
-                                </tr>
+     <% if (applications && applications.length > 0) { %>
 
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">Wipro</td>
-                                    <td class="px-6 py-5 text-gray-600">Backend Developer</td>
-                                    <td class="px-6 py-5 text-gray-600">7 May 2026</td>
-                                    <td class="py-5 px-6">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold ">Rejected</span>
-                                    </td>
-                                </tr>
-                            </tbody>
+    <div class="tables overflow-x-auto">
 
-                        </table>
+        <table class="w-full min-w-[950px]">
 
+            <thead class="bg-gray-50 border-b">
+                <tr>
+                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                        Company
+                    </th>
 
-                    </div>
+                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                        Job Role
+                    </th>
+
+                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                        Applied On
+                    </th>
+
+                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                        Status
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% applications.forEach(application => { %>
+
+                    <tr class="border-b hover:bg-gray-50 transition">
+
+                        <td class="px-6 py-5 font-medium">
+                            <%= application.company.companyName %>
+                        </td>
+
+                        <td class="px-6 py-5 text-gray-600">
+                            <%= application.job.jobTitle %>
+                        </td>
+
+                        <td class="px-6 py-5 text-gray-600">
+                            <%= new Date(application.appliedAt).toLocaleDateString("en-IN", {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric"
+                            }) %>
+                        </td>
+
+                        <td class="py-5 px-6">
+
+                            <% if (application.status === "Applied") { %>
+
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Applied
+                                </span>
+
+                            <% } else if (application.status === "Under Review") { %>
+
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Under Review
+                                </span>
+
+                            <% } else if (application.status === "Shortlisted") { %>
+
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Shortlisted
+                                </span>
+
+                            <% } else if (application.status === "Rejected") { %>
+
+                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Rejected
+                                </span>
+
+                            <% } else if (application.status === "Selected") { %>
+
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Selected
+                                </span>
+
+                            <% } %>
+
+                        </td>
+
+                    </tr>
+
+                <% }) %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+<% } else { %>
+
+    <div class="text-center py-16">
+
+        <i class="ri-file-list-3-line text-5xl text-gray-300"></i>
+
+        <h2 class="text-xl font-semibold text-gray-700 mt-4">
+            No Applications Yet
+        </h2>
+
+        <p class="text-gray-500 mt-2">
+            You haven't applied for any jobs yet.
+        </p>
+
+    </div>
+
+<% } %>
 
 
                 </div>

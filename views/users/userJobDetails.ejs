@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,532 +12,545 @@
 
 <body class="bg-gray-50 text-gray-800 overflow-x-hidden">
 
-<div class="min-h-screen">
+    <div class="min-h-screen">
 
-  <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
-                <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
-                    <div class="menubtn">
-                        <i class="ri-menu-fill text-2xl"></i>
-                    </div>
-                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+        <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
+            <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+                <div class="menubtn">
+                    <i class="ri-menu-fill text-2xl"></i>
                 </div>
-                <div class="flex items-center gap-6">
-                    <!-- notification k ley route bnana h -->
-                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
-                    </a>
-                    <div class="flex items-center gap-2">
-                        <img class="h-10 w-11 rounded-full"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
-                            alt="">
-                        <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
-                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
-                    </div>
-                </div>
-            </nav>
-    <!-- *********** FOr the menu list div ********-->
-            <div
-                class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4">
-
-                <div class="flex items-center ">
-                    <img class="h-8"
-                        src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+            </div>
+            <div class="flex items-center gap-6">
+                <!-- notification k ley route bnana h -->
+                <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                </a>
+                <div class="flex items-center gap-2">
+                    <img class="h-10 w-11 rounded-full"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
                         alt="">
-                    <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
-                </div>
-                <div class="cross flex justify-end ">
-                    <i
-                        class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
-                </div>
-                 <div class="list">
-                    <ul class=" space-y-3">
-                        <!-- yha pee user dashboard menu link attach krne h -->
-
-                        <li
-                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1 mt-1">
-                            <a href="/users/userDashboard">
-                                <i class="ri-home-3-line text-xl"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-
-
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600  ">
-                            <a href="">
-                                <i class="ri-file-list-3-line text-xl"></i>
-                                <span>My Applications</span>
-                            </a>
-                        </li>
-
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
-                            <a href="">
-                                <i class="ri-briefcase-line text-xl"></i>
-                                <span>Browse Jobs</span>
-                            </a>
-                        </li>
-
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="/users/userProfile">
-                                <i class="ri-user-3-line text-xl"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="/users/ProfileEdit">
-                                <i class="ri-edit-2-line text-xl"></i>
-                                <span>Edit Profile</span>
-                            </a>
-                        </li>
-
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
-                            <a href="/logout">
-                                <i class="ri-logout-box-r-line text-xl"></i>
-                                <span>Logout</span>
-                            </a>
-                        </li>
-
-
-                    </ul>
+                    <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
+                    <a href=""><i class="ri-arrow-down-wide-line"></i></a>
                 </div>
             </div>
+        </nav>
+        <!-- *********** FOr the menu list div ********-->
+        <div
+            class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4">
 
-    <!-- OVERLAY -->
-    <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
+            <div class="flex items-center ">
+                <img class="h-8"
+                    src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                    alt="">
+                <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+            </div>
+            <div class="cross flex justify-end ">
+                <i
+                    class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+            </div>
+            <div class="list">
+                <ul class=" space-y-3">
+                    <!-- yha pee user dashboard menu link attach krne h -->
 
-  
+                    <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1 mt-1">
+                        <a href="/users/userDashboard">
+                            <i class="ri-home-3-line text-xl"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
 
-    <main class="flex-1 min-w-0 pt-[72px] min-h-screen ">
 
-    <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-5 sm:py-6">
+                    <li
+                        class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600  ">
+                        <a href="/users/userMyApplications">
+                            <i class="ri-file-list-3-line text-xl"></i>
+                            <span>My Applications</span>
+                        </a>
+                    </li>
 
-        <!-- BACK TO JOBS -->
-        <div class="mb-4 sm:mb-5">
-            <a href="/users/userApplyJobs"
-               class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium">
-                <i class="ri-arrow-left-line text-lg"></i>
-                Back to Jobs
-            </a>
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                        <a href="/users/userBrowseJobs">
+                            <i class="ri-briefcase-line text-xl"></i>
+                            <span>Browse Jobs</span>
+                        </a>
+                    </li>
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <a href="/users/userProfile">
+                            <i class="ri-user-3-line text-xl"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <a href="/users/ProfileEdit">
+                            <i class="ri-edit-2-line text-xl"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                    </li>
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                        <a href="/logout">
+                            <i class="ri-logout-box-r-line text-xl"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
         </div>
 
+        <!-- OVERLAY -->
+        <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
 
-        <!-- ================= JOB HEADER ================= -->
-        <section class="w-full bg-white border border-gray-200 rounded-xl shadow-sm p-4 sm:p-5 lg:p-6">
 
-            <div class="flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-5">
 
-                <!-- COMPANY LOGO -->
-                <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-[88px] lg:h-[88px]
-                            shrink-0 border border-gray-200 rounded-xl
-                            flex items-center justify-center bg-white">
+        <main class="flex-1 min-w-0 pt-20 min-h-screen ">
 
-                    <span class="text-4xl sm:text-5xl font-bold text-blue-500">
-                        G
-                    </span>
+            <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-5 sm:py-6">
 
+                <!-- BACK TO JOBS -->
+                <div class="mb-4 sm:mb-5">
+                    <a href="/users/userBrowseJobs"
+                        class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium">
+                        <i class="ri-arrow-left-line text-lg"></i>
+                        Back to Jobs
+                    </a>
                 </div>
 
 
-                <!-- JOB INFO -->
-                <div class="flex-1 min-w-0">
+                <!-- ================= JOB HEADER ================= -->
+                <section class="w-full bg-white border border-gray-200 rounded-xl shadow-sm p-4 sm:p-5 lg:p-6">
 
-                    <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
-                        Frontend Developer
-                    </h1>
+                    <div class="flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-5">
 
-                    <div class="flex items-center gap-2 mt-1.5">
-                        <span class="font-semibold text-gray-800">
-                            Google
-                        </span>
+                        <!-- COMPANY LOGO -->
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-[88px] lg:h-[88px]
+            shrink-0 border border-gray-200 rounded-xl
+            flex items-center justify-center bg-white overflow-hidden">
 
-                        <i class="ri-verified-badge-fill text-blue-600"></i>
-                    </div>
+                            <% if (job.company.companyProfile && job.company.companyProfile.data) { %>
 
+                                <img src="data:<%= job.company.companyProfile.contentType %>;base64,<%= job.company.companyProfile.data.toString('base64') %>"
+                                    alt="<%= job.company.companyName %>" class="w-full h-full object-cover">
 
-                    <!-- DETAILS -->
-                    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-sm text-gray-600">
+                                <% } else { %>
 
-                        <div class="flex items-center gap-2">
-                            <i class="ri-map-pin-line"></i>
-                            <span>Bengaluru, India</span>
+                                    <span class="text-4xl sm:text-5xl font-bold text-blue-500">
+                                        <%= job.company.companyName.charAt(0).toUpperCase() %>
+                                    </span>
+
+                                    <% } %>
+
                         </div>
 
-                        <div class="flex items-center gap-2">
-                            <i class="ri-briefcase-line"></i>
-                            <span>Full-time</span>
+
+                        <!-- JOB INFO -->
+                        <div class="flex-1 min-w-0">
+
+                            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
+                                <%= job.jobTitle %>
+                            </h1>
+
+                            <div class="flex items-center gap-2 mt-1.5">
+                                <span class="font-semibold text-gray-800">
+                                    <%= job.company.companyName %>
+                                </span>
+
+                                <i class="ri-verified-badge-fill text-blue-600"></i>
+                            </div>
+
+
+                            <!-- DETAILS -->
+                            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-sm text-gray-600">
+
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-map-pin-line"></i>
+                                    <span>
+                                        <%= job.companyLocation %>
+                                    </span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-briefcase-line"></i>
+                                    <span>
+                                        <%= job.jobType %>
+                                    </span>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-file-list-3-line"></i>
+                                    <span>
+                                        <%= job.experience %>
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <!-- POSTED -->
+                            <div class="flex flex-wrap items-center gap-3 mt-3 text-sm text-gray-500">
+
+                                <span>
+                                    Posted <%= postedTime %>
+                                </span>
+
+                                <span>•</span>
+
+                                <span>
+                                    <%= applicants %> applicants
+                                </span>
+
+                            </div>
+
                         </div>
 
-                        <div class="flex items-center gap-2">
-                            <i class="ri-file-list-3-line"></i>
-                            <span>2 - 4 Years</span>
-                        </div>
 
-                    </div>
+                        <!-- ACTIONS -->
+                        <div class="flex items-center gap-3 lg:self-start">
 
-
-                    <!-- POSTED -->
-                    <div class="flex flex-wrap items-center gap-3 mt-3 text-sm text-gray-500">
-
-                        <span>Posted 2 hours ago</span>
-
-                        <span>•</span>
-
-                        <span>1,245 applicants</span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ACTIONS -->
-                <div class="flex items-center gap-3 lg:self-start">
-
-                    <button
-                        class="w-11 h-11 sm:w-12 sm:h-12 shrink-0
+                            <button class="w-11 h-11 sm:w-12 sm:h-12 shrink-0
                                border border-gray-300 rounded-lg
                                flex items-center justify-center
                                hover:bg-gray-50">
 
-                        <i class="ri-bookmark-line text-xl text-gray-600"></i>
+                                <i class="ri-bookmark-line text-xl text-gray-600"></i>
 
-                    </button>
+                            </button>
 
-                    <a href="/users/applyJob"
-                       class="px-5 sm:px-7 py-3
+                            <a href="/users/userApplyJobs/<%= job._id %>" class="px-5 sm:px-7 py-3
                               rounded-lg bg-blue-600 hover:bg-blue-700
                               text-white font-semibold text-sm
                               whitespace-nowrap text-center">
+                              
+                                Apply Now
 
-                        Apply Now
+                            </a>
 
-                    </a>
+                        </div>
 
-                </div>
+                    </div>
 
-            </div>
-
-        </section>
+                </section>
 
 
-        <!-- ================= TABS ================= -->
-        <div class="mt-4 sm:mt-5 border-b border-gray-200 overflow-x-auto">
+                <!-- ================= TABS ================= -->
+                <div class="mt-4 sm:mt-5 border-b border-gray-200 overflow-x-auto">
 
-            <div class="flex items-center gap-7 sm:gap-9 min-w-max">
+                    <div class="flex items-center gap-7 sm:gap-9 min-w-max">
 
-                <button
-                    class="py-3.5 sm:py-4
+                        <button class="py-3.5 sm:py-4
                            text-sm font-semibold
                            text-blue-600
                            border-b-2 border-blue-600">
 
-                    Job Details
+                            Job Details
 
-                </button>
+                        </button>
 
-                <button
-                    class="py-3.5 sm:py-4
+                        <button class="py-3.5 sm:py-4
                            text-sm font-medium
                            text-gray-600
                            hover:text-blue-600">
 
-                    About Company
+                            About Company
 
-                </button>
+                        </button>
 
-                <button
-                    class="py-3.5 sm:py-4
+                        <button class="py-3.5 sm:py-4
                            text-sm font-medium
                            text-gray-600
                            hover:text-blue-600">
 
-                    Reviews (128)
+                            Reviews (128)
 
-                </button>
+                        </button>
 
-            </div>
+                    </div>
 
-        </div>
-
-
-        <!-- ================= MAIN CONTENT ================= -->
-       <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_360px] gap-5 mt-5 items-stretch">
+                </div>
 
 
-            <!-- ================= LEFT ================= -->
-            <div class=" flex flex-col gap-5 h-full ">
+                <!-- ================= MAIN CONTENT ================= -->
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_360px] gap-5 mt-5 items-stretch">
 
 
-                <!-- JOB DESCRIPTION -->
-                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 flex-1">
-
-                    <h2 class="text-lg font-bold text-gray-900 mb-4">
-                        Job Description
-                    </h2>
-
-                    <p class="text-sm leading-7 text-gray-600">
-                        We are looking for a skilled Frontend Developer to build amazing
-                        user experiences for our products. You will work with a team of
-                        engineers and designers to build responsive and scalable web applications.
-                    </p>
+                    <!-- ================= LEFT ================= -->
+                    <div class=" flex flex-col gap-5 h-full ">
 
 
-                    <h3 class="font-bold text-sm mt-6 mb-3">
-                        Responsibilities
-                    </h3>
+                        <!-- JOB DESCRIPTION -->
+                        <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 flex-1">
 
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-600">
-                        <li>Build responsive and accessible user interfaces</li>
-                        <li>Collaborate with designers and backend developers</li>
-                        <li>Write clean, maintainable and efficient code</li>
-                        <li>Optimize applications for maximum speed and scalability</li>
-                    </ul>
+                            <h2 class="text-lg font-bold text-gray-900 mb-4">
+                                Job Description
+                            </h2>
 
-
-                    <h3 class="font-bold text-sm mt-6 mb-3">
-                        Requirements
-                    </h3>
-
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-600">
-                        <li>2+ years of experience in frontend development</li>
-                        <li>Proficiency in HTML, CSS, JavaScript, React.js</li>
-                        <li>Experience with state management (Redux / Context API)</li>
-                        <li>Strong understanding of responsive design principles</li>
-                    </ul>
+                            <p class="text-sm leading-7 text-gray-600">
+                                <%= job.jobDescription %>
+                            </p>
 
 
-                    <a href="#"
-                       class="inline-flex items-center gap-2 mt-6
+                            <h3 class="font-bold text-sm mt-6 mb-3">
+                                Responsibilities
+                            </h3>
+
+                            <ul class="list-disc pl-5 space-y-2 text-sm text-gray-600">
+                                <li>Build responsive and accessible user interfaces</li>
+                                <li>Collaborate with designers and backend developers</li>
+                                <li>Write clean, maintainable and efficient code</li>
+                                <li>Optimize applications for maximum speed and scalability</li>
+                            </ul>
+
+
+                            <h3 class="font-bold text-sm mt-6 mb-3">
+                                Requirements
+                            </h3>
+
+                            <ul class="list-disc pl-5 space-y-2 text-sm text-gray-600">
+                                <li>2+ years of experience in frontend development</li>
+                                <li>Proficiency in HTML, CSS, JavaScript, React.js</li>
+                                <li>Experience with state management (Redux / Context API)</li>
+                                <li>Strong understanding of responsive design principles</li>
+                            </ul>
+
+
+                            <a href="#" class="inline-flex items-center gap-2 mt-6
                               text-sm font-semibold text-blue-600
                               hover:text-blue-700">
 
-                        View Full Job Description
+                                View Full Job Description
 
-                        <i class="ri-external-link-line"></i>
+                                <i class="ri-external-link-line"></i>
 
-                    </a>
+                            </a>
 
-                </section>
+                        </section>
 
 
-                <!-- SKILLS -->
-                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 shrink-0">
+                        <!-- SKILLS -->
+                        <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 shrink-0">
 
-                    <h2 class="text-lg font-bold text-gray-900 mb-4">
-                        Skills
-                    </h2>
+                            <h2 class="text-lg font-bold text-gray-900 mb-4">
+                                Skills
+                            </h2>
 
-                    <div class="flex flex-wrap gap-2.5">
+                            <div class="flex flex-wrap gap-2.5">
 
-                        <span class="px-3.5 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm">
-                            HTML
-                        </span>
+                                <% if (job.addSkills && job.addSkills.length> 0) { %>
 
-                        <span class="px-3.5 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm">
-                            CSS
-                        </span>
+                                    <% job.addSkills.forEach(skill=> { %>
 
-                        <span class="px-3.5 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm">
-                            JavaScript
-                        </span>
+                                        <span class="px-3.5 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm">
+                                            <%= skill.trim() %>
+                                        </span>
 
-                        <span class="px-3.5 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm">
-                            React.js
-                        </span>
+                                        <% }); %>
 
-                        <span class="px-3.5 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm">
-                            Redux
-                        </span>
+                                            <% } %>
 
-                        <span class="px-3.5 py-2 rounded-lg bg-gray-100 text-gray-600 text-sm">
-                            Responsive Design
-                        </span>
+                            </div>
+
+                        </section>
 
                     </div>
 
-                </section>
 
-            </div>
-
-
-            <!-- ================= RIGHT ================= -->
-            <div class=" flex flex-col gap-5 h-full ">
+                    <!-- ================= RIGHT ================= -->
+                    <div class=" flex flex-col gap-5 h-full ">
 
 
-                <!-- JOB SUMMARY -->
-                <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 flex-1">
+                        <!-- JOB SUMMARY -->
+                        <section class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sm:p-6 flex-1">
 
-                    <h2 class="text-lg font-bold text-gray-900 mb-4">
-                        Job Summary
-                    </h2>
-
-
-                    <div class="text-sm">
-
-                        <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
-                            <span class="text-gray-500 shrink-0">
-                                Job Role
-                            </span>
-
-                            <span class="font-semibold text-right break-words">
-                                Frontend Developer
-                            </span>
-                        </div>
+                            <h2 class="text-lg font-bold text-gray-900 mb-4">
+                                Job Summary
+                            </h2>
 
 
-                        <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
-                            <span class="text-gray-500 shrink-0">
-                                Job Type
-                            </span>
+                            <div class="text-sm">
 
-                            <span class="font-semibold text-right">
-                                Full-time
-                            </span>
-                        </div>
+                                <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
+                                    <span class="text-gray-500 shrink-0">
+                                        Job Role
+                                    </span>
 
-
-                        <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
-                            <span class="text-gray-500 shrink-0">
-                                Experience
-                            </span>
-
-                            <span class="font-semibold text-right">
-                                2 - 4 Years
-                            </span>
-                        </div>
+                                    <span class="font-semibold text-right break-words">
+                                        <%= job.jobTitle %>
+                                    </span>
+                                </div>
 
 
-                        <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
-                            <span class="text-gray-500 shrink-0">
-                                Location
-                            </span>
+                                <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
+                                    <span class="text-gray-500 shrink-0">
+                                        Job Type
+                                    </span>
 
-                            <span class="font-semibold text-right">
-                                Bengaluru, India
-                            </span>
-                        </div>
-
-
-                        <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
-                            <span class="text-gray-500 shrink-0">
-                                Salary
-                            </span>
-
-                            <span class="font-semibold text-right">
-                                ₹8 - ₹15 LPA
-                            </span>
-                        </div>
+                                    <span class="font-semibold text-right">
+                                        <%= job.jobType %>
+                                    </span>
+                                </div>
 
 
-                        <div class="flex items-start justify-between gap-5 pt-3">
-                            <span class="text-gray-500 shrink-0">
-                                Posted On
-                            </span>
+                                <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
+                                    <span class="text-gray-500 shrink-0">
+                                        Experience
+                                    </span>
 
-                            <span class="font-semibold text-right">
-                                12 May 2025
-                            </span>
-                        </div>
-
-                    </div>
-
-                </section>
+                                    <span class="font-semibold text-right">
+                                        <%= job.experience %>
+                                    </span>
+                                </div>
 
 
-                <!-- ABOUT COMPANY -->
-              <section class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex-1">
+                                <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
+                                    <span class="text-gray-500 shrink-0">
+                                        Location
+                                    </span>
 
-    <h2 class="text-lg font-bold text-gray-900 mb-5">
-        About Company
-    </h2>
+                                    <span class="font-semibold text-right">
+                                        <%= job.companyLocation %>
+                                    </span>
+                                </div>
 
-    <div class="flex items-center gap-3 mb-4">
 
-        <div class="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center shrink-0">
-            <span class="text-2xl font-bold text-blue-500">G</span>
-        </div>
+                                <div class="flex items-start justify-between gap-5 py-3 border-b border-gray-100">
+                                    <span class="text-gray-500 shrink-0">
+                                        Salary
+                                    </span>
 
-        <div class="flex items-center gap-2">
-            <span class="font-semibold text-gray-900">
-                Google
-            </span>
+                                    <span class="font-semibold text-right">
+                                        <%= job.salary %>
+                                    </span>
+                                </div>
 
-            <i class="ri-verified-badge-fill text-blue-600"></i>
-        </div>
 
-    </div>
+                                <div class="flex items-start justify-between gap-5 pt-3">
+                                    <span class="text-gray-500 shrink-0">
+                                        Posted On
+                                    </span>
 
-    <p class="text-sm text-gray-600 leading-6">
-        Google's mission is to organize the world's information
-        and make it universally accessible and useful.
-    </p>
+                                    <span class="font-semibold text-right">
+                                        <%= job.createdAt.toLocaleDateString("en-IN",{day:"2-digit",
+                                            month:"short",year:"numeric"}) %>
+                                    </span>
+                                </div>
 
-    <div class="border-t border-gray-200 mt-5 pt-4 space-y-4">
+                            </div>
 
-        <div class="flex justify-between gap-4 text-sm">
-            <span class="text-gray-500">
-                Industry
-            </span>
+                        </section>
 
-            <span class="font-semibold text-right max-w-[180px]">
-                Technology, Information and Internet
-            </span>
-        </div>
 
-        <div class="flex justify-between gap-4 text-sm">
-            <span class="text-gray-500">
-                Company Size
-            </span>
+                        <!-- ABOUT COMPANY -->
+                        <section class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex-1">
 
-            <span class="font-semibold text-right">
-                10,001+ employees
-            </span>
-        </div>
+                            <h2 class="text-lg font-bold text-gray-900 mb-5">
+                                About Company
+                            </h2>
 
-    </div>
+                            <div class="flex items-center gap-3 mb-4">
 
-    <a
-        href="#"
-        class="flex items-center justify-center gap-2 mt-5
+                                <div class="w-10 h-10 rounded-lg border border-gray-200
+            flex items-center justify-center shrink-0 overflow-hidden">
+
+                                    <% if (job.company.companyProfile && job.company.companyProfile.data) { %>
+
+                                        <img src="data:<%= job.company.companyProfile.contentType %>;base64,<%= job.company.companyProfile.data.toString('base64') %>"
+                                            alt="<%= job.company.companyName %>" class="w-full h-full object-cover">
+
+                                        <% } else { %>
+
+                                            <span class="text-2xl font-bold text-blue-500">
+                                                <%= job.company.companyName.charAt(0).toUpperCase() %>
+                                            </span>
+
+                                            <% } %>
+
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span class="font-semibold text-gray-900">
+                                        <%= job.company.companyName %>
+                                    </span>
+
+                                    <i class="ri-verified-badge-fill text-blue-600"></i>
+                                </div>
+
+                            </div>
+
+                            <p class="text-sm text-gray-600 leading-6">
+                                <%= job.company.about || "No company information available." %>
+                            </p>
+
+                            <div class="border-t border-gray-200 mt-5 pt-4 space-y-4">
+
+                                <div class="flex justify-between gap-4 text-sm">
+                                    <span class="text-gray-500">
+                                        Industry
+                                    </span>
+
+                                    <span class="font-semibold text-right max-w-[180px]">
+                                        <%= job.company.industry || "Not specified" %>
+                                    </span>
+                                </div>
+
+                                <div class="flex justify-between gap-4 text-sm">
+                                    <span class="text-gray-500">
+                                        Company Size
+                                    </span>
+
+                                    <span class="font-semibold text-right">
+                                        <%= job.company.companySize || "Not specified" %>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <a href="#" class="flex items-center justify-center gap-2 mt-5
                text-sm font-semibold text-blue-600 hover:text-blue-700">
 
-        View Company Profile
+                                View Company Profile
 
-        <i class="ri-external-link-line"></i>
+                                <i class="ri-external-link-line"></i>
 
-    </a>
+                            </a>
 
-</section>
+                        </section>
+
+                    </div>
+
+                </div>
+
+
 
             </div>
 
-        </div>
-
-
-
+        </main>
     </div>
 
-</main>
-</div>
+    <script>
+        const menuBtn = document.querySelector(".menubtn");
+        const sidebar = document.querySelector(".sidebar");
+        const closeBtn = document.querySelector(".cross");
+        const overlay = document.querySelector(".overlay");
 
-<script>
-const menuBtn = document.querySelector(".menubtn");
-const sidebar = document.querySelector(".sidebar");
-const closeBtn = document.querySelector(".cross");
-const overlay = document.querySelector(".overlay");
+        function openSidebar() {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        }
 
-function openSidebar() {
-    sidebar.classList.remove("-translate-x-full");
-    overlay.classList.remove("hidden");
-}
+        function closeSidebar() {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        }
 
-function closeSidebar() {
-    sidebar.classList.add("-translate-x-full");
-    overlay.classList.add("hidden");
-}
-
-menuBtn?.addEventListener("click", openSidebar);
-closeBtn?.addEventListener("click", closeSidebar);
-overlay?.addEventListener("click", closeSidebar);
-</script>
+        menuBtn?.addEventListener("click", openSidebar);
+        closeBtn?.addEventListener("click", closeSidebar);
+        overlay?.addEventListener("click", closeSidebar);
+    </script>
 
 </body>
+
 </html>

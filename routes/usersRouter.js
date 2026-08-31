@@ -409,7 +409,8 @@ router.post("/userApplyJobs",isLoggedIn,upload.single("resume"), async (req, res
     noticePeriod,
     relocate,
     availability,
-    portfolio
+    portfolio,
+    appliedAt: new Date()
   
 
         });

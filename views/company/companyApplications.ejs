@@ -228,69 +228,96 @@
 
                     <!-- ******** APPLICATION STATUS TABS ******** -->
 
-<div class=" border border-gray-200 rounded-2xl p-2 mt-6 mb-4">
+<div class="border border-gray-200 rounded-2xl p-2 mt-6 mb-4">
 
-    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
 
-        <!-- Status Tabs -->
-        <div class="flex items-center gap-1 overflow-x-auto">
+    <%
+        const totalApplications = applications ? applications.length : 0;
 
-            <!-- All Applications -->
-            <button
-                class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm whitespace-nowrap transition">
+        const underReviewCount = applications
+            ? applications.filter(application => application.status === "Under Review").length
+            : 0;
 
-                <i class="ri-apps-line"></i>
-                <span>All Applications</span>
-                <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs">
-                    138
-                </span>
+        const shortlistedCount = applications
+            ? applications.filter(application => application.status === "Shortlisted").length
+            : 0;
 
-            </button>
-
-
-            <!-- Under Review -->
-            <button
-                class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
-
-                <i class="ri-time-line text-orange-500"></i>
-                <span>Under Review</span>
-                <span class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">
-                    60
-                </span>
-
-            </button>
+        const rejectedCount = applications
+            ? applications.filter(application => application.status === "Rejected").length
+            : 0;
+    %>
 
 
-            <!-- Shortlisted -->
-            <button
-                class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
+    <!-- Status Tabs -->
+    <div class="flex items-center gap-1 overflow-x-auto">
 
-                <i class="ri-checkbox-circle-line text-green-500"></i>
-                <span>Shortlisted</span>
-                <span class="bg-green-100 text-green-600 px-2 py-0.5 rounded-full text-xs">
-                    38
-                </span>
+        <!-- All Applications -->
+        <button
+            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm whitespace-nowrap transition">
 
-            </button>
+            <i class="ri-apps-line"></i>
+
+            <span>All Applications</span>
+
+            <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                <%= totalApplications %>
+            </span>
+
+        </button>
 
 
-            <!-- Rejected -->
-            <button
-                class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
+        <!-- Under Review -->
+        <button
+            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
 
-                <i class="ri-close-circle-line text-red-500"></i>
-                <span>Rejected</span>
-                <span class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs">
-                    12
-                </span>
+            <i class="ri-time-line text-orange-500"></i>
 
-            </button>
+            <span>Under Review</span>
 
-        </div>
+            <span class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">
+                <%= underReviewCount %>
+            </span>
+
+        </button>
+
+
+        <!-- Shortlisted -->
+        <button
+            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
+
+            <i class="ri-checkbox-circle-line text-green-500"></i>
+
+            <span>Shortlisted</span>
+
+            <span class="bg-green-100 text-green-600 px-2 py-0.5 rounded-full text-xs">
+                <%= shortlistedCount %>
+            </span>
+
+        </button>
+
+
+        <!-- Rejected -->
+        <button
+            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
+
+            <i class="ri-close-circle-line text-red-500"></i>
+
+            <span>Rejected</span>
+
+            <span class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs">
+                <%= rejectedCount %>
+            </span>
+
+        </button>
 
     </div>
 
 </div>
+
+
+</div>
+
 
                 </div>
 
@@ -312,270 +339,145 @@
                                     <th class="text-center px-6 py-4 text-sm font-semibold text-gray-600">Actions</th>
                                 </tr>
                             </thead>
+<tbody>
 
-                            <tbody>
+    <% if (applications && applications.length > 0) { %>
 
-                                <!-- Row 1 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
+        <% applications.forEach(application => { %>
 
-                                    <td class="px-6 py-5 flex items-center gap-4">
-                                        <img src="" alt="" class="h-14 w-14 bg-blue-100 rounded-full">
-                                        <div class="">
-                                            <h2 class="font-medium">Rahul Verma</h2>
-                                            <p class="text-gray-600 mt-1">Rahul@gmail.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 ">
-                                        <div>
-                                            <h2 class="font-medium">Fronted Developer</h2>
-                                            <p class="text-gray-600 mt-1">Full time</p>
-                                        </div>
-                                    </td>
-                                    
-                                     <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
+            <tr class="border-b hover:bg-gray-50 transition">
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
+                <!-- Candidate -->
+                <td class="px-6 py-5">
 
-                                
+                    <div class="flex items-center gap-4">
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
+                        <div class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                               <% if (application.applicant.profileImage && application.applicant.profileImage.data) { %>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
+                                                            <img src="data:<%= application.applicant.profileImage.contentType %>;base64,<%= application.applicant.profileImage.data.toString('base64') %>"
+                                                                alt="Profile"
+                                                                class="h-14 w-14 bg-blue-100 rounded-full object-cover">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                                                            <% } else { %>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                                                                <div
+                                                                    class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+                                                                    <%= application.applicant.fullname ?
+                                                                        application.applicant.fullname.charAt(0).toUpperCase()
+                                                                        : "U" %>
+                                                                </div>
 
-                                <!-- Row 2 -->
-                             <tr class="border-b hover:bg-gray-50 transition">
-
-                                    <td class="px-6 py-5 flex items-center gap-4">
-                                        <img src="" alt="" class="h-14 w-14 bg-blue-100 rounded-full">
-                                        <div class="">
-                                            <h2 class="font-medium">Rahul Verma</h2>
-                                            <p class="text-gray-600 mt-1">Rahul@gmail.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 ">
-                                        <div>
-                                            <h2 class="font-medium">Fronted Developer</h2>
-                                            <p class="text-gray-600 mt-1">Full time</p>
-                                        </div>
-                                    </td>
-                                    
-                                     <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
-
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
-
-                                   
-
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <!-- Row 3 -->
-                               <tr class="border-b hover:bg-gray-50 transition">
-
-                                    <td class="px-6 py-5 flex items-center gap-4">
-                                        <img src="" alt="" class="h-14 w-14 bg-blue-100 rounded-full">
-                                        <div class="">
-                                            <h2 class="font-medium">Rahul Verma</h2>
-                                            <p class="text-gray-600 mt-1">Rahul@gmail.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 ">
-                                        <div>
-                                            <h2 class="font-medium">Fronted Developer</h2>
-                                            <p class="text-gray-600 mt-1">Full time</p>
-                                        </div>
-                                    </td>
-                                    
-                                     <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
-
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
-
-                                  
-
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
+                                                                <% } %>
 
 
-                                <!-- Row 4 -->
-                              <tr class="border-b hover:bg-gray-50 transition">
+                        </div>
 
-                                    <td class="px-6 py-5 flex items-center gap-4">
-                                        <img src="" alt="" class="h-14 w-14 bg-blue-100 rounded-full">
-                                        <div class="">
-                                            <h2 class="font-medium">Rahul Verma</h2>
-                                            <p class="text-gray-600 mt-1">Rahul@gmail.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 ">
-                                        <div>
-                                            <h2 class="font-medium">Fronted Developer</h2>
-                                            <p class="text-gray-600 mt-1">Full time</p>
-                                        </div>
-                                    </td>
-                                    
-                                     <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
+                        <div>
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
+                            <h2 class="font-medium">
+                                <%= application.applicant.fullname %>
+                            </h2>
+
+                            <p class="text-gray-600 mt-1">
+                                <%= application.applicant.email %>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </td>
 
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
+                <!-- Job -->
+                <td class="px-6 py-5">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                    <div>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
+                        <h2 class="font-medium">
+                            <%= application.job.jobTitle %>
+                        </h2>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                        <p class="text-gray-600 mt-1">
+                            <%= application.job.jobType %>
+                        </p>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                    </div>
 
-                                <!-- Row 5 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
+                </td>
 
-                                    <td class="px-6 py-5 flex items-center gap-4">
-                                        <img src="" alt="" class="h-14 w-14 bg-blue-100 rounded-full">
-                                        <div class="">
-                                            <h2 class="font-medium">Rahul Verma</h2>
-                                            <p class="text-gray-600 mt-1">Rahul@gmail.com</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 ">
-                                        <div>
-                                            <h2 class="font-medium">Fronted Developer</h2>
-                                            <p class="text-gray-600 mt-1">Full time</p>
-                                        </div>
-                                    </td>
-                                    
-                                     <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
+                <!-- Applied Date -->
+                <td class="px-6 py-5 text-gray-600">
 
-                                  
+                    <%= new Date(application.appliedAt).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric"}) %>
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
+                </td>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
+                <!-- Status -->
+                <td class="px-6 py-5">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
 
-                                        </div>
-                                    </td>
-                                </tr>
+                        <%= application.status || "Applied" %>
 
-                            </tbody>
+                    </span>
+
+                </td>
+
+
+                <!-- Actions -->
+                <td class="px-6 py-5">
+
+    <div class="flex justify-center gap-2">
+
+        <!-- View Details -->
+        <a
+            href="/company/companyApplicationDetails/<%= application._id %>"
+            title="View Details"
+            class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition flex items-center justify-center">
+
+            <i class="ri-eye-line"></i>
+
+        </a>
+
+
+        <!-- Delete -->
+        <button
+            type="button"
+            title="Delete Application"
+            class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
+
+            <i class="ri-delete-bin-6-line"></i>
+
+        </button>
+
+    </div>
+
+</td>
+
+            </tr>
+
+        <% }) %>
+
+    <% } else { %>
+
+        <tr>
+
+            <td colspan="5" class="px-6 py-10 text-center text-gray-500">
+
+                No applications received yet.
+
+            </td>
+
+        </tr>
+
+    <% } %>
+
+</tbody>
 
                         </table>
 

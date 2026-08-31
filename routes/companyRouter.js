@@ -95,14 +95,54 @@ router.get("/companyMyProfile",isCompanyLoggedIn, (req, res) => {
 });
 
 //---------------application -----------
-router.get("/companyApplication",isCompanyLoggedIn, (req, res) => {
-   res.render("company/companyApplication");
+router.get("/companyApplications",isCompanyLoggedIn, async (req, res) => {
+
+     const applications = await applicationModel
+        .find({ company: req.company._id })
+        .populate("applicant")
+        .populate("job")
+        .sort({ appliedAt: -1 })
+   res.render("company/companyApplications",{applications});
 });
 
+// ------------------APPLICATION DETAILS-------
+router.get("/companyApplicationDetails/:id",isCompanyLoggedIn, async (req, res) => {
+
+     const application = await applicationModel
+        .findOne({ _id: req.params.id,company: req.company._id })
+        .populate("applicant")
+        .populate("job")
+        if(!application){
+            return res.status(404).send("Application not found");
+        }
+   res.render("company/companyApplicationDetails",{application});
+});
+
+// -------------TO FETCH RESUME
+router.get("/application-resume/:id", isCompanyLoggedIn, async (req, res) => {
+
+    const application = await applicationModel.findOne({
+        _id: req.params.id,
+        company: req.company._id
+    });
+
+    if (!application || !application.resume || !application.resume.data) {
+        return res.status(404).send("Resume not found");
+    }
+
+    res.set("Content-Type", application.resume.contentType);
+    res.send(application.resume.data);
+});
 //-------------applicants ---------
 
-router.get("/companyApplicants",isCompanyLoggedIn, (req, res) => {
-   res.render("company/companyApplicants");
+router.get("/companyApplicant",isCompanyLoggedIn,async (req, res) => {
+
+    const applications = await applicationModel
+        .find({ company: req.company._id })
+        .populate("applicant")
+        .populate("job")
+        .sort({ appliedAt: -1 })
+   res.render("company/companyApplicant",{applications});
 });
 
 //--------------------edit profile-------------------------------------
@@ -154,7 +194,7 @@ router.post( "/EditProfile", isCompanyLoggedIn, upload.single("companyProfile"),
     }
 );
 
-// profile image of company route multer wla
+//-------------------- profile image of company route multer wla-----------------
 router.get("/company-profile", isCompanyLoggedIn, async (req, res) => {
     let company = await companyModel.findById(req.company._id);
     

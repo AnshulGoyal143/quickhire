@@ -366,12 +366,18 @@ router.post("/userApplyJobs",isLoggedIn,upload.single("resume"), async (req, res
    const job =await jobModel.findById(req.body.jobId);
 
    if(!job){
-    return res.status(404).send("Job not found");
+    // return res.status(404).send("Job not found");
+    return res.status(404).json({success: false, message: "job not found"});
+
    }
 
    const alreadyApplied = await applicationModel.findOne({applicant:req.user._id, job: job._id});
    if(alreadyApplied){
-    return res.send("You have already applied for this job");
+    // return res.send("You have already applied for this job");
+     return res.status(400).json({
+            success: false,
+            message: "You have already applied for this job"
+        });
    }
 
         let {
@@ -416,12 +422,20 @@ router.post("/userApplyJobs",isLoggedIn,upload.single("resume"), async (req, res
         });
 
        if (!req.file) {
-        return res.status(400).send("Please upload your resume")
+        // return res.status(400).send("Please upload your resume")
+         return res.status(400).json({
+            success: false,
+            message: "Please upload your resume"
+        });
        }
     let file = req.file;
 
     if (file.mimetype !== "application/pdf") {
-        return res.status(400).send("Only PDF resume is allowed");
+        // return res.status(400).send("Only PDF resume is allowed");
+         return res.status(400).json({
+            success: false,
+            message: "Only PDF resume is allowed"
+        });
     }
 
     application.resume = {
@@ -432,8 +446,11 @@ router.post("/userApplyJobs",isLoggedIn,upload.single("resume"), async (req, res
 
     
         await application.save();
+          res.json({
+        success: true,
+        message: "Application submitted successfully"
+    });
 
-        res.redirect("/users/userMyApplications")
 });
 
 // application m resume show k ley

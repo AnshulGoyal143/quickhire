@@ -99,13 +99,37 @@
         </div>
     </div>
 
+<!-- ---------overlay -->
+    <div class="overlay fixed inset-0 bg-black/30 hidden z-40 lg:hidden"> </div>
 
-    <div class="overlay fixed inset-0 bg-black/30 hidden z-40 lg:hidden">
+<!-- // -----------pop up Messages--------- -->
+<div id="successPopup"
+     class="hidden fixed top-5 left-1/2 -translate-x-1/2 z-[100]
+            bg-white border border-green-200 shadow-xl
+            rounded-xl px-5 py-4
+            flex items-center gap-3 min-w-[320px]">
+
+    <div class="w-10 h-10 rounded-full bg-green-100
+                text-green-600 flex items-center justify-center">
+
+        <i class="ri-check-line text-xl"></i>
+
     </div>
 
+    <div>
+        <h3 class="font-semibold text-gray-800">
+            Application Submitted
+        </h3>
 
+        <p class="text-sm text-gray-500">
+            Your application has been submitted successfully.
+        </p>
+    </div>
+
+</div>
 
     <!-- ================= MAIN ================= -->
+
 
     <main class="w-full min-w-0 pt-16 min-h-screen">
 
@@ -258,7 +282,7 @@
 
             <!-- ================= FORM ================= -->
 
-            <form action="/users/userApplyJobs" method="POST" enctype="multipart/form-data" class="space-y-5">
+            <form id="applicationForm" action="/users/userApplyJobs" method="POST" enctype="multipart/form-data" class="space-y-5">
 
 
                 <input type="hidden" name="jobId" value="<%= job._id %>">
@@ -1155,6 +1179,51 @@
             }
         }
 
+    //    ------------pop up -----------
+
+    const applicationForm = document.getElementById("applicationForm");
+
+    applicationForm.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        const formData = new FormData(applicationForm);
+
+        try {
+
+            const response = await fetch("/users/userApplyJobs", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+
+                const popup = document.getElementById("successPopup");
+
+                popup.classList.remove("hidden");
+
+                setTimeout(() => {
+                    // popup.classList.add("hidden");
+                    window.location.href = "/users/userMyApplications";
+                }, 2000);
+
+            } else {
+
+                alert(data.message);
+
+            }
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Something went wrong");
+
+        }
+
+    });
 
     </script>
 

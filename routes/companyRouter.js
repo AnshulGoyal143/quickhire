@@ -261,6 +261,10 @@ router.post("/PostJob",isCompanyLoggedIn,async (req,res)=>{
     res.redirect("/company/companyJobPosted")
  })
  
+
+//  router.get("/test-fetch", (req, res) => {
+//     res.send("Fetch successfully working!");
+// });
 // *----------------------function-------------
 async function isCompanyLoggedIn(req, res, next) {
 

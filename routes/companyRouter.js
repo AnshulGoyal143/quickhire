@@ -82,8 +82,19 @@ router.get("/companyDashboard", isCompanyLoggedIn, async (req, res) => {
         .sort({ appliedAt: -1 })
         .limit(5);
 
+    
+
+    // shortlisted
+    const shortlistedApplication = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: "Shortlisted"
+    });
+
+
     res.render("company/companyDashboard", {
-        applications
+        applications,
+        shortlistedApplication
+        
     });
 
 });
@@ -102,7 +113,47 @@ router.get("/companyApplications",isCompanyLoggedIn, async (req, res) => {
         .populate("applicant")
         .populate("job")
         .sort({ appliedAt: -1 })
-   res.render("company/companyApplications",{applications});
+
+         // Total Applications
+    const totalApplications = await applicationModel.countDocuments({
+        company: req.company._id
+    });
+
+
+
+    // Under Review
+    const reviewApplications = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: "Under Review"
+    });
+
+
+    // In Progress
+    const inProgressApplications = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: { $in: ["Shortlisted", "Selected"] }
+    });
+
+
+    // Rejected
+    const rejectedApplications = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: "Rejected"
+    });
+
+    // shortlisted
+    const shortlistedApplication = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: "Shortlisted"
+    });
+
+   res.render("company/companyApplications",{
+        applications,
+        totalApplications,
+        reviewApplications,
+        inProgressApplications,
+        rejectedApplications,
+    shortlistedApplication});
 });
 
 // ------------------APPLICATION DETAILS-------
@@ -118,7 +169,7 @@ router.get("/companyApplicationDetails/:id",isCompanyLoggedIn, async (req, res) 
    res.render("company/companyApplicationDetails",{application});
 });
 
-// -------------TO FETCH RESUME
+// -------------TO FETCH RESUME----------
 router.get("/application-resume/:id", isCompanyLoggedIn, async (req, res) => {
 
     const application = await applicationModel.findOne({
@@ -130,7 +181,7 @@ router.get("/application-resume/:id", isCompanyLoggedIn, async (req, res) => {
         return res.status(404).send("Resume not found");
     }
 
-    res.set("Content-Type", application.resume.contentType);
+    res.set({"Content-Type": application.resume.contentType, "Content-Disposition":`attachment; filename ="${application.resume.filename || "Resume.pdf"}"`});
     res.send(application.resume.data);
 });
 //-------------applicants ---------
@@ -142,7 +193,40 @@ router.get("/companyApplicant",isCompanyLoggedIn,async (req, res) => {
         .populate("applicant")
         .populate("job")
         .sort({ appliedAt: -1 })
-   res.render("company/companyApplicant",{applications});
+
+          // Total Applications
+    const totalApplications = await applicationModel.countDocuments({
+        company: req.company._id
+    });
+
+
+    // Under Review
+    const reviewApplications = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: "Under Review"
+    });
+
+
+    // In Progress
+    const inProgressApplications = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: { $in: ["Shortlisted", "Selected"] }
+    });
+
+
+    // Rejected
+    const rejectedApplications = await applicationModel.countDocuments({
+        company: req.company._id,
+        status: "Rejected"
+    });
+
+   res.render("company/companyApplicant",{
+   applications,
+        totalApplications,
+        reviewApplications,
+        inProgressApplications,
+        rejectedApplications 
+    });
 });
 
 //--------------------edit profile-------------------------------------
@@ -206,13 +290,13 @@ router.get("/company-profile", isCompanyLoggedIn, async (req, res) => {
     res.send(company.companyProfile.data);
 });
 
-//-------------------------
+//--------------POSTED JOBS which are posted by company-----------
 
  router.get("/companyJobPosted",isCompanyLoggedIn, (req,res)=>{
     res.render("company/companyJobPosted");
  })
 
-// post a job
+// -------------post a job----------------
  router.get("/PostJob",isCompanyLoggedIn,(req,res)=>{
     res.render("company/companyPostJob")
  })
@@ -259,6 +343,27 @@ router.post("/PostJob",isCompanyLoggedIn,async (req,res)=>{
     await job.save();
 
     res.redirect("/company/companyJobPosted")
+ });
+
+//  -----------TO UPDATE THE STATUS OF APPLICATION-----------
+ router.post("/updateApplicationStatus/:id", isCompanyLoggedIn, async (req,res)=>{
+    const application = await applicationModel.findById(req.params.id);
+
+    if(!application){
+        return res.status(404).json({
+            success : false,
+            message: "Application not found"
+        });
+
+    }
+
+    application.status= req.body.status;
+
+    await application.save();
+    res.json({
+        success: true,
+        message: "Application status updated"
+    });
  })
  
 

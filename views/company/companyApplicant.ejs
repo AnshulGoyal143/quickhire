@@ -137,79 +137,103 @@
                         applied for your job posts. </p>
                 </div>
                 <!-- ************************CARDS ******************* -->
-                <div class="routetext  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-                    <!-- *********************** -->
-                    <div
-                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
+                <div class="routetext grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-                        <div class=" flex items-center gap-4">
+                    <!-- Total Applications -->
+                    <div
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6 hover:shadow-2xl transition min-h-[150px]">
+                        <div class="flex items-center gap-4">
+
                             <div
                                 class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-blue-100 flex items-center justify-center">
                                 <i class="ri-group-line text-3xl lg:text-4xl text-blue-600"></i>
                             </div>
-                            <div class="maintext">
-                                <p class="text-4xl font-bold ">138</p>
-                                <p class="text-xl text-gray-500 mt-1 font-semibold">Total Applications</p>
-                            </div>
-                        </div>
 
+                            <div class="maintext">
+                                <p class="text-4xl font-bold">
+                                    <%= totalApplications %>
+                                </p>
+
+                                <p class="text-xl text-gray-500 mt-1 font-semibold">
+                                    Total Applications
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
 
 
-                    <!-- ******************** -->
+                    <!-- Under Review -->
                     <div
-                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6 hover:shadow-2xl transition min-h-[150px]">
+                        <div class="flex items-center gap-4">
 
-                        <div class=" flex items-center gap-4">
                             <div
                                 class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-green-200 flex items-center justify-center">
                                 <i class="ri-checkbox-circle-line text-3xl lg:text-4xl text-green-600"></i>
                             </div>
+
                             <div class="maintext">
+                                <p class="text-4xl font-bold">
+                                    <%= reviewApplications %>
+                                </p>
 
-                                <p class="text-4xl font-bold ">38</p>
-                                <p class="text-xl text-gray-500 mt-1 font-semibold">Review</p>
-
+                                <p class="text-xl text-gray-500 mt-1 font-semibold">
+                                    Review
+                                </p>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
 
-                    <!-- *************** -->
-                    <div
-                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
 
-                        <div class=" flex items-center gap-4">
+                    <!-- In Progress -->
+                    <div
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6 hover:shadow-2xl transition min-h-[150px]">
+                        <div class="flex items-center gap-4">
+
                             <div
-                                class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-orange-100  flex items-center justify-center">
-                                <i class="ri-time-line text-3xl lg:text-4xl text-orange-500 "></i>
+                                class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-orange-100 flex items-center justify-center">
+                                <i class="ri-time-line text-3xl lg:text-4xl text-orange-500"></i>
                             </div>
-                            <div class="maintext">
-                                <p class="text-4xl font-bold ">60</p>
-                                <p class="text-xl text-gray-500 mt-1 font-semibold">In Progress </p>
-                            </div>
-                        </div>
 
+                            <div class="maintext">
+                                <p class="text-4xl font-bold">
+                                    <%= inProgressApplications %>
+                                </p>
+
+                                <p class="text-xl text-gray-500 mt-1 font-semibold">
+                                    In Progress
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
 
-                    <!-- *********************** -->
-                    <div
-                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6  hover:shadow-2xl transition min-h-[150px]">
 
-                        <div class=" flex items-center gap-4">
+                    <!-- Rejected -->
+                    <div
+                        class="route bg-white rounded-3xl shadow-xl p-5 sm:p-6 hover:shadow-2xl transition min-h-[150px]">
+                        <div class="flex items-center gap-4">
+
                             <div
                                 class="circleicon w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-red-100 flex items-center justify-center">
                                 <i class="ri-close-circle-line text-3xl lg:text-4xl text-red-600"></i>
                             </div>
+
                             <div class="maintext">
-                                <p class="text-4xl font-bold ">12</p>
-                                <p class="text-xl text-gray-500 mt-1 font-semibold">Rejected</p>
+                                <p class="text-4xl font-bold">
+                                    <%= rejectedApplications %>
+                                </p>
+
+                                <p class="text-xl text-gray-500 mt-1 font-semibold">
+                                    Rejected
+                                </p>
                             </div>
 
                         </div>
-
-
                     </div>
+
                 </div>
 
 
@@ -295,7 +319,8 @@
                                                 <td class="px-6 py-5">
                                                     <div class="flex items-center gap-4">
 
-                                                        <% if (application.applicant.profileImage && application.applicant.profileImage.data) { %>
+                                                        <% if (application.applicant.profileImage &&
+                                                            application.applicant.profileImage.data) { %>
 
                                                             <img src="data:<%= application.applicant.profileImage.contentType %>;base64,<%= application.applicant.profileImage.data.toString('base64') %>"
                                                                 alt="Profile"
@@ -376,31 +401,31 @@
 
 
                                                 <!-- RESUME -->
-                                               <td class="px-6 py-5">
+                                                <td class="px-6 py-5">
 
-    <% if (application.resume && application.resume.data) { %>
+                                                    <% if (application.resume && application.resume.data) { %>
 
-        <a href="/company/application-resume/<%= application._id %>"
-           target="_blank"
-           class="flex items-center gap-2 text-gray-600 hover:text-blue-600">
+                                                        <a href="/company/application-resume/<%= application._id %>"
+                                                            target="_blank"
+                                                            class="flex items-center gap-2 text-gray-600 hover:text-blue-600">
 
-            <i class="ri-file-text-line text-gray-600 text-xl"></i>
+                                                            <i class="ri-file-text-line text-gray-600 text-xl"></i>
 
-            <span class="text-lg">
-                Resume
-            </span>
+                                                            <span class="text-lg">
+                                                                Resume
+                                                            </span>
 
-        </a>
+                                                        </a>
 
-    <% } else { %>
+                                                        <% } else { %>
 
-        <span class="text-gray-400">
-            No resume
-        </span>
+                                                            <span class="text-gray-400">
+                                                                No resume
+                                                            </span>
 
-    <% } %>
+                                                            <% } %>
 
-</td>
+                                                </td>
 
 
                                                 <!-- ACTIONS -->

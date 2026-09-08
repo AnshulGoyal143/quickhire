@@ -336,8 +336,8 @@
 
                     <div class="flex items-center gap-3">
 
-                        <button
-                            class="flex items-center gap-2  border border-gray-300  bg-white  px-4 py-3 rounded-xl  hover:bg-gray-50 transition">
+                        <a href="/company/application-resume/<%= application._id %>" target="_blank" class="flex items-center gap-2 border border-gray-300 bg-white
+          px-4 py-3 rounded-xl hover:bg-gray-50 transition">
 
                             <i class="ri-download-2-line"></i>
 
@@ -345,21 +345,48 @@
                                 Download Resume
                             </span>
 
-                        </button>
+                        </a>
 
 
-                        <button
-                            class="flex items-center gap-2  bg-blue-600 text-white px-4 py-3 rounded-xl hover:bg-blue-700 transition">
+                        <div class="relative">
 
-                            <i class="ri-refresh-line"></i>
+                            <button type="button"
+                                onclick="document.getElementById('statusMenu').classList.toggle('hidden')" class="flex items-center gap-2 bg-blue-600 text-white
+               px-4 py-3 rounded-xl hover:bg-blue-700 transition">
 
-                            <span class="font-medium">
-                                Update Status
-                            </span>
+                                <i class="ri-refresh-line"></i>
 
-                            <i class="ri-arrow-down-s-line"></i>
+                                <span class="font-medium">
+                                    Update Status
+                                </span>
 
-                        </button>
+                                <i class="ri-arrow-down-s-line"></i>
+
+                            </button>
+
+
+                            <div id="statusMenu" class="hidden absolute right-0 mt-2 w-48
+               bg-white border border-gray-200
+               rounded-xl shadow-xl p-2 z-50">
+
+                                <button type="button" onclick="updateStatus('Under Review')" class="w-full text-left px-3 py-2 rounded-lg
+                   hover:bg-gray-50 text-sm">
+                                    Under Review
+                                </button>
+
+                                <button type="button" onclick="updateStatus('Shortlisted')" class="w-full text-left px-3 py-2 rounded-lg
+                   hover:bg-gray-50 text-sm">
+                                    Shortlisted
+                                </button>
+
+                                <button type="button" onclick="updateStatus('Rejected')" class="w-full text-left px-3 py-2 rounded-lg
+                   hover:bg-gray-50 text-sm">
+                                    Rejected
+                                </button>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -843,27 +870,27 @@
 
                         <!-- Cover Letter -->
 
-                       <div class="bg-white rounded-3xl shadow-xl p-6 md:p-8">
+                        <div class="bg-white rounded-3xl shadow-xl p-6 md:p-8">
 
-    <div class="flex items-center gap-3 mb-5">
+                            <div class="flex items-center gap-3 mb-5">
 
-        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
-            <i class="ri-file-text-line text-blue-600 text-xl"></i>
-        </div>
+                                <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+                                    <i class="ri-file-text-line text-blue-600 text-xl"></i>
+                                </div>
 
-        <h2 class="text-xl font-bold text-gray-800">
-            Cover Letter
-        </h2>
+                                <h2 class="text-xl font-bold text-gray-800">
+                                    Cover Letter
+                                </h2>
 
-    </div>
+                            </div>
 
-    <div class="h-64 overflow-y-auto pr-2">
-        <p class="text-gray-600 leading-7 whitespace-pre-line">
-            <%= application.coverLetter || "No cover letter provided." %>
-        </p>
-    </div>
+                            <div class="h-58 overflow-y-auto pr-2">
+                                <p class="text-gray-600 leading-7 whitespace-pre-line">
+                                    <%= application.coverLetter || "No cover letter provided." %>
+                                </p>
+                            </div>
 
-</div>
+                        </div>
 
                     </div>
                     <!-- ================================================= -->
@@ -895,7 +922,7 @@
                             </div>
 
                             <div class="space-y-5">
-                                
+
                                 <div>
 
                                     <p class="text-sm text-gray-500">
@@ -991,92 +1018,90 @@
 
                             <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 mb-3">
 
-    <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-3">
 
-        <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
-            <i class="ri-file-pdf-2-line text-red-600 text-xl"></i>
-        </div>
+                                    <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                                        <i class="ri-file-pdf-2-line text-red-600 text-xl"></i>
+                                    </div>
 
-        <div>
-            <p class="font-medium text-gray-800">
-                Resume.pdf
-            </p>
+                                    <div>
+                                        <p class="font-medium text-gray-800">
+                                            Resume.pdf
+                                        </p>
 
-            <p class="text-xs text-gray-500">
-                PDF Document
-            </p>
-        </div>
+                                        <p class="text-xs text-gray-500">
+                                            PDF Document
+                                        </p>
+                                    </div>
 
-    </div>
+                                </div>
 
-    <% if (application.resume && application.resume.data) { %>
+                                <% if (application.resume && application.resume.data) { %>
 
-        <a href="/company/application-resume/<%= application._id %>"
-           target="_blank"
-           class="w-9 h-9 rounded-lg bg-white border flex items-center justify-center hover:bg-gray-100">
+                                    <a href="/company/application-resume/<%= application._id %>" target="_blank"
+                                        class="w-9 h-9 rounded-lg bg-white border flex items-center justify-center hover:bg-gray-100">
 
-            <i class="ri-download-2-line"></i>
+                                        <i class="ri-download-2-line"></i>
 
-        </a>
+                                    </a>
 
-    <% } else { %>
+                                    <% } else { %>
 
-        <span class="text-xs text-gray-400">
-            No Resume
-        </span>
+                                        <span class="text-xs text-gray-400">
+                                            No Resume
+                                        </span>
 
-    <% } %>
+                                        <% } %>
 
-</div>
+                            </div>
 
 
 
                             <!-- Cover Letter -->
 
-       <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
 
-    <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-3">
 
-        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
 
-            <i class="ri-file-text-line text-blue-600 text-xl"></i>
+                                        <i class="ri-file-text-line text-blue-600 text-xl"></i>
 
-        </div>
+                                    </div>
 
-        <div>
+                                    <div>
 
-            <p class="font-medium text-gray-800">
-                Cover Letter
-            </p>
+                                        <p class="font-medium text-gray-800">
+                                            Cover Letter
+                                        </p>
 
-            <p class="text-xs text-gray-500">
-                <%= application.coverLetter ? "Available" : "Not provided" %>
-            </p>
+                                        <p class="text-xs text-gray-500">
+                                            <%= application.coverLetter ? "Available" : "Not provided" %>
+                                        </p>
 
-        </div>
+                                    </div>
 
-    </div>
+                                </div>
 
-    <% if (application.coverLetter) { %>
+                                <% if (application.coverLetter) { %>
 
-        <button
-            type="button"
-            onclick="document.getElementById('coverLetterModal').classList.remove('hidden')"
-            class="w-9 h-9 rounded-lg bg-white border flex items-center justify-center hover:bg-gray-100">
+                                    <button type="button"
+                                        onclick="document.getElementById('coverLetterModal').classList.remove('hidden')"
+                                        class="w-9 h-9 rounded-lg bg-white border flex items-center justify-center hover:bg-gray-100">
 
-            <i class="ri-eye-line"></i>
+                                        <i class="ri-eye-line"></i>
 
-        </button>
+                                    </button>
 
-    <% } else { %>
+                                    <% } else { %>
 
-        <span class="text-xs text-gray-400">
-            No Cover Letter
-        </span>
+                                        <span class="text-xs text-gray-400">
+                                            No Cover Letter
+                                        </span>
 
-    <% } %>
+                                        <% } %>
 
-</div>
+                            </div>
 
                         </div>
 
@@ -1093,35 +1118,42 @@
                             </h2>
 
 
-                            <div class="mt-4 bg-orange-50 border border-orange-100 rounded-xl p-4">
+                            <div class="mt-4 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5">
 
-                                <div class="flex items-center gap-3">
+                                <div class="flex items-center justify-between gap-4">
 
-                                    <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+                                    <!-- STATUS -->
+                                    <div class="flex items-center gap-3">
 
-                                        <i class="ri-time-line text-orange-600">
-                                        </i>
+                                        <div
+                                            class="w-9 h-9 rounded-lg bg-orange-100 flex items-center justify-center shrink-0">
+
+                                            <i class="ri-time-line text-orange-500"></i>
+
+                                        </div>
+
+                                        <div>
+                                            <p class="text-xs text-gray-400 font-medium">
+                                                Application Status
+                                            </p>
+
+                                            <p class="text-sm font-semibold text-gray-800 mt-0.5">
+                                                <%= application.status || "Under Review" %>
+                                            </p>
+                                        </div>
 
                                     </div>
 
-                                    <div>
 
-                                        <span
-                                            class="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-4 py-2 rounded-xl text-sm font-semibold w-fit">
+                                    <!-- STATUS -->
+                                    <div
+                                        class="flex items-center gap-2  px-3 py-1.5 rounded-lg bg-orange-100 text-orange-600">
 
-                                            <i class="ri-time-line"></i>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
 
-                                            <%= application.status || "Under Review" %>
-
+                                        <span class="text-xs font-semibold">
+                                            In Review
                                         </span>
-
-                                        <p class="text-xs
-                                                   text-orange-600
-                                                   mt-1">
-
-                                            Application is being reviewed
-
-                                        </p>
 
                                     </div>
 
@@ -1144,19 +1176,19 @@
                             </h2>
 
 
-                            <!-- Shortlist -->
-
-                            <button class="w-full flex items-center justify-center gap-2 border border-blue-500 text-blue-600 px-4 py-3 rounded-xl font-medium hover:bg-blue-50 transition">
+                            <button id="shortlistBtn"
+                                class="w-full flex items-center justify-center gap-2 border border-blue-500 text-blue-600 px-4 py-3 rounded-xl font-medium hover:bg-blue-50 transition">
 
                                 <i class="ri-star-line"></i>
 
                                 Shortlist Candidate
 
                             </button>
-                            <!-- Reject -->
 
-                            <button class="w-full flex items-center justify-center gap-2 border border-red-400 text-red-600 px-4 py-3 rounded-xl font-medium hover:bg-red-50
-                                       transition mt-3">
+
+
+                            <button id="rejectBtn"
+                                class="w-full flex items-center justify-center gap-2 border border-red-400 text-red-600 px-4 py-3 rounded-xl font-medium hover:bg-red-50 transition mt-3">
 
                                 <i class="ri-close-circle-line"></i>
 
@@ -1216,9 +1248,98 @@
 
             overlay.classList.add("hidden");
 
-                // fetch("/test-fetch");
+            // fetch("/test-fetch");
 
         });
+
+
+
+        // -------------- to update status ------------
+
+        const shortlistBtn = document.getElementById("shortlistBtn");
+        const rejectBtn = document.getElementById("rejectBtn");
+     
+
+
+        const applicationId = "<%= application._id %>";
+
+
+        // Shortlist application
+
+        shortlistBtn.addEventListener("click", async function () {
+
+         updateStatus("Shortlisted")
+            });
+
+           
+
+
+        // Reject application
+
+        rejectBtn.addEventListener("click", async function () {
+
+            // const response = await fetch(`/company/updateApplicationStatus/${applicationId}`, {
+
+            //     method: "POST",
+
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+
+            //     body: JSON.stringify({
+            //         status: "Rejected"
+            //     })
+
+            // });
+
+            // const data = await response.json();
+
+            // console.log(data);
+
+            updateStatus("Rejected");
+
+        });
+
+        
+
+        async function updateStatus(status) {
+
+            try {
+
+                const response = await fetch(
+                    "/company/updateApplicationStatus/<%= application._id %>",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            status: status
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.success) {
+
+                    location.reload();
+
+                } else {
+
+                    alert(data.message);
+
+                }
+
+            } catch (error) {
+
+                console.log(error);
+                alert("Something went wrong");
+
+            }
+        }
 
     </script>
 

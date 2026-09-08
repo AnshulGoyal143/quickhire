@@ -147,7 +147,9 @@
                                 <i class="ri-group-line text-3xl lg:text-4xl text-blue-600"></i>
                             </div>
                             <div class="maintext">
-                                 <p class="text-4xl font-bold ">138</p>
+                                 <p class="text-4xl font-bold ">
+                                    <%=  totalApplications %>
+                                 </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Total Applications</p>
                             </div>
                         </div>
@@ -166,7 +168,9 @@
                             </div>
                             <div class="maintext">
                                 
-                                <p class="text-4xl font-bold ">38</p>
+                                <p class="text-4xl font-bold ">
+                                    <%= shortlistedApplication %>
+                                </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Shortlisted</p>
                                 
                             </div>
@@ -184,7 +188,9 @@
                                 <i class="ri-time-line text-3xl lg:text-4xl text-orange-500 "></i>
                             </div>
                             <div class="maintext">
-                                 <p class="text-4xl font-bold ">60</p>
+                                 <p class="text-4xl font-bold ">
+                                     <%= reviewApplications %>
+                                 </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Under Review </p>
                             </div>
                         </div>
@@ -201,7 +207,9 @@
                                 <i class="ri-close-circle-line text-3xl lg:text-4xl text-red-600"></i>
                             </div>
                             <div class="maintext">
-                                 <p class="text-4xl font-bold ">12</p>
+                                 <p class="text-4xl font-bold ">
+                                    <%= rejectedApplications %>
+                                 </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Rejected</p>
                         </div>
                         
@@ -232,21 +240,7 @@
 
 <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
 
-    <%
-        const totalApplications = applications ? applications.length : 0;
-
-        const underReviewCount = applications
-            ? applications.filter(application => application.status === "Under Review").length
-            : 0;
-
-        const shortlistedCount = applications
-            ? applications.filter(application => application.status === "Shortlisted").length
-            : 0;
-
-        const rejectedCount = applications
-            ? applications.filter(application => application.status === "Rejected").length
-            : 0;
-    %>
+    
 
 
     <!-- Status Tabs -->
@@ -276,7 +270,7 @@
             <span>Under Review</span>
 
             <span class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">
-                <%= underReviewCount %>
+                <%= reviewApplications %>
             </span>
 
         </button>
@@ -291,7 +285,7 @@
             <span>Shortlisted</span>
 
             <span class="bg-green-100 text-green-600 px-2 py-0.5 rounded-full text-xs">
-                <%= shortlistedCount %>
+                <%= shortlistedApplication %>
             </span>
 
         </button>
@@ -306,7 +300,7 @@
             <span>Rejected</span>
 
             <span class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs">
-                <%= rejectedCount %>
+                <%= rejectedApplications %>
             </span>
 
         </button>

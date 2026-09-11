@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const userModel = require('../models/user-model');
 const applicationModel = require('../models/application-model');
 const jobModel = require('../models/job-model');
+const companyModel = require('../models/company-model');
 
 const multer = require('multer');
 // const jobModel = require('../models/job-model');
@@ -473,6 +474,50 @@ router.get("/application/:id/resume", isLoggedIn, async (req, res) => {
     );
 
     res.send(application.resume.data);
+});
+
+//--------------Company profile k ley aur count k ley bhi----------
+
+router.get("/companyProfile/:companyId", isLoggedIn, async (req, res) => {
+
+    const company = await companyModel.findById(req.params.companyId);
+
+    if (!company) {
+        return res.status(404).send("Company not found");
+    }
+
+    if (!company.profileViews) {
+        company.profileViews = [];
+    }
+
+    const alreadyViewed = company.profileViews.some(
+        id => id.toString() === req.user._id.toString()
+    );
+
+    if (!alreadyViewed) {
+
+        company.profileViews.push(req.user._id);
+
+        await company.save();
+    }
+
+    res.render("users/userCompanyProfile", {
+        company
+    });
+});
+
+//-------------company prfile pic-----------
+router.get("/company-profile/:companyId", isLoggedIn, async (req, res) => {
+
+    const company = await companyModel.findById(req.params.companyId);
+
+    if (!company || !company.companyProfile || !company.companyProfile.data) {
+        return res.status(404).send("Company image not found");
+    }
+
+    res.set("Content-Type", company.companyProfile.contentType);
+
+    res.send(company.companyProfile.data);
 });
 
 // ------------logout------------

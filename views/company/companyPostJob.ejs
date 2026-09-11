@@ -28,13 +28,22 @@
                         <!-- notification k ley route bnana h -->
                         <a href=""><i class="ri-notification-3-line text-2xl"></i>
                         </a>
-                        <div class="flex items-center gap-2">
-                            <img class="h-10 w-11 rounded-full"
-                                src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
-                                alt="">
-                            <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
-                            <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                       <div class="flex items-center gap-2">
+                        <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+
+                            <img src="/company/company-profile" alt="Company Profile" class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                            <div class="w-full h-full hidden items-center justify-center">
+                                <i class="ri-building-4-line text-gray-500 text-2xl"></i>
+                            </div>
+
                         </div>
+                        <h2 class="text-xl font-semibold hidden md:block ">
+                            <%= company.companyName %>
+                        </h2>
+                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                    </div>
                     </div>
                 </nav>
                 <!-- *********** FOr the menu list div ********-->
@@ -89,7 +98,7 @@
 
 
                             <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                                <a href="/company/companyApplicants">
+                                <a href="/company/companyApplicant">
                                     <i class="ri-team-line text-xl"></i>
                                     <span>Applicants</span>
                                 </a>
@@ -97,7 +106,7 @@
 
 
                             <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                                <a href="/company/companyApplicantion">
+                                <a href="/company/companyApplicantions">
                                     <i class="ri-file-list-3-line text-xl"></i>
                                     <span>Applications</span>
                                 </a>

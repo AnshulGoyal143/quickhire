@@ -71,7 +71,7 @@ router.get("/logout", (req, res) => {
     res.cookie("companyToken", "");
     res.redirect("/company/login");
 });
-//  --------------------------------------------------
+//  ----------------------  company dashboard ----------------------------
 
 router.get("/companyDashboard", isCompanyLoggedIn, async (req, res) => {
 
@@ -82,7 +82,16 @@ router.get("/companyDashboard", isCompanyLoggedIn, async (req, res) => {
         .sort({ appliedAt: -1 })
         .limit(5);
 
-    
+        // total applicants
+     const totalApplicants = await applicationModel.countDocuments({
+        company: req.company._id
+    });
+
+    // active jobs 
+    const activeJobs = await jobModel.countDocuments({
+        company: req.company._id,
+        deadline: { $gte: new Date() }
+    });
 
     // shortlisted
     const shortlistedApplication = await applicationModel.countDocuments({
@@ -90,20 +99,28 @@ router.get("/companyDashboard", isCompanyLoggedIn, async (req, res) => {
         status: "Shortlisted"
     });
 
+    // Profile view
+   const profileViews = req.company.profileViews
+    ? req.company.profileViews.length
+    : 0;
 
     res.render("company/companyDashboard", {
         applications,
-        shortlistedApplication
+        shortlistedApplication,
+        activeJobs,
+        totalApplicants,
+        profileViews
         
     });
 
 });
 
-// ---------------------------------
+// ------------------- Company profile --------------
 
 router.get("/companyMyProfile",isCompanyLoggedIn, (req, res) => {
    res.render("company/companyMyProfile");
 });
+
 
 //---------------application -----------
 router.get("/companyApplications",isCompanyLoggedIn, async (req, res) => {
@@ -336,6 +353,8 @@ router.post("/PostJob",isCompanyLoggedIn,async (req,res)=>{
     vacancies,
     deadline,
     workMode ,
+    education,
+        Gender,
     // new job directly active
     status: "Active"
     });

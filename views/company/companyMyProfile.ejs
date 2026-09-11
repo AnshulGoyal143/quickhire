@@ -27,11 +27,20 @@
                     <!-- notification k ley route bnana h -->
                     <a href=""><i class="ri-notification-3-line text-2xl"></i>
                     </a>
-                    <div class="flex items-center gap-2">
-                        <img class="h-10 w-11 rounded-full"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
-                            alt="">
-                        <h2 class="text-xl font-semibold hidden md:block "><%= company.companyName %></h2>
+                   <div class="flex items-center gap-2">
+                        <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+
+                            <img src="/company/company-profile" alt="Company Profile" class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+                            <div class="w-full h-full hidden items-center justify-center">
+                                <i class="ri-building-4-line text-gray-500 text-2xl"></i>
+                            </div>
+
+                        </div>
+                        <h2 class="text-xl font-semibold hidden md:block ">
+                            <%= company.companyName %>
+                        </h2>
                         <a href=""><i class="ri-arrow-down-wide-line"></i></a>
                     </div>
                 </div>

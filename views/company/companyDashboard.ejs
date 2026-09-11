@@ -162,7 +162,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Active Job Post</h2>
-                                <p class="text-4xl font-bold mt-1">12</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%=  activeJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -186,7 +188,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Total Applicants</h2>
-                                <p class="text-4xl font-bold mt-1">138</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= totalApplicants %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -207,7 +211,10 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Profile Views</h2>
-                                <p class="text-4xl font-bold mt-1">239</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= company.profileViews.length %>
+                                    
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">

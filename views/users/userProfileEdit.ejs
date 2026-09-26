@@ -29,11 +29,29 @@
                         <a href=""><i class="ri-notification-3-line text-2xl"></i>
                         </a>
                         <div class="flex items-center gap-2">
-                            <img class="h-10 w-11 rounded-full"
-                                src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
-                                alt="">
-                            <h2 class="text-xl font-semibold hidden md:block ">Admin</h2>
-                            <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+
+                            <% if (user.profileImage && user.profileImage.data) { %>
+
+                                <img src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"
+                                    alt="Profile" class="h-10 w-10 rounded-full object-cover">
+
+                                <% } else { %>
+
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold">
+                                        <%= user.fullname ? user.fullname.charAt(0).toUpperCase() : "U" %>
+                                    </div>
+
+                                    <% } %>
+
+                                        <h2 class="text-xl font-semibold hidden md:block">
+                                            <%= user.fullname %>
+                                        </h2>
+
+                                        <a href="">
+                                            <i class="ri-arrow-down-wide-line"></i>
+                                        </a>
+
                         </div>
                     </div>
                 </nav>
@@ -71,12 +89,12 @@
                                 </a>
                             </li>
 
-                             <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
-                            <a href="">
-                                <i class="ri-briefcase-line text-xl"></i>
-                                <span>Browse Jobs</span>
-                            </a>
-                        </li>
+                            <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                                <a href="">
+                                    <i class="ri-briefcase-line text-xl"></i>
+                                    <span>Browse Jobs</span>
+                                </a>
+                            </li>
 
                             <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
                                 <a href="/users/userProfile">
@@ -113,9 +131,9 @@
                     <h2 class="text-4xl font-bold mb-2">Edit Profile</h2>
                     <p class="text-gray-700 text-xl mb-5">Update your personal information</p>
 
-                     <div class="bg-white shadow-2xl rounded-3xl p-8 mt-6 pb-12">
+                    <div class="bg-white shadow-2xl rounded-3xl p-8 mt-6 pb-12">
                         <form action="/users/ProfileEdit" method="post" enctype="multipart/form-data">
-                       
+
                             <div>
                                 <h2 class="text-xl font-semibold">Profile Pic</h2>
 
@@ -209,7 +227,8 @@
                                     <label class="text-lg font-medium mb-2 block " for=""> Date of Birth</label>
                                     <input
                                         class="text-gray-500  w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
-                                        type="date" name="dob"    value="<%= user?.dob ? new Date(user.dob).toISOString().split('T')[0] : '' %>">
+                                        type="date" name="dob"
+                                        value="<%= user?.dob ? new Date(user.dob).toISOString().split('T')[0] : '' %>">
 
                                 </div>
 
@@ -274,14 +293,14 @@
                                         value="<%= user?.skills || '' %>">
                                 </div>
 
-                             
+
 
                                 <div>
                                     <label class="text-lg font-medium mb-2 block" for="">About Me </label>
                                     <textarea
                                         class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 resize-none h-32 text-gray-700 placeholder:text-gray-500"
-                                        placeholder="Write a short description about yourself" name="aboutme"
-                                         > <%= user?.aboutme || '' %> </textarea>
+                                        placeholder="Write a short description about yourself"
+                                        name="aboutme"> <%= user?.aboutme || '' %> </textarea>
                                 </div>
                             </div>
 
@@ -299,11 +318,11 @@
                                 </button>
                             </div>
 
-                    </form>
-                    
-                     </div>
+                        </form>
 
-                    
+                    </div>
+
+
                 </div>
             </div>
 

@@ -458,7 +458,7 @@
                                                             action="/company/application/<%= application._id %>/delete"
                                                             method="POST">
 
-                                                            <button type="submit"
+                                                            <button onclick="window.location.href='/company/companyDeleteConfirmation/<%= application._id %>'" type="button"
                                                                 class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
 
                                                                 <i class="ri-delete-bin-6-line"></i>

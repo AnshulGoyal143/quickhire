@@ -385,7 +385,44 @@ router.post("/PostJob",isCompanyLoggedIn,async (req,res)=>{
     });
  })
  
+//------------CONFIRMATION BEFORE DELETE----------------
 
+router.get("/companyDeleteConfirmation/:id", async (req, res) => {
+
+    const application = await applicationModel.findById(req.params.id);
+
+    if (!application) {
+        return res.status(404).send("Application not found");
+    }
+
+    res.render("company/companyDeleteConfirmation", {
+        application
+    });
+
+});
+
+//--------------DELETE ROUTE-------------
+router.delete("/delete/:id", async (req, res) => {
+
+    try {
+
+        await applicationModel.findByIdAndDelete(req.params.id);
+
+        res.json({
+            success: true
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.json({
+            success: false
+        });
+
+    }
+
+});
 //  router.get("/test-fetch", (req, res) => {
 //     res.send("Fetch successfully working!");
 // });

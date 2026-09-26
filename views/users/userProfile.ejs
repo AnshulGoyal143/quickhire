@@ -28,13 +28,29 @@
                     <a href=""><i class="ri-notification-3-line text-2xl"></i>
                     </a>
                     <div class="flex items-center gap-2">
-                        <img class="h-10 w-11 rounded-full"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
-                            alt="">
-                        <h2 class="text-xl font-semibold hidden md:block ">
-                            <%= user.fullname %>
-                        </h2>
-                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+
+                        <% if (user.profileImage && user.profileImage.data) { %>
+
+                            <img src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"
+                                alt="Profile" class="h-10 w-10 rounded-full object-cover">
+
+                            <% } else { %>
+
+                                <div
+                                    class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold">
+                                    <%= user.fullname ? user.fullname.charAt(0).toUpperCase() : "U" %>
+                                </div>
+
+                                <% } %>
+
+                                    <h2 class="text-xl font-semibold hidden md:block">
+                                        <%= user.fullname %>
+                                    </h2>
+
+                                    <a href="">
+                                        <i class="ri-arrow-down-wide-line"></i>
+                                    </a>
+
                     </div>
                 </div>
             </nav>
@@ -72,13 +88,13 @@
                             </a>
                         </li>
 
-                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
                             <a href="">
                                 <i class="ri-briefcase-line text-xl"></i>
                                 <span>Browse Jobs</span>
                             </a>
                         </li>
-                        
+
                         <li
                             class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600 ">
                             <a href="/users/userProfile">
@@ -192,7 +208,7 @@
                         <div class="border-b border-gray-200 py-5">
                             <p class="text-sm text-gray-500 mb-1">Date of Birth</p>
                             <h4 class="font-semibold text-gray-800">
-                               <%= user.dob.toISOString().split('T')[0] %>
+                                <%= user.dob.toISOString().split('T')[0] %>
                             </h4>
                         </div>
 

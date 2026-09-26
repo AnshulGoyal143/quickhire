@@ -26,11 +26,29 @@
                     <a href=""><i class="ri-notification-3-line text-2xl"></i>
                     </a>
                     <div class="flex items-center gap-2">
-                        <img class="h-10 w-11 rounded-full"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/053/964/117/small/a-silhouette-of-a-person-with-a-circular-head-and-a-minimalistic-body-structure-showcasing-a-simple-design-png.png"
-                            alt="">
-                        <h2 class="text-xl font-semibold hidden md:block "><%= user.fullname %></h2>
-                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+
+                        <% if (user.profileImage && user.profileImage.data) { %>
+
+                            <img src="data:<%= user.profileImage.contentType %>;base64,<%= user.profileImage.data.toString('base64') %>"
+                                alt="Profile" class="h-10 w-10 rounded-full object-cover">
+
+                            <% } else { %>
+
+                                <div
+                                    class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold">
+                                    <%= user.fullname ? user.fullname.charAt(0).toUpperCase() : "U" %>
+                                </div>
+
+                                <% } %>
+
+                                    <h2 class="text-xl font-semibold hidden md:block">
+                                        <%= user.fullname %>
+                                    </h2>
+
+                                    <a href="">
+                                        <i class="ri-arrow-down-wide-line"></i>
+                                    </a>
+
                     </div>
                 </div>
             </nav>
@@ -108,7 +126,9 @@
             <div class="textcontainer  px-4 sm:px-6 lg:px-8 py-2 pt-24 pb-10  transition-all duration-300">
                 <div class="welcome mb-10">
                     <h4 class="text-xl md:text-2xl text-gray-700">Welcome back,</h4>
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl mt-2 font-bold"> <%= user.fullname %>👋🏻</h2>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl mt-2 font-bold">
+                        <%= user.fullname %>👋🏻
+                    </h2>
                     <p class="text-base sm:text-lg lg:text-xl mt-3 text-gray-500">Track your application and manage your
                         profile</p>
                 </div>
@@ -126,7 +146,8 @@
                             <p class="text-gray-600 mt-2">View all companies you applied to</p>
                         </div>
                         <div class="routetag ">
-                            <a href="/users/userMyApplications"><i class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
+                            <a href="/users/userMyApplications"><i
+                                    class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
                         </div>
                     </div>
 
@@ -143,7 +164,8 @@
                             <p class="text-gray-600 mt-2">View your profile details</p>
                         </div>
                         <div class="routetag">
-                            <a href="/users/userProfile"><i class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
+                            <a href="/users/userProfile"><i
+                                    class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
                         </div>
                     </div>
 
@@ -159,7 +181,8 @@
                             <p class="text-gray-600 mt-2">Update your personal information</p>
                         </div>
                         <div class="routetag">
-                            <a href="/users/ProfileEdit"><i class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
+                            <a href="/users/ProfileEdit"><i
+                                    class="ri-arrow-right-long-line text-3xl text-gray-500"></i></a>
                         </div>
                     </div>
 
@@ -177,117 +200,119 @@
                         <a href="" class="text-blue-600 font-medium hover:underline text-lg">View All</a>
                     </div>
 
-     <% if (applications && applications.length > 0) { %>
+                    <% if (applications && applications.length> 0) { %>
 
-    <div class="tables overflow-x-auto">
+                        <div class="tables overflow-x-auto">
 
-        <table class="w-full min-w-[950px]">
+                            <table class="w-full min-w-[950px]">
 
-            <thead class="bg-gray-50 border-b">
-                <tr>
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
-                        Company
-                    </th>
+                                <thead class="bg-gray-50 border-b">
+                                    <tr>
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                            Company
+                                        </th>
 
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
-                        Job Role
-                    </th>
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                            Job Role
+                                        </th>
 
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
-                        Applied On
-                    </th>
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                            Applied On
+                                        </th>
 
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
-                        Status
-                    </th>
-                </tr>
-            </thead>
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
 
-            <tbody>
+                                <tbody>
 
-                <% applications.forEach(application => { %>
+                                    <% applications.forEach(application=> { %>
 
-                    <tr class="border-b hover:bg-gray-50 transition">
+                                        <tr class="border-b hover:bg-gray-50 transition">
 
-                        <td class="px-6 py-5 font-medium">
-                            <%= application.company.companyName %>
-                        </td>
+                                            <td class="px-6 py-5 font-medium">
+                                                <%= application.company.companyName %>
+                                            </td>
 
-                        <td class="px-6 py-5 text-gray-600">
-                            <%= application.job.jobTitle %>
-                        </td>
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <%= application.job.jobTitle %>
+                                            </td>
 
-                        <td class="px-6 py-5 text-gray-600">
-                            <%= new Date(application.appliedAt).toLocaleDateString("en-IN", {
-                                day: "2-digit",
-                                month: "short",
-                                year: "numeric"
-                            }) %>
-                        </td>
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <%= new Date(application.appliedAt).toLocaleDateString("en-IN", {
+                                                    day: "2-digit" , month: "short" , year: "numeric" }) %>
+                                            </td>
 
-                        <td class="py-5 px-6">
+                                            <td class="py-5 px-6">
 
-                            <% if (application.status === "Applied") { %>
+                                                <% if (application.status==="Applied" ) { %>
 
-                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                    Applied
-                                </span>
+                                                    <span
+                                                        class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                                        Applied
+                                                    </span>
 
-                            <% } else if (application.status === "Under Review") { %>
+                                                    <% } else if (application.status==="Under Review" ) { %>
 
-                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                    Under Review
-                                </span>
+                                                        <span
+                                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                                            Under Review
+                                                        </span>
 
-                            <% } else if (application.status === "Shortlisted") { %>
+                                                        <% } else if (application.status==="Shortlisted" ) { %>
 
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                    Shortlisted
-                                </span>
+                                                            <span
+                                                                class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                                                Shortlisted
+                                                            </span>
 
-                            <% } else if (application.status === "Rejected") { %>
+                                                            <% } else if (application.status==="Rejected" ) { %>
 
-                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                    Rejected
-                                </span>
+                                                                <span
+                                                                    class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                                                    Rejected
+                                                                </span>
 
-                            <% } else if (application.status === "Selected") { %>
+                                                                <% } else if (application.status==="Selected" ) { %>
 
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                    Selected
-                                </span>
+                                                                    <span
+                                                                        class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                                                        Selected
+                                                                    </span>
+
+                                                                    <% } %>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <% }) %>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <% } else { %>
+
+                            <div class="text-center py-16">
+
+                                <i class="ri-file-list-3-line text-5xl text-gray-300"></i>
+
+                                <h2 class="text-xl font-semibold text-gray-700 mt-4">
+                                    No Applications Yet
+                                </h2>
+
+                                <p class="text-gray-500 mt-2">
+                                    You haven't applied for any jobs yet.
+                                </p>
+
+                            </div>
 
                             <% } %>
-
-                        </td>
-
-                    </tr>
-
-                <% }) %>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-<% } else { %>
-
-    <div class="text-center py-16">
-
-        <i class="ri-file-list-3-line text-5xl text-gray-300"></i>
-
-        <h2 class="text-xl font-semibold text-gray-700 mt-4">
-            No Applications Yet
-        </h2>
-
-        <p class="text-gray-500 mt-2">
-            You haven't applied for any jobs yet.
-        </p>
-
-    </div>
-
-<% } %>
 
 
                 </div>

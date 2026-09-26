@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Saved Candidates - Quick Hire</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+```
+
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+```
+<!-- Sidebar -->
+<aside id="sidebar"
+    class="fixed left-0 top-0 z-50 h-screen w-64 bg-slate-900 text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+
+    <div class="flex h-20 items-center justify-between px-6 border-b border-slate-700">
+        <h1 class="text-2xl font-bold tracking-wide">
+            Quick <span class="text-blue-400">Hire</span>
+        </h1>
+
+        <button id="closeSidebar" class="lg:hidden text-2xl">
+            <i class="ri-close-line"></i>
+        </button>
+    </div>
+
+    <nav class="p-4 space-y-2">
+
+        <a href="/company/companyDashboard"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800">
+            <i class="ri-dashboard-line text-xl"></i>
+            Dashboard
+        </a>
+
+        <a href="/company/companyApplicant"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800">
+            <i class="ri-user-search-line text-xl"></i>
+            Applicants
+        </a>
+
+        <a href="/company/companySavedCandidates"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600">
+            <i class="ri-bookmark-line text-xl"></i>
+            Saved Candidates
+        </a>
+
+        <a href="/company/companyMessages"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800">
+            <i class="ri-message-3-line text-xl"></i>
+            Messages
+        </a>
+
+        <a href="/company/companyPostJob"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800">
+            <i class="ri-add-circle-line text-xl"></i>
+            Post a Job
+        </a>
+
+        <a href="/company/companyMyProfile"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800">
+            <i class="ri-building-line text-xl"></i>
+            My Profile
+        </a>
+
+    </nav>
+
+    <div class="absolute bottom-5 left-4 right-4">
+        <a href="/company/logout"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-300 hover:bg-red-500/10">
+            <i class="ri-logout-box-r-line text-xl"></i>
+            Logout
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- Main -->
+<div class="lg:ml-64">
+
+    <!-- Navbar -->
+    <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-5 md:px-8">
+
+        <div class="flex items-center gap-4">
+
+            <button id="openSidebar" class="lg:hidden text-2xl text-slate-700">
+                <i class="ri-menu-line"></i>
+            </button>
+
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800">
+                    Saved Candidates
+                </h2>
+
+                <p class="text-xs md:text-sm text-slate-500">
+                    Candidates you've saved for later
+                </p>
+            </div>
+
+        </div>
+
+        <div class="flex items-center gap-3">
+
+            <button
+                class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200">
+                <i class="ri-notification-3-line text-xl"></i>
+            </button>
+
+            <div class="hidden md:block text-right">
+                <p class="text-sm font-semibold">Company Name</p>
+                <p class="text-xs text-slate-500">Recruiter</p>
+            </div>
+
+            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                <i class="ri-building-4-line text-blue-600 text-xl"></i>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Content -->
+    <main class="p-5 md:p-8">
+
+        <!-- Search + Filter -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 md:p-5 mb-6">
+
+            <div class="flex flex-col md:flex-row gap-3">
+
+                <div class="relative flex-1">
+                    <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+
+                    <input type="text"
+                        placeholder="Search saved candidates..."
+                        class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 outline-none focus:border-blue-500">
+                </div>
+
+                <select
+                    class="px-4 py-3 rounded-xl border border-slate-200 bg-white outline-none focus:border-blue-500">
+                    <option>All Candidates</option>
+                    <option>Recently Saved</option>
+                    <option>Experienced</option>
+                    <option>Fresher</option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- Candidate Cards -->
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
+
+
+            <!-- Candidate 1 -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md transition">
+
+                <div class="flex items-start justify-between">
+
+                    <div class="flex items-center gap-4">
+
+                        <div
+                            class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl font-bold">
+                            AS
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-lg">Aman Sharma</h3>
+                            <p class="text-sm text-slate-500">Full Stack Developer</p>
+                        </div>
+
+                    </div>
+
+                    <button class="text-amber-500 text-xl" title="Remove from saved">
+                        <i class="ri-bookmark-fill"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="flex flex-wrap gap-2 mt-5">
+
+                    <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs">
+                        Node.js
+                    </span>
+
+                    <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs">
+                        React
+                    </span>
+
+                    <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs">
+                        MongoDB
+                    </span>
+
+                </div>
+
+
+                <div class="grid grid-cols-2 gap-3 mt-5 text-sm">
+
+                    <div class="flex items-center gap-2 text-slate-500">
+                        <i class="ri-map-pin-line"></i>
+                        Faridabad
+                    </div>
+
+                    <div class="flex items-center gap-2 text-slate-500">
+                        <i class="ri-briefcase-line"></i>
+                        2 Years
+                    </div>
+
+                </div>
+
+
+                <div class="flex gap-3 mt-5 pt-4 border-t border-slate-100">
+
+                    <a href="#"
+                        class="flex-1 text-center py-2.5 rounded-xl border border-slate-200 text-sm font-medium hover:bg-slate-50">
+                        View Profile
+                    </a>
+
+                    <a href="#"
+                        class="flex-1 text-center py-2.5 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">
+                        <i class="ri-message-3-line mr-1"></i>
+                        Message
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Candidate 2 -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md transition">
+
+                <div class="flex items-start justify-between">
+
+                    <div class="flex items-center gap-4">
+
+                        <div
+                            class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-xl font-bold">
+                            RK
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-lg">Riya Kapoor</h3>
+                            <p class="text-sm text-slate-500">UI/UX Designer</p>
+                        </div>
+
+                    </div>
+
+                    <button class="text-amber-500 text-xl">
+                        <i class="ri-bookmark-fill"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="flex flex-wrap gap-2 mt-5">
+
+                    <span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs">
+                        Figma
+                    </span>
+
+                    <span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs">
+                        UI Design
+                    </span>
+
+                    <span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs">
+                        UX
+                    </span>
+
+                </div>
+
+
+                <div class="grid grid-cols-2 gap-3 mt-5 text-sm">
+
+                    <div class="flex items-center gap-2 text-slate-500">
+                        <i class="ri-map-pin-line"></i>
+                        Delhi
+                    </div>
+
+                    <div class="flex items-center gap-2 text-slate-500">
+                        <i class="ri-briefcase-line"></i>
+                        1 Year
+                    </div>
+
+                </div>
+
+
+                <div class="flex gap-3 mt-5 pt-4 border-t border-slate-100">
+
+                    <a href="#"
+                        class="flex-1 text-center py-2.5 rounded-xl border border-slate-200 text-sm font-medium hover:bg-slate-50">
+                        View Profile
+                    </a>
+
+                    <a href="#"
+                        class="flex-1 text-center py-2.5 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">
+                        <i class="ri-message-3-line mr-1"></i>
+                        Message
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Empty State -->
+        <!--
+        <div class="bg-white rounded-2xl border border-slate-200 p-12 text-center">
+
+            <div class="w-16 h-16 mx-auto rounded-full bg-slate-100 flex items-center justify-center">
+                <i class="ri-bookmark-line text-3xl text-slate-400"></i>
+            </div>
+
+            <h3 class="mt-4 text-lg font-semibold">
+                No Saved Candidates
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-1">
+                Candidates you save will appear here.
+            </p>
+
+        </div>
+        -->
+
+    </main>
+
+</div>
+
+
+<script>
+
+    const sidebar = document.getElementById("sidebar");
+    const openSidebar = document.getElementById("openSidebar");
+    const closeSidebar = document.getElementById("closeSidebar");
+
+    openSidebar.addEventListener("click", () => {
+        sidebar.classList.remove("-translate-x-full");
+    });
+
+    closeSidebar.addEventListener("click", () => {
+        sidebar.classList.add("-translate-x-full");
+    });
+
+</script>
+
+
+</body>
+</html>

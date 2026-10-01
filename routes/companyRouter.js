@@ -443,14 +443,35 @@ async function isCompanyLoggedIn(req, res, next) {
     // 🏢 Find logged-in company from database
     let company = await companyModel.findById(data.companyid);
 
-    // 📌 Store company data in request and make it available in all EJS files
+    if (!company) {
+        return res.redirect("/company/login");
+    }
+
+    // 📌 Store company data in request
     req.company = company;
     res.locals.company = company;
 
 
     // =========================================================
+    // 🔄 AUTOMATICALLY MARK EXPIRED JOBS
+    // =========================================================
+
+    await jobModel.updateMany(
+        {
+            company: company._id,
+            status: "Active",
+            deadline: { $lt: new Date() }
+        },
+        {
+            $set: {
+                status: "Expired"
+            }
+        }
+    );
+
+
+    // =========================================================
     // 📋 RECENT JOBS
-    // Get latest 3 jobs posted by the logged-in company
     // =========================================================
 
     const jobs = await jobModel.find({
@@ -467,58 +488,45 @@ async function isCompanyLoggedIn(req, res, next) {
     // 📊 JOB COUNTS
     // =========================================================
 
-    // 🔢 Total number of jobs posted by this company
+    // 🔢 Total Jobs
     const totalJobs = await jobModel.countDocuments({
         company: company._id
     });
 
 
     // 🟢 Active Jobs
-    // Job must have status "active"
-    // AND deadline should not have passed
     const activeJobs = await jobModel.countDocuments({
         company: company._id,
-        status: "active",
+        status: "Active",
         deadline: { $gte: new Date() }
     });
 
 
     // 🔴 Expired Jobs
-    // Job must have status "active"
-    // AND deadline has already passed
     const expiredJobs = await jobModel.countDocuments({
         company: company._id,
-        status: "active",
-        deadline: { $lt: new Date() }
+        status: "Expired"
     });
 
 
     // 📝 Draft Jobs
-    // Jobs that are saved as draft
     const draftJobs = await jobModel.countDocuments({
         company: company._id,
-        status: "draft"
+        status: "Draft"
     });
 
 
     // =========================================================
-    // 📤 SEND COUNTS TO EJS
+    // 📤 SEND DATA TO EJS
     // =========================================================
 
-    // Total Jobs count available in EJS
     res.locals.totalJobs = totalJobs;
-
-    // Active Jobs count available in EJS
     res.locals.activeJobs = activeJobs;
-
-    // Expired Jobs count available in EJS
     res.locals.expiredJobs = expiredJobs;
-
-    // Draft Jobs count available in EJS
     res.locals.draftJobs = draftJobs;
 
 
-    // ➡️ Continue to the requested route
+    // ➡️ Continue to requested route
     next();
 }
 

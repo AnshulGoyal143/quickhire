@@ -14,6 +14,10 @@ const adminSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    confirmPassword:{
+        type: String,
+        require: true
+    },
     profileImage:{
         type:String,
         default:"default-admin.png"

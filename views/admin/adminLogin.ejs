@@ -42,7 +42,7 @@
 
                 </div>
 
-                <form action="" class="formfill flex flex-col gap-5 sm:gap-6 w-full items-center" method="post">
+                <form action="/admin/login" class="formfill flex flex-col gap-5 sm:gap-6 w-full items-center" method="post">
 
 
                     <h1 class="sm:text-3xl text-2xl font-bold text-gray-800 mt-5">Admin Login</h1>
@@ -51,10 +51,14 @@
                     </p>
                     <input
                         class="sm:w-4/5 w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
-                        type="text" placeholder="Email" name="email">
+                        type="text" placeholder="Email" name="adminEmail">
                     <input
                         class="sm:w-4/5 w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
                         type="password" placeholder="Password" name="password">
+
+                         <input
+                        class="sm:w-4/5 w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-1 focus:ring-blue-500"
+                        type="password" placeholder=" Confirm Password" name="confirmPassword">
 
                     <input
                         class="bg-blue-600 sm:w-4/5 w-full hover:bg-blue-700 text-white py-3 font-semibold transition cursor-pointer rounded-xl"

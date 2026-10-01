@@ -49,12 +49,11 @@
                     <i
                         class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
                 </div>
-                 <div class="list">
+                <div class="list">
                     <ul class=" space-y-3">
                         <!-- yha pee user dashboard menu link attach krne h -->
 
-                        <li
-                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1">
+                        <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1">
                             <a href="">
                                 <i class="ri-home-3-line text-xl"></i>
                                 <span>Dashboard</span>
@@ -62,7 +61,8 @@
                         </li>
 
 
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600  ">
+                        <li
+                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600  ">
                             <a href="">
                                 <i class="ri-group-line text-xl"></i>
                                 <span>Users</span>
@@ -138,7 +138,7 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="routetag mt-3 ">
                             <a href="" class="text-base font-medium text-blue-600 block text-center">
                                 All register users</a>
@@ -261,247 +261,175 @@
                 </div>
 
                 <!-- ***********TABLES FORM************* -->
-              <div class="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden mt-6">
+                <div class="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden mt-6">
 
-    <!-- Table -->
-    <div class="overflow-x-auto">
+                    <!-- Table -->
+                    <div class="overflow-x-auto">
 
-        <table class="w-full min-w-[950px]">
+                        <table class="w-full min-w-[950px]">
 
-            <thead class="bg-gray-50 border-b">
-                <tr>
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">User</th>
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Email</th>
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Phone</th>
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
-                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Registered On</th>
-                    <th class="text-center px-6 py-4 text-sm font-semibold text-gray-600">Actions</th>
-                </tr>
-            </thead>
+                            <thead class="bg-gray-50 border-b">
+                                <tr>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">User</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Email</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Phone</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
+                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Registered On
+                                    </th>
+                                    <th class="text-center px-6 py-4 text-sm font-semibold text-gray-600">Actions</th>
+                                </tr>
+                            </thead>
 
-            <tbody>
+                            <tbody>
 
-                <!-- Row 1 -->
-                <tr class="border-b hover:bg-gray-50 transition">
-                    <td class="px-6 py-5 font-medium">Anshul Goyal</td>
-                    <td class="px-6 py-5 text-gray-600">anshul@gmail.com</td>
-                    <td class="px-6 py-5 text-gray-600">+91 9876543210</td>
+                                <% if (user.length> 0) { %>
 
-                    <td class="px-6 py-5">
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                            Active
-                        </span>
-                    </td>
+                                    <% user.forEach(user=> { %>
 
-                    <td class="px-6 py-5 text-gray-600">
-                        12 May 2026
-                    </td>
+                                        <tr class="border-b hover:bg-gray-50 transition">
 
-                    <td class="px-6 py-5">
-                        <div class="flex justify-center gap-2">
+                                            <!-- User -->
+                                            <td class="px-6 py-5 font-medium">
+                                                <%= user.fullname %>
+                                            </td>
 
-                            <button
-                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                <i class="ri-eye-line"></i>
+                                            <!-- Email -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <%= user.email %>
+                                            </td>
+
+                                            <!-- Phone -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <%= user.mobile %>
+                                            </td>
+
+                                            <!-- Status -->
+                                            <td class="px-6 py-5">
+
+                                                <% if (user.status==="Blocked" ) { %>
+
+                                                    <span
+                                                        class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                        Blocked
+                                                    </span>
+
+                                                    <% } else if (user.status==="Pending" ) { %>
+
+                                                        <span
+                                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                            Pending
+                                                        </span>
+
+                                                        <% } else { %>
+
+                                                            <span
+                                                                class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                                Active
+                                                            </span>
+
+                                                            <% } %>
+
+                                            </td>
+
+                                            <!-- Registered On -->
+                                            <td class="px-6 py-5 text-gray-600">
+
+                                                <%= new Date(user.createdAt).toLocaleDateString("en-IN", {
+                                                    day: "2-digit" , month: "short" , year: "numeric" }) %>
+
+                                            </td>
+
+                                            <!-- Actions -->
+                                            <td class="px-6 py-5">
+
+                                                <div class="flex justify-center gap-2">
+
+                                                    <!-- View -->
+                                                    <a href="/admin/user/<%= user._id %>"
+                                                        class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition flex items-center justify-center">
+
+                                                        <i class="ri-eye-line"></i>
+
+                                                    </a>
+
+                                                    <!-- Edit -->
+                                                    <a href="/admin/edit-user/<%= user._id %>"
+                                                        class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition flex items-center justify-center">
+
+                                                        <i class="ri-pencil-line"></i>
+
+                                                    </a>
+
+                                                    <!-- Delete -->
+                                                    <a href="/admin/delete-user/<%= user._id %>"
+                                                        class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition flex items-center justify-center">
+
+                                                        <i class="ri-delete-bin-6-line"></i>
+
+                                                    </a>
+
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <% }) %>
+
+                                            <% } else { %>
+
+                                                <tr>
+
+                                                    <td colspan="6" class="py-12 text-center text-gray-500">
+                                                        No users registered yet.
+                                                    </td>
+
+                                                </tr>
+
+                                                <% } %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div
+                        class="flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-4 border-t bg-white">
+
+                        <p class="text-sm text-gray-500">
+                            Showing <span class="font-semibold">1–8</span> of
+                            <span class="font-semibold">123</span> users
+                        </p>
+
+                        <div class="flex items-center gap-2">
+
+                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                <i class="ri-arrow-left-s-line"></i>
                             </button>
 
-                            <button
-                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                <i class="ri-pencil-line"></i>
+                            <button class="w-9 h-9 rounded-lg bg-blue-600 text-white">
+                                1
                             </button>
 
-                            <button
-                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                <i class="ri-delete-bin-6-line"></i>
+                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                2
                             </button>
 
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Row 2 -->
-                <tr class="border-b hover:bg-gray-50 transition">
-                    <td class="px-6 py-5 font-medium">Kunal</td>
-                    <td class="px-6 py-5 text-gray-600">kunal@gmail.com</td>
-                    <td class="px-6 py-5 text-gray-600">+91 9876543211</td>
-
-                    <td class="px-6 py-5">
-                        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-                            Pending
-                        </span>
-                    </td>
-
-                    <td class="px-6 py-5 text-gray-600">
-                        10 May 2026
-                    </td>
-
-                    <td class="px-6 py-5">
-                        <div class="flex justify-center gap-2">
-
-                            <button class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                <i class="ri-eye-line"></i>
+                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                3
                             </button>
 
-                            <button class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                <i class="ri-pencil-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                <i class="ri-delete-bin-6-line"></i>
-                            </button>
-
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Row 3 -->
-                <tr class="border-b hover:bg-gray-50 transition">
-                    <td class="px-6 py-5 font-medium">Mohit</td>
-                    <td class="px-6 py-5 text-gray-600">mohit@gmail.com</td>
-                    <td class="px-6 py-5 text-gray-600">+91 9876543212</td>
-
-                    <td class="px-6 py-5">
-                        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
-                            Blocked
-                        </span>
-                    </td>
-
-                    <td class="px-6 py-5 text-gray-600">
-                        07 May 2026
-                    </td>
-
-                    <td class="px-6 py-5">
-                        <div class="flex justify-center gap-2">
-
-                            <button class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                <i class="ri-eye-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                <i class="ri-pencil-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                <i class="ri-delete-bin-6-line"></i>
-                            </button>
-
-                        </div>
-                    </td>
-                </tr>
-
-
-                <!-- Row 4 -->
-                <tr class="border-b hover:bg-gray-50 transition">
-                    <td class="px-6 py-5 font-medium">Rohit</td>
-                    <td class="px-6 py-5 text-gray-600">rohit@gmail.com</td>
-                    <td class="px-6 py-5 text-gray-600">+918907653002</td>
-
-                               <td class="px-6 py-5">
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                            Active
-                        </span>
-                    </td>
-
-                    <td class="px-6 py-5 text-gray-600">
-                        08 May 2026
-                    </td>
-
-                    <td class="px-6 py-5">
-                        <div class="flex justify-center gap-2">
-
-                            <button class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                <i class="ri-eye-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                <i class="ri-pencil-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                <i class="ri-delete-bin-6-line"></i>
-                            </button>
-
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Row 3 -->
-                <tr class="border-b hover:bg-gray-50 transition">
-                    <td class="px-6 py-5 font-medium">Riya</td>
-                    <td class="px-6 py-5 text-gray-600">riya@gmail.com</td>
-                    <td class="px-6 py-5 text-gray-600">+91907643212</td>
-
-                    
-                    <td class="px-6 py-5">
-                        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-                            Pending
-                        </span>
-                    </td>
-
-                    <td class="px-6 py-5 text-gray-600">
-                        12 May 2026
-                    </td>
-
-                    <td class="px-6 py-5">
-                        <div class="flex justify-center gap-2">
-
-                            <button class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                <i class="ri-eye-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                <i class="ri-pencil-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                <i class="ri-delete-bin-6-line"></i>
+                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                <i class="ri-arrow-right-s-line"></i>
                             </button>
 
                         </div>
-                    </td>
-                </tr>
 
-            </tbody>
+                    </div>
 
-        </table>
-
-    </div>
-
-    <!-- Pagination -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-4 border-t bg-white">
-
-        <p class="text-sm text-gray-500">
-            Showing <span class="font-semibold">1–8</span> of
-            <span class="font-semibold">123</span> users
-        </p>
-
-        <div class="flex items-center gap-2">
-
-            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                <i class="ri-arrow-left-s-line"></i>
-            </button>
-
-            <button class="w-9 h-9 rounded-lg bg-blue-600 text-white">
-                1
-            </button>
-
-            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                2
-            </button>
-
-            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                3
-            </button>
-
-            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                <i class="ri-arrow-right-s-line"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
+                </div>
             </div>
 
 

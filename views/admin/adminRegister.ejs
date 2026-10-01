@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Register - Quick Hire</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="w-full min-h-screen relative bg-cover bg-center bg-no-repeat flex items-center justify-center"
+        style="background-image: url('/images/WhatsApp Image 2026-07-09 at 3.40.54 PM.jpeg');">
+
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 bg-white/80"></div>
+
+
+        <div class="maincontainer relative flex w-full justify-center py-8 px-4 z-50">
+
+            <div
+                class="formbox bg-white rounded-3xl shadow-2xl w-full max-w-md md:max-w-lg lg:max-w-xl p-8 sm:p-10 md:p-12 overflow-hidden">
+
+                <!-- Logo Section -->
+                <div
+                    class="slider bg-gradient-to-br from-blue-600 to-cyan-400 text-white flex flex-col items-center justify-center text-center px-4 py-6 sm:py-8 rounded-2xl">
+
+                    <div class="flex items-center justify-center gap-2">
+
+                        <img class="h-8 sm:h-10 md:h-12 flex-shrink-0"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                            alt="Quick Hire Logo">
+
+                        <h5 class="text-2xl sm:text-3xl md:text-4xl font-semibold">
+                            Quick <span class="text-yellow-300">Hire</span>
+                        </h5>
+
+                    </div>
+
+                    <h2 class="text-sm sm:text-lg md:text-xl mt-3 px-2">
+                        Find the best jobs. Hire the best talent.
+                    </h2>
+
+                </div>
+
+
+                <!-- Register Form -->
+                <form action="/admin/register" method="post"
+                    class="formfill flex flex-col gap-5 sm:gap-6 w-full items-center">
+
+                    <h1 class="sm:text-3xl text-2xl font-bold text-gray-800 mt-5">
+                        Admin Register
+                    </h1>
+
+                    <p class="text-gray-500 text-center text-sm sm:text-base max-w-sm">
+                        Create an administrator account to manage
+                        <br>
+                        the Quick Hire platform.
+                    </p>
+
+
+                    <!-- Full Name -->
+                    <div class="relative sm:w-4/5 w-full">
+
+                        <i
+                            class="ri-user-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                        </i>
+
+                        <input
+                            class="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                            type="text"
+                            placeholder="Full Name"
+                            name="fullName"
+                            required>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="relative sm:w-4/5 w-full">
+
+                        <i
+                            class="ri-mail-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                        </i>
+
+                        <input
+                            class="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                            type="email"
+                            placeholder="Email Address"
+                            name="adminEmail"
+                            required>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="relative sm:w-4/5 w-full">
+
+                        <i
+                            class="ri-lock-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                        </i>
+
+                        <input
+                            class="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            required>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="relative sm:w-4/5 w-full">
+
+                        <i
+                            class="ri-lock-password-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
+                        </i>
+
+                        <input
+                            class="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                            type="password"
+                            placeholder="Confirm Password"
+                            name="confirmPassword"
+                            required>
+
+                    </div>
+
+
+                    <!-- Register Button -->
+                    <input
+                        class="bg-blue-600 sm:w-4/5 w-full hover:bg-blue-700 text-white py-3 font-semibold transition cursor-pointer rounded-xl"
+                        type="submit"
+                        value="Create Admin Account">
+
+
+                    <!-- Divider -->
+                    <div class="flex items-center gap-3 w-full sm:max-w-[80%]">
+
+                        <div class="flex-1 h-px bg-gray-300"></div>
+
+                        <div
+                            class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center bg-white shadow-sm">
+
+                            <i class="ri-shield-user-line text-xl text-gray-500"></i>
+
+                        </div>
+
+                        <div class="flex-1 h-px bg-gray-300"></div>
+
+                    </div>
+
+
+                    <!-- Login Link -->
+                    <p class="text-center text-gray-500 mt-1 text-sm sm:text-base">
+                        Already have an admin account?
+                        <a href="/admin/adminLogin"
+                            class="text-blue-600 font-semibold hover:text-blue-700">
+                            Sign In
+                        </a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -52,8 +52,7 @@
                     <ul class=" space-y-3">
                         <!-- yha pee user dashboard menu link attach krne h -->
 
-                        <li
-                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1">
+                        <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100  mb-1">
                             <a href="">
                                 <i class="ri-home-3-line text-xl"></i>
                                 <span>Dashboard</span>
@@ -77,7 +76,8 @@
                         </li>
 
 
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600 ">
+                        <li
+                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer  bg-blue-100 text-blue-600 ">
                             <a href="">
                                 <i class="ri-briefcase-4-line text-xl"></i>
                                 <span>Jobs</span>
@@ -278,253 +278,138 @@
 
                             <tbody>
 
-                                <!-- Row 1 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
+                                <% if (jobs && jobs.length> 0) { %>
+
+                                    <% jobs.forEach(job=> { %>
+
+                                        <tr class="border-b hover:bg-gray-50 transition">
+
+                                            <!-- Job Title -->
+                                            <td class="px-6 py-5 font-medium">
+                                                <%= job.jobTitle %>
+                                            </td>
 
 
-                                    <td class="px-6 py-5 font-medium">Frontend Developer</td>
-                                    <td class="px-6 py-5 text-gray-600">TechNova Solutions</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Noida,UP</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">IT
-                                            & Software</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
-
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
-
-                                    <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
-
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <!-- Row 2 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">Backend Developer</td>
-                                    <td class="px-6 py-5 text-gray-600">InnovateX Labs</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Banglore,KA</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">IT
-                                            & Software</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">13</td>
-
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Pending
-                                        </span>
-                                    </td>
-
-                                    <td class="px-6 py-5 text-gray-600">
-                                        10 May 2026
-                                    </td>
-
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
-
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <!-- Row 3 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">UI/UX Designer</td>
-                                    <td class="px-6 py-5 text-gray-600">Bright Future Pvt ltd</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Mumbai,MH</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">
-                                            Design</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">20</td>
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Expired
-                                        </span>
-                                    </td>
-
-                                    <td class="px-6 py-5 text-gray-600">
-                                        07 May 2026
-                                    </td>
-
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
-
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
-
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
-                                </tr>
+                                            <!-- Company -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <%= job.company ? job.company.companyName : "N/A" %>
+                                            </td>
 
 
-                                <!-- Row 4 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">Data Analyst</td>
-                                    <td class="px-6 py-5 text-gray-600">Alpha Tech</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Chennai,TN</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-pink-100 text-pink-500 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">
-                                            Analytics</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
+                                            <!-- Location -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <div class="flex items-center gap-2">
+                                                    <i class="ri-map-pin-line"></i>
+                                                    <span>
+                                                        <%= job.companyLocation || "N/A" %>
+                                                    </span>
+                                                </div>
+                                            </td>
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Active
-                                        </span>
-                                    </td>
 
-                                    <td class="px-6 py-5 text-gray-600">
-                                        08 May 2026
-                                    </td>
+                                            <!-- Category -->
+                                            <td class="px-6 py-5 text-gray-600">
+                                                <span
+                                                    class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">
+                                                    <%= job.jobCategory || "N/A" %>
+                                                </span>
+                                            </td>
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                                            <!-- Applicants -->
+                                            <td class="px-6 py-5 text-gray-600 font-medium">
+                                                <%= job.applicantCount || 0 %>
+                                            </td>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
 
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                                            <!-- Status -->
+                                            <td class="px-6 py-5">
 
-                                        </div>
-                                    </td>
-                                </tr>
+                                                <% if (job.status==="Expired" ) { %>
 
-                                <!-- Row 5 -->
-                                <tr class="border-b hover:bg-gray-50 transition">
-                                    <td class="px-6 py-5 font-medium">HR Executive</td>
-                                    <td class="px-6 py-5 text-gray-600">DreamWorks pvt.ltd</td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <div class="flex justify-center gap-2">
-                                            <i class="ri-map-pin-line"></i>
-                                            <span>Kolkata,WB</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600">
-                                        <span
-                                            class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium whitespace-nowrap text-sm">
-                                            Human resources</span>
-                                    </td>
-                                    <td class="px-6 py-5 text-gray-600 font-medium">23</td>
+                                                    <span
+                                                        class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                        Expired
+                                                    </span>
 
-                                    <td class="px-6 py-5">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                            Pending
-                                        </span>
-                                    </td>
+                                                    <% } else if (job.status==="Draft" ) { %>
 
-                                    <td class="px-6 py-5 text-gray-600">
-                                        12 May 2026
-                                    </td>
+                                                        <span
+                                                            class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                            Draft
+                                                        </span>
 
-                                    <td class="px-6 py-5">
-                                        <div class="flex justify-center gap-2">
+                                                        <% } else { %>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100">
-                                                <i class="ri-eye-line"></i>
-                                            </button>
+                                                            <span
+                                                                class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                                Active
+                                                            </span>
 
-                                            <button
-                                                class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100">
-                                                <i class="ri-pencil-line"></i>
-                                            </button>
+                                                            <% } %>
 
-                                            <button class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100">
-                                                <i class="ri-delete-bin-6-line"></i>
-                                            </button>
+                                            </td>
 
-                                        </div>
-                                    </td>
-                                </tr>
+
+                                            <!-- Posted On -->
+                                            <td class="px-6 py-5 text-gray-600">
+
+                                                <%= new Date(job.createdAt).toLocaleDateString("en-IN", { day: "2-digit"
+                                                    , month: "short" , year: "numeric" }) %>
+
+                                            </td>
+
+
+                                            <!-- Actions -->
+                                            <td class="px-6 py-5">
+
+                                                <div class="flex justify-center gap-2">
+
+                                                    <!-- View -->
+                                                    <a href="/admin/job/<%= job._id %>"
+                                                        class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition flex items-center justify-center">
+
+                                                        <i class="ri-eye-line"></i>
+
+                                                    </a>
+
+
+                                                    <!-- Edit -->
+                                                    <a href="/admin/edit-job/<%= job._id %>"
+                                                        class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition flex items-center justify-center">
+
+                                                        <i class="ri-pencil-line"></i>
+
+                                                    </a>
+
+
+                                                    <!-- Delete -->
+                                                    <a href="/admin/delete-job/<%= job._id %>"
+                                                        class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition flex items-center justify-center">
+
+                                                        <i class="ri-delete-bin-6-line"></i>
+
+                                                    </a>
+
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <% }) %>
+
+                                            <% } else { %>
+
+                                                <tr>
+
+                                                    <td colspan="8" class="py-12 text-center text-gray-500">
+                                                        No jobs posted yet.
+                                                    </td>
+
+                                                </tr>
+
+                                                <% } %>
 
                             </tbody>
 

@@ -1,0 +1,561 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin - My Profile</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+
+<body class="overflow-x-hidden">
+
+    <div class="w-full min-h-screen relative bg-gray-50">
+
+        <!-- ================= NAVBAR ================= -->
+        <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0 left-0 z-30">
+
+            <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+
+                <div class="menubtn cursor-pointer">
+                    <i class="ri-menu-fill text-2xl"></i>
+                </div>
+
+                <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">
+                    Dashboard
+                </h2>
+
+            </div>
+
+            <div class="flex items-center gap-6">
+
+                <a href="">
+                    <i class="ri-notification-3-line text-2xl"></i>
+                </a>
+
+                <div class="flex items-center gap-2">
+
+                        <div
+                            class="h-11 w-11 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center">
+
+                            <% if (admin?.profileImage &&
+                                admin.profileImage !== "default-admin.png") { %>
+
+                                <img src="/admin/admin-profile"
+                                    alt="Admin Profile"
+                                    class="w-full h-full object-cover">
+
+                                <% } else { %>
+
+                                    <i class="ri-admin-fill text-2xl text-blue-500"></i>
+
+                                    <% } %>
+
+                        </div>
+
+                        <h2 class="text-xl font-semibold hidden md:block text-gray-800">
+                           Admin
+                        </h2>
+
+                        <a href="">
+                            <i class="ri-arrow-down-wide-line text-gray-600"></i>
+                        </a>
+
+                    </div>
+
+            </div>
+
+        </nav>
+
+
+        <!-- ================= SIDEBAR ================= -->
+        <div
+            class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-[60] -translate-x-full transition-transform duration-300 p-4">
+
+            <div class="flex items-center ">
+                <img class="h-8"
+                    src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                    alt="">
+                <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+            </div>
+
+            <div class="cross flex justify-end mb-3">
+                <i
+                    class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+            </div>
+            <div class="list">
+                <ul class=" space-y-3">
+                    <!-- yha pee user dashboard menu link attach krne h -->
+
+                    <li
+                        class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1">
+                        <a href="/admin/adminDashboard">
+                            <i class="ri-home-3-line text-xl"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                        <a href="/admin/adminUserDashboard">
+                            <i class="ri-group-line text-xl"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <a href="/admin/adminCompanyDashboard">
+                            <i class="ri-building-2-line text-xl"></i>
+                            <span>Companies</span>
+                        </a>
+                    </li>
+
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <a href="/admin/adminJobDashboard">
+                            <i class="ri-briefcase-4-line text-xl"></i>
+                            <span>Jobs</span>
+                        </a>
+                    </li>
+
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <a href="">
+                            <i class="ri-file-list-3-line text-xl"></i>
+                            <span>Applications</span>
+                        </a>
+                    </li>
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600  ">
+                        <a href="/admin/adminProfilePage">
+                            <i class="ri-group-line text-xl"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+
+                    <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                        <a href="/admin/logout">
+                            <i class="ri-logout-box-r-line text-xl"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- ================= OVERLAY ================= -->
+
+        <div class="overlay fixed inset-0 bg-black/30 hidden z-40"></div>
+
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="relative z-0 pt-24 pb-12 px-6 md:px-8 lg:px-12">
+
+            <!-- FULL WIDTH CONTAINER -->
+            <div class="w-full max-w-none mx-auto">
+
+                <!-- ================= HEADING ================= -->
+
+                <div class="mb-7">
+
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
+                        My Profile
+                    </h1>
+
+                    <p class="text-gray-500 mt-2">
+                        View your administrator account details
+                    </p>
+
+                </div>
+
+
+                <!-- ================= PROFILE CARD ================= -->
+
+                <div class="w-full bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+
+
+                    <!-- ================= TOP PROFILE ================= -->
+
+                    <div class="relative bg-gradient-to-r from-blue-500 to-blue-400 px-6 md:px-8 py-8">
+
+                        <div class="flex flex-col sm:flex-row items-center sm:items-center gap-5">
+
+                            <!-- Profile Image -->
+
+                            <div
+                                class="w-28 h-28 rounded-2xl overflow-hidden bg-white border-4 border-white/80 shadow-lg flex-shrink-0">
+
+                                <% if (admin?.profileImage?.data) { %>
+
+                                    <img src="/admin/admin-profile" alt="Admin Profile"
+                                        class="w-full h-full object-cover">
+
+                                    <% } else { %>
+
+                                        <div class="w-full h-full flex items-center justify-center bg-blue-100">
+
+                                            <i class="ri-admin-fill text-5xl text-blue-500"></i>
+
+                                        </div>
+
+                                        <% } %>
+
+                            </div>
+
+
+                            <!-- Name -->
+
+                            <div class="text-center sm:text-left text-white">
+
+                                <h2 class="text-2xl md:text-3xl font-bold">
+                                    <%= admin.fullName %>
+                                </h2>
+
+                                <p class="text-blue-100 mt-1 flex items-center justify-center sm:justify-start gap-2">
+
+                                    <i class="ri-shield-user-line"></i>
+
+                                    Administrator
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- Edit -->
+
+                            <div class="sm:ml-auto">
+
+                                <a href="/admin/adminProfileEdit"
+                                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-blue-600 rounded-xl font-medium hover:bg-blue-50 transition shadow-sm">
+
+                                    <i class="ri-edit-line"></i>
+
+                                    Edit Profile
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= DETAILS ================= -->
+
+                    <div class="p-6 md:p-8">
+
+                        <div class="flex items-center gap-3 mb-6">
+
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
+
+                                <i class="ri-information-line text-xl text-blue-600"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h2 class="text-lg font-semibold text-gray-800">
+                                    Personal Information
+                                </h2>
+
+                                <p class="text-sm text-gray-500">
+                                    Your registered account details
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Details Grid -->
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                            <!-- Full Name -->
+
+                            <div
+                                class="p-5 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-blue-50/40 transition">
+
+                                <div class="flex items-center gap-3 mb-3">
+
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
+
+                                        <i class="ri-user-3-line text-blue-600 text-lg"></i>
+
+                                    </div>
+
+                                    <p class="text-sm text-gray-500">
+                                        Full Name
+                                    </p>
+
+                                </div>
+
+                                <h3 class="text-lg font-semibold text-gray-800 break-words">
+                                    <%= admin.fullName %>
+                                </h3>
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div
+                                class="p-5 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-blue-50/40 transition">
+
+                                <div class="flex items-center gap-3 mb-3">
+
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
+
+                                        <i class="ri-mail-line text-blue-600 text-lg"></i>
+
+                                    </div>
+
+                                    <p class="text-sm text-gray-500">
+                                        Email Address
+                                    </p>
+
+                                </div>
+
+                                <h3 class="text-lg font-semibold text-gray-800 break-all">
+                                    <%= admin.adminEmail %>
+                                </h3>
+
+                            </div>
+
+
+                            <!-- Role -->
+
+                            <div
+                                class="p-5 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-blue-50/40 transition">
+
+                                <div class="flex items-center gap-3 mb-3">
+
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
+
+                                        <i class="ri-shield-user-line text-blue-600 text-lg"></i>
+
+                                    </div>
+
+                                    <p class="text-sm text-gray-500">
+                                        Account Role
+                                    </p>
+
+                                </div>
+
+                                <span
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
+
+                                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+
+                                    <%= admin.role %>
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- Status -->
+
+                            <div
+                                class="p-5 rounded-2xl border border-gray-100 bg-gray-50 hover:bg-green-50/40 transition">
+
+                                <div class="flex items-center gap-3 mb-3">
+
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
+
+                                        <i class="ri-checkbox-circle-line text-green-600 text-lg"></i>
+
+                                    </div>
+
+                                    <p class="text-sm text-gray-500">
+                                        Account Status
+                                    </p>
+
+                                </div>
+
+                                <% if (admin.isActive) { %>
+
+                                    <span
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
+
+                                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+
+                                        Active
+
+                                    </span>
+
+                                    <% } else { %>
+
+                                        <span
+                                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-100 text-red-700 text-sm font-semibold">
+
+                                            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+
+                                            Inactive
+
+                                        </span>
+
+                                        <% } %>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= ACCOUNT DETAILS ================= -->
+
+                        <div class="mt-8 pt-7 border-t border-gray-100">
+
+                            <div class="flex items-center gap-3 mb-5">
+
+                                <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
+
+                                    <i class="ri-time-line text-xl text-gray-600"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2 class="text-lg font-semibold text-gray-800">
+                                        Account Details
+                                    </h2>
+
+                                    <p class="text-sm text-gray-500">
+                                        Account activity information
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                                <!-- Created -->
+
+                                <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
+
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+
+                                        <i class="ri-calendar-check-line text-gray-600"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <p class="text-xs text-gray-500">
+                                            Account Created
+                                        </p>
+
+                                        <p class="text-sm font-semibold text-gray-800 mt-1">
+
+                                            <%= admin.createdAt ? new Date(admin.createdAt).toLocaleDateString('en-IN',
+                                                { day: '2-digit' , month: 'short' , year: 'numeric' }) : 'N/A' %>
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Updated -->
+
+                                <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
+
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+
+                                        <i class="ri-refresh-line text-gray-600"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <p class="text-xs text-gray-500">
+                                            Last Updated
+                                        </p>
+
+                                        <p class="text-sm font-semibold text-gray-800 mt-1">
+
+                                            <%= admin.updatedAt ? new Date(admin.updatedAt).toLocaleDateString('en-IN',
+                                                { day: '2-digit' , month: 'short' , year: 'numeric' }) : 'N/A' %>
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const menuBtn = document.querySelector(".menubtn");
+        const sidebar = document.querySelector(".sidebar");
+        const cross = document.querySelector(".cross");
+        const overlay = document.querySelector(".overlay");
+
+
+        menuBtn.addEventListener("click", () => {
+
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+
+        });
+
+
+        cross.addEventListener("click", () => {
+
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+
+        });
+
+
+        overlay.addEventListener("click", () => {
+
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+
+        });
+
+    </script>
+
+
+
+</html>

@@ -24,19 +24,16 @@
                 </div>
                 <div class="flex items-center gap-6">
                     <!-- notification k ley route bnana h -->
-                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                    <a href="/admin/adminNotification"><i class="ri-notification-3-line text-2xl"></i>
                     </a>
-                     <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2">
 
                         <div
                             class="h-11 w-11 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center">
 
-                            <% if (admin?.profileImage &&
-                                admin.profileImage !== "default-admin.png") { %>
+                            <% if (admin && admin.profileImage && admin.profileImage.data) { %>
 
-                                <img src="/admin/admin-profile"
-                                    alt="Admin Profile"
-                                    class="w-full h-full object-cover">
+                                <img src="/admin/admin-profile" alt="Admin Profile" class="w-full h-full object-cover">
 
                                 <% } else { %>
 
@@ -50,7 +47,7 @@
                             Admin
                         </h2>
 
-                        <a href="">
+                        <a href="/admin/adminProfilePage">
                             <i class="ri-arrow-down-wide-line text-gray-600"></i>
                         </a>
 
@@ -116,7 +113,7 @@
                             </a>
                         </li>
 
-                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
                             <a href="/admin/adminProfilePage">
                                 <i class="ri-group-line text-xl"></i>
                                 <span>My Profile</span>
@@ -158,7 +155,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Users</h2>
-                                <p class="text-4xl font-bold mt-1">123</p>
+                                <p class="text-4xl font-bold mt-1">
+                                     <%= totalUsers %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -180,7 +179,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Companies</h2>
-                                <p class="text-4xl font-bold mt-1">38</p>
+                                <p class="text-4xl font-bold mt-1">
+                                     <%=  totalCompanies %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -201,7 +202,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Jobs</h2>
-                                <p class="text-4xl font-bold mt-1">79</p>
+                                <p class="text-4xl font-bold mt-1">
+                                     <%=  totalJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -222,7 +225,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Applications</h2>
-                                <p class="text-4xl font-bold mt-1">223</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= totalApplications %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3">

@@ -9,161 +9,169 @@ const userModel = require('../models/user-model');
 const applicationModel = require('../models/application-model');
 const jobModel = require('../models/job-model');
 const companyModel = require('../models/company-model');
+const notificationModel = require('../models/notification-model');
 
 const multer = require('multer');
 // const jobModel = require('../models/job-model');
 const storage = multer.memoryStorage();
-const upload = multer({storage});
+const upload = multer({ storage });
 
 // -----------------login--------
 router.get("/login", (req, res) => {
-   res.render("users/userLogin");
+    res.render("users/userLogin");
 });
 
 
 router.post("/login", async (req, res) => {
-   let { email, password } = req.body;
+    let { email, password } = req.body;
 
-   let user = await userModel.findOne({ email });
-   if (!user) return res.status(500).send("Something went wrong");
+    let user = await userModel.findOne({ email });
+    if (!user) return res.status(500).send("Something went wrong");
 
-   bcrypt.compare(password, user.password, function (err, result) {
+    bcrypt.compare(password, user.password, function (err, result) {
 
-      if (result) {
-         let token = jwt.sign({ email: email ,userid: user._id}, process.env.USER_JWT_SECRET);
-         res.cookie("token", token);
-        return res.redirect("/users/userDashboard");
+        if (result) {
+            let token = jwt.sign({ email: email, userid: user._id }, process.env.USER_JWT_SECRET);
+            res.cookie("token", token);
+            return res.redirect("/users/userDashboard");
 
-      }
-      res.status(401).send("Something went wrong")
-   })
+        }
+        res.status(401).send("Something went wrong")
+    })
 });
 
 // ----------register--------------
 router.get("/register", (req, res) => {
-   res.render("users/userRegister")
+    res.render("users/userRegister")
 });
 
 router.post("/register", async (req, res) => {
-   let { email, fullname, password, mobile } = req.body;
+    let { email, fullname, password, mobile } = req.body;
 
-   let user = await userModel.findOne({ email });
-   if (user) return res.status(500).send("Account already exists");
+    let user = await userModel.findOne({ email });
+    if (user) return res.status(500).send("Account already exists");
 
-   bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, async (err, hash) => {
-         let createdUser = await userModel.create({
-            fullname,
-            email,
-            mobile,
-            password: hash
-         });
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, async (err, hash) => {
+            let createdUser = await userModel.create({
+                fullname,
+                email,
+                mobile,
+                password: hash
+            });
 
+            await notificationModel.create({
+                title: "New User Registered",
+                message: `${ createdUser.fullname} has registered on Quick Hire.`,
+                type: "User",
+                icon: "ri-user-add-line",
+                isRead: false
+            });
 
-         let token = jwt.sign({ email: email, userid: createdUser._id }, process.env.USER_JWT_SECRET);
-         res.cookie("token", token);
-         res.redirect("/users/userDashboard")
-      })
-   })
+            let token = jwt.sign({ email: email, userid: createdUser._id }, process.env.USER_JWT_SECRET);
+            res.cookie("token", token);
+            res.redirect("/users/userDashboard")
+        })
+    })
 
 })
 
 // -------------- USER DASHBOARD -------------------------
-router.get("/userDashboard",isLoggedIn, async (req,res)=>{
-   res.render("users/userDashboard");
+router.get("/userDashboard", isLoggedIn, async (req, res) => {
+    res.render("users/userDashboard");
 });
 
 //---------------userprofile -------------------
-router.get("/userProfile",isLoggedIn, (req, res) => {
-   res.render("users/userProfile");
+router.get("/userProfile", isLoggedIn, (req, res) => {
+    res.render("users/userProfile");
 });
 
 // ----------------edit profile -------------------------
-router.get("/ProfileEdit",isLoggedIn, (req, res) => {
-   res.render("users/userProfileEdit");
+router.get("/ProfileEdit", isLoggedIn, (req, res) => {
+    res.render("users/userProfileEdit");
 });
 
 // user s edit page k infooooo
-router.post("/ProfileEdit",isLoggedIn,upload.single("profileImage"),async (req, res) => {
+router.post("/ProfileEdit", isLoggedIn, upload.single("profileImage"), async (req, res) => {
 
-        let {
-            fullname,
-            username,
-            email,
-            mobile,
-            dob,
-            gender,
-            address,
-            city,
-            state,
-            pincode,
-            skills,
-            aboutme
-        } = req.body;
-
-
-        let updateData = {
-            fullname,
-            username,
-            email,
-            mobile,
-            dob,
-            gender,
-            address,
-            city,
-            state,
-            pincode,
-            aboutme
-        };
+    let {
+        fullname,
+        username,
+        email,
+        mobile,
+        dob,
+        gender,
+        address,
+        city,
+        state,
+        pincode,
+        skills,
+        aboutme
+    } = req.body;
 
 
-        // ================= SKILLS =================
-
-        if (req.body.skills !== undefined) {
-
-            updateData.skills = req.body.skills
-                .split(",")
-                .map(skill => skill.trim())
-                .filter(skill => skill !== "");
-
-        }
-
-
-        // ================= PROFILE IMAGE =================
-
-        if (req.file) {
-
-            updateData.profileImage = {
-                data: req.file.buffer,
-                contentType: req.file.mimetype
-            };
-
-        }
+    let updateData = {
+        fullname,
+        username,
+        email,
+        mobile,
+        dob,
+        gender,
+        address,
+        city,
+        state,
+        pincode,
+        aboutme
+    };
 
 
-        // ================= UPDATE USER =================
+    // ================= SKILLS =================
 
-        await userModel.findByIdAndUpdate(
-            req.user._id,
-            updateData,
-            { new: true }
-        );
+    if (req.body.skills !== undefined) {
 
-
-        res.redirect("/users/userProfile");
+        updateData.skills = req.body.skills
+            .split(",")
+            .map(skill => skill.trim())
+            .filter(skill => skill !== "");
 
     }
+
+
+    // ================= PROFILE IMAGE =================
+
+    if (req.file) {
+
+        updateData.profileImage = {
+            data: req.file.buffer,
+            contentType: req.file.mimetype
+        };
+
+    }
+
+
+    // ================= UPDATE USER =================
+
+    await userModel.findByIdAndUpdate(
+        req.user._id,
+        updateData,
+        { new: true }
+    );
+
+
+    res.redirect("/users/userProfile");
+
+}
 );
 
 // profile image route multer wla
 router.get("/profile-image", isLoggedIn, async (req, res) => {
     let user = await userModel.findById(req.user._id);
 
-   //      console.log("USER:", user);
-   //  console.log("PROFILE IMAGE:", user.profileImage);
-   //  console.log("IMAGE TYPE:", user.profileImage?.contentType);
-   //  console.log("IMAGE DATA EXISTS:", !!user.profileImage?.data);
-    
+    //      console.log("USER:", user);
+    //  console.log("PROFILE IMAGE:", user.profileImage);
+    //  console.log("IMAGE TYPE:", user.profileImage?.contentType);
+    //  console.log("IMAGE DATA EXISTS:", !!user.profileImage?.data);
+
     if (!user.profileImage || !user.profileImage.data) {
         return res.status(404).send("Image not found");
     }
@@ -174,29 +182,29 @@ router.get("/profile-image", isLoggedIn, async (req, res) => {
 
 
 //_------------------ BROWSE JOBS---------------------------------------
-router.get("/userBrowseJobs",isLoggedIn,async (req, res) => {
+router.get("/userBrowseJobs", isLoggedIn, async (req, res) => {
 
     const { type } = req.query;
-    let filter = {status:"Active"};
+    let filter = { status: "Active" };
 
     // if(type){
     //     filter.jobType = type;
     // }
 
     // job type 
-    if(type === "Full Time" || type === "Part Time" || type === "Internship"){
+    if (type === "Full Time" || type === "Part Time" || type === "Internship") {
         filter.jobType = type;
     }
 
     // Worrk modde 
-    if(type === "Remote" || type === "Hybrid" || type === "On Site" ){
+    if (type === "Remote" || type === "Hybrid" || type === "On Site") {
         filter.workMode = type;
     }
 
     const jobs = await jobModel.find(filter)
-            .populate("company")
-            .sort({createdAt:-1});
-   res.render("users/userBrowseJobs",{jobs, selectedType : type || "All"});
+        .populate("company")
+        .sort({ createdAt: -1 });
+    res.render("users/userBrowseJobs", { jobs, selectedType: type || "All" });
 });
 
 //-----------------MY APPLICATIONS---------------------------
@@ -231,7 +239,7 @@ router.get("/userMyApplications", isLoggedIn, async (req, res) => {
 
 // ================= JOB DETAILS ROUTE =================
 // :id ke through particular job ki ID receive hogi
- router.get("/userJobDetails/:id", isLoggedIn, async (req, res) => {
+router.get("/userJobDetails/:id", isLoggedIn, async (req, res) => {
 
     // URL se job ki ID lekar MongoDB se job find kar rahe hain
     // populate("company") se us job ki company ki complete information bhi milegi
@@ -278,7 +286,7 @@ router.get("/userMyApplications", isLoggedIn, async (req, res) => {
         postedTime = "Just now";
 
 
-    // Agar job 1 hour se kam purani hai
+        // Agar job 1 hour se kam purani hai
     } else if (diffInSeconds < 3600) {
 
         // Seconds ko minutes me convert kar rahe hain
@@ -289,7 +297,7 @@ router.get("/userMyApplications", isLoggedIn, async (req, res) => {
         postedTime = `${minutes} ${minutes === 1 ? "minute" : "minutes"} ago`;
 
 
-    // Agar job 24 hours se kam purani hai
+        // Agar job 24 hours se kam purani hai
     } else if (diffInSeconds < 86400) {
 
         // Seconds ko hours me convert kar rahe hain
@@ -300,7 +308,7 @@ router.get("/userMyApplications", isLoggedIn, async (req, res) => {
         postedTime = `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
 
 
-    // Agar job 30 days se kam purani hai
+        // Agar job 30 days se kam purani hai
     } else if (diffInSeconds < 2592000) {
 
         // Seconds ko days me convert kar rahe hain
@@ -311,7 +319,7 @@ router.get("/userMyApplications", isLoggedIn, async (req, res) => {
         postedTime = `${days} ${days === 1 ? "day" : "days"} ago`;
 
 
-    // Agar job 30 days se bhi purani hai
+        // Agar job 30 days se bhi purani hai
     } else {
 
         // Exact date show karenge
@@ -363,77 +371,77 @@ router.get("/userApplyJobs/:id", isLoggedIn, async (req, res) => {
 
 });
 
-router.post("/userApplyJobs",isLoggedIn,upload.single("resume"), async (req, res) => {
-   const job =await jobModel.findById(req.body.jobId);
+router.post("/userApplyJobs", isLoggedIn, upload.single("resume"), async (req, res) => {
+    const job = await jobModel.findById(req.body.jobId);
 
-   if(!job){
-    // return res.status(404).send("Job not found");
-    return res.status(404).json({success: false, message: "job not found"});
+    if (!job) {
+        // return res.status(404).send("Job not found");
+        return res.status(404).json({ success: false, message: "job not found" });
 
-   }
+    }
 
-   const alreadyApplied = await applicationModel.findOne({applicant:req.user._id, job: job._id});
-   if(alreadyApplied){
-    // return res.send("You have already applied for this job");
-     return res.status(400).json({
+    const alreadyApplied = await applicationModel.findOne({ applicant: req.user._id, job: job._id });
+    if (alreadyApplied) {
+        // return res.send("You have already applied for this job");
+        return res.status(400).json({
             success: false,
             message: "You have already applied for this job"
         });
-   }
+    }
 
-        let {
+    let {
 
-    linkedin,
-    experienceLevel,
-    totalExperience,
-    previousJobTitle,
-    previousCompany,
-    employmentType,
-    coverLetter,
-    expectedSalary,
-    noticePeriod,
-    relocate,
-    availability,
-    portfolio
-  
-    
+        linkedin,
+        experienceLevel,
+        totalExperience,
+        previousJobTitle,
+        previousCompany,
+        employmentType,
+        coverLetter,
+        expectedSalary,
+        noticePeriod,
+        relocate,
+        availability,
+        portfolio
+
+
     } = req.body;
 
     let application = new applicationModel({
-    
+
         applicant: req.user._id,
         job: job._id,
-      company: job.company,
+        company: job.company,
 
-    linkedin,
-    experienceLevel,
-    totalExperience,
-    previousJobTitle,
-    previousCompany,
-    employmentType,
-    coverLetter,
-    expectedSalary,
-    noticePeriod,
-    relocate,
-    availability,
-    portfolio,
-    appliedAt: new Date()
-  
+        linkedin,
+        experienceLevel,
+        totalExperience,
+        previousJobTitle,
+        previousCompany,
+        employmentType,
+        coverLetter,
+        expectedSalary,
+        noticePeriod,
+        relocate,
+        availability,
+        portfolio,
+        appliedAt: new Date()
 
-        });
 
-       if (!req.file) {
+    });
+
+    if (!req.file) {
         // return res.status(400).send("Please upload your resume")
-         return res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: "Please upload your resume"
         });
-       }
+    }
     let file = req.file;
 
     if (file.mimetype !== "application/pdf") {
         // return res.status(400).send("Only PDF resume is allowed");
-         return res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: "Only PDF resume is allowed"
         });
@@ -445,9 +453,19 @@ router.post("/userApplyJobs",isLoggedIn,upload.single("resume"), async (req, res
         originalName: file.originalname
     };
 
-    
-        await application.save();
-          res.json({
+
+    await application.save();
+
+      // Create admin notification
+        await notificationModel.create({
+            title: "New Application Received",
+            message: `A new application has been received for ${job.jobTitle}.`,
+            type: "Application",
+            icon: "ri-file-list-3-line",
+            isRead: false
+        });
+        
+    res.json({
         success: true,
         message: "Application submitted successfully"
     });
@@ -521,9 +539,9 @@ router.get("/company-profile/:companyId", isLoggedIn, async (req, res) => {
 });
 
 // ------------logout------------
-router.get("/logout",(req,res)=>{
-   res.cookie("token","");
-   res.redirect("/login");
+router.get("/logout", (req, res) => {
+    res.cookie("token", "");
+    res.redirect("/login");
 })
 
 // *****************FUNCTION *****************************

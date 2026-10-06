@@ -30,12 +30,9 @@
                         <div
                             class="h-11 w-11 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center">
 
-                            <% if (admin?.profileImage &&
-                                admin.profileImage !== "default-admin.png") { %>
+                            <% if (admin?.profileImage && admin.profileImage !=="default-admin.png" ) { %>
 
-                                <img src="/admin/admin-profile"
-                                    alt="Admin Profile"
-                                    class="w-full h-full object-cover">
+                                <img src="/admin/admin-profile" alt="Admin Profile" class="w-full h-full object-cover">
 
                                 <% } else { %>
 
@@ -109,7 +106,7 @@
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="">
+                            <a href="/admin/adminApplications">
                                 <i class="ri-file-list-3-line text-xl"></i>
                                 <span>Applications</span>
                             </a>
@@ -158,7 +155,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Total Jobs</h2>
-                                <p class="text-4xl font-bold mt-1">63</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= totalJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -180,7 +179,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Active Jobs</h2>
-                                <p class="text-4xl font-bold mt-1">38</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= activeJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -201,7 +202,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Expired Jobs</h2>
-                                <p class="text-4xl font-bold mt-1">12</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= expiredJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -222,7 +225,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Paused Jobs</h2>
-                                <p class="text-4xl font-bold mt-1"> 10</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= pausedJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3">
@@ -402,22 +407,14 @@
                                                     </a>
 
 
-                                                    <!-- Edit -->
-                                                    <a href="/admin/edit-job/<%= job._id %>"
-                                                        class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition flex items-center justify-center">
 
-                                                        <i class="ri-pencil-line"></i>
-
-                                                    </a>
-
-
-                                                    <!-- Delete -->
-                                                    <a href="/admin/delete-job/<%= job._id %>"
+                                                    <button
+                                                        onclick="openDeleteModal('<%= job._id %>', '<%= job.jobTitle %>')"
                                                         class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition flex items-center justify-center">
 
                                                         <i class="ri-delete-bin-6-line"></i>
 
-                                                    </a>
+                                                    </button>
 
                                                 </div>
 
@@ -442,6 +439,57 @@
                             </tbody>
 
                         </table>
+
+                        <!-- Delete Confirmation Modal -->
+<div id="deleteModal"
+    class="fixed inset-0 bg-black/40 hidden items-center justify-center z-[100]">
+
+    <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-md p-6">
+
+        <!-- Icon -->
+        <div class="w-14 h-14 mx-auto rounded-full bg-red-100
+                    flex items-center justify-center mb-4">
+
+            <i class="ri-delete-bin-6-line text-3xl text-red-600"></i>
+
+        </div>
+
+        <!-- Heading -->
+        <h2 class="text-xl font-bold text-gray-800 text-center">
+            Delete Job?
+        </h2>
+
+        <!-- Message -->
+        <p class="text-gray-500 text-center mt-2">
+            Are you sure you want to delete
+            <span id="jobName" class="font-semibold text-gray-700"></span>?
+        </p>
+
+        <p class="text-sm text-red-500 text-center mt-2">
+            This action cannot be undone.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex justify-center gap-3 mt-6">
+
+            <button
+                onclick="closeDeleteModal()"
+                class="px-5 py-2.5 rounded-xl border border-gray-300
+                       text-gray-700 hover:bg-gray-100 transition">
+                Cancel
+            </button>
+
+            <button
+                onclick="confirmDelete()"
+                class="px-5 py-2.5 rounded-xl bg-red-600 text-white
+                       hover:bg-red-700 transition">
+                Yes, Delete
+            </button>
+
+        </div>
+
+    </div>
+</div>
 
                     </div>
 
@@ -575,6 +623,45 @@
             sidebar.classList.add("-translate-x-full");
             overlay.classList.add("hidden");
         })
+
+    let deleteJobId = "";
+
+    function openDeleteModal(jobId, jobName) {
+
+        deleteJobId = jobId;
+
+        document.getElementById("jobName").textContent = jobName;
+
+        const modal = document.getElementById("deleteModal");
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+
+    function closeDeleteModal() {
+
+        const modal = document.getElementById("deleteModal");
+
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+
+        deleteJobId = "";
+    }
+
+
+    function confirmDelete() {
+
+        if (deleteJobId) {
+
+            window.location.href =
+                "/admin/delete-job/" + deleteJobId;
+
+        }
+
+    }
+
+
 
     </script>
 </body>

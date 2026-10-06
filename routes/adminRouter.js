@@ -10,6 +10,8 @@ const companyModel = require('../models/company-model');
 const userModel = require('../models/user-model');
 const jobModel = require('../models/job-model');
 const applicationModel = require('../models/application-model');
+const notificationModel = require('../models/notification-model');
+
 
 const multer = require("multer");
 const storage = multer.memoryStorage();
@@ -80,28 +82,74 @@ router.post("/register", async (req, res) => {
 
 
 // ---------------------------Dashbord-----------------------
-router.get("/adminDashboard", async (req, res) => {
+router.get("/adminDashboard", isAdminLoggedIn, async (req, res) => {
 
-   const admin = req.admin;
-   const company = await companyModel.find().sort({ createdAt: -1 }).limit(4)
+    try {
 
-   const user = await userModel.find().sort({ createdAt: -1 }).limit(4)
+        const admin = await adminModel.findById(req.admin);
 
+        const company = await companyModel.find().sort({ createdAt: -1 }).limit(4);
 
-   res.render("admin/adminDashboard", { company, user,admin });
-})
+        const user = await userModel.find().sort({ createdAt: -1 }).limit(4);
+
+        const totalUsers = await userModel.countDocuments();
+        const totalCompanies = await companyModel.countDocuments();
+        const totalJobs = await jobModel.countDocuments();
+        const totalApplications = await applicationModel.countDocuments();
+
+        res.render("admin/adminDashboard", {
+            company,
+            user,
+            admin,
+            totalUsers,
+            totalCompanies,
+            totalJobs,
+            totalApplications
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error");
+    }
+
+});
 
 //------------USER PART -------------
 router.get("/adminUserDashboard", isAdminLoggedIn, async (req, res) => {
     try {
 
+        // Total Users
+        const totalUsers = await userModel.countDocuments();
+
+
+        // Active Users
+        const activeUsers = await userModel.countDocuments({
+            isActive: true
+        });
+
+
+        // Inactive Users
+        const inactiveUsers = await userModel.countDocuments({
+            isActive: false
+        });
+
+
+        // Recent Users - Last 30 Days
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+        const recentUsers = await userModel.countDocuments({
+            createdAt: {
+                $gte: thirtyDaysAgo
+            }
+        });
+
+
+        // Pagination
         const page = parseInt(req.query.page) || 1;
-
-        const limit = 6;
-
+        const limit = 8;
         const skip = (page - 1) * limit;
 
-        const totalUsers = await userModel.countDocuments();
 
         const users = await userModel
             .find()
@@ -109,13 +157,18 @@ router.get("/adminUserDashboard", isAdminLoggedIn, async (req, res) => {
             .skip(skip)
             .limit(limit);
 
+
         const totalPages = Math.ceil(totalUsers / limit);
+
 
         res.render("admin/adminUserDashboard", {
             users,
+            totalUsers,
+            activeUsers,
+            inactiveUsers,
+            recentUsers,
             currentPage: page,
             totalPages,
-            totalUsers,
             limit
         });
 
@@ -127,6 +180,62 @@ router.get("/adminUserDashboard", isAdminLoggedIn, async (req, res) => {
     }
 });
 
+// ----------USER DETAILS PAGE --------------
+// ================= USER DETAILS =================
+
+router.get("/adminUserDetails/:id", isAdminLoggedIn, async (req, res) => {
+
+    try {
+
+        const admin = await adminModel.findById(req.admin);
+
+        const user = await userModel.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        res.render("admin/adminUserDetails", {
+            admin,
+            user
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send("Server Error");
+
+    }
+
+});
+
+// --------------USSER DELETE OPTION-------------------
+// ================= DELETE USER =================
+
+router.get("/adminDeleteUser/:id", isAdminLoggedIn, async (req, res) => {
+
+    try {
+
+        const user = await userModel.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        await userModel.findByIdAndDelete(req.params.id);
+
+        res.redirect("/admin/adminUserDashboard");
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send("Server Error");
+
+    }
+
+});
 
 // -------------COMPANY PART ------------------
 router.get("/adminCompanyDashboard", isAdminLoggedIn, async (req, res) => {
@@ -190,33 +299,114 @@ router.get("/adminCompanyDashboard", isAdminLoggedIn, async (req, res) => {
     }
 });
 
+// -------------------------COMPANY DETAILS PAGE -----------------
+router.get("/adminCompanyDetails/:id", isAdminLoggedIn, async (req, res) => {
+    try {
+
+        const company = await companyModel.findById(req.params.id);
+
+        if (!company) {
+            return res.status(404).send("Company not found");
+        }
+
+        const admin = await adminModel.findById(req.admin);
+
+        res.render("admin/adminCompanyDetails", {
+            admin,
+            company
+        });
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send("Something went wrong");
+
+    }
+});
+
+// --------------DElete company --------------------
+
+router.get("/adminDeleteCompany/:id", isAdminLoggedIn, async (req, res) => {
+    try {
+
+        const company = await companyModel.findById(req.params.id);
+
+        if (!company) {
+            return res.status(404).send("Company not found");
+        }
+
+        await companyModel.findByIdAndDelete(req.params.id);
+
+        res.redirect("/admin/adminCompanyDashboard");
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send("Something went wrong");
+
+    }
+});
 
 // -------------------JOB PART ----------------
 
 router.get("/adminJobDashboard", isAdminLoggedIn, async (req, res) => {
     try {
 
+        // Pagination
         const page = parseInt(req.query.page) || 1;
-
-        const limit = 6;
-
+        const limit = 8;
         const skip = (page - 1) * limit;
 
+
+        // Total Jobs
         const totalJobs = await jobModel.countDocuments();
 
+
+        // Job Status Counts
+        const activeJobs = await jobModel.countDocuments({
+            status: "Active"
+        });
+
+        const expiredJobs = await jobModel.countDocuments({
+            status: "Expired"
+        });
+
+        const pausedJobs = await jobModel.countDocuments({
+            status: "Draft"
+        });
+
+
+        // Jobs + Company Details
         const jobs = await jobModel
             .find()
+            .populate("company", "companyName")
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
 
+
+        // Applicant Count for every job
+        for (let job of jobs) {
+
+            job.applicantCount = await applicationModel.countDocuments({
+                job: job._id
+            });
+
+        }
+
+
+        // Total Pages
         const totalPages = Math.ceil(totalJobs / limit);
+
 
         res.render("admin/adminJobDashboard", {
             jobs,
+            totalJobs,
+            activeJobs,
+            expiredJobs,
+            pausedJobs,
             currentPage: page,
             totalPages,
-            totalJobs,
             limit
         });
 
@@ -225,6 +415,25 @@ router.get("/adminJobDashboard", isAdminLoggedIn, async (req, res) => {
         console.log(error);
         res.status(500).send("Server Error");
 
+    }
+});
+
+// ---------------JOB DELETE ------------
+router.get("/delete-job/:id", isAdminLoggedIn, async (req, res) => {
+    try {
+        const job = await jobModel.findById(req.params.id);
+
+        if (!job) {
+            return res.status(404).send("Job not found");
+        }
+
+        await jobModel.findByIdAndDelete(req.params.id);
+
+        res.redirect("/admin/adminJobDashboard");
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Server Error");
     }
 });
 
@@ -291,6 +500,61 @@ router.get("/adminApplications", isAdminLoggedIn, async (req, res) => {
 
     }
 
+});
+
+//---------------------APPLICATION DETAIL PAGE -----------
+router.get("/adminApplicationDetails/:id", isAdminLoggedIn, async (req, res) => {
+    try {
+
+        const application = await applicationModel
+            .findById(req.params.id)
+            .populate("applicant")
+            .populate("job")
+            .populate({
+                path: "job",
+                populate: {
+                    path: "company"
+                }
+            });
+
+        if (!application) {
+            return res.status(404).send("Application not found");
+        }
+
+        const admin = await adminModel.findById(req.admin);
+
+        res.render("admin/adminApplicationDetails", {
+            admin,
+            application
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Something went wrong");
+    }
+});
+
+// --------------------delete application ---------------
+router.get("/adminDeleteApplication/:id", isAdminLoggedIn, async (req, res) => {
+    try {
+
+        const application = await applicationModel.findById(req.params.id);
+
+        if (!application) {
+            return res.status(404).send("Application not found");
+        }
+
+        await applicationModel.findByIdAndDelete(req.params.id);
+
+        // Delete hone ke baad Job Dashboard
+        res.redirect("/admin/adminApplications");
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send("Server Error");
+
+    }
 });
 
 // ================= ADMIN PROFILE =================
@@ -392,6 +656,70 @@ router.get("/admin-profile",isAdminLoggedIn, async (req, res) => {
 
         console.log(error);
         res.status(500).send("Server Error");
+
+    }
+
+});
+
+// --------------notification route ----------
+router.get("/adminNotification", isAdminLoggedIn, async (req, res) => {
+
+    try {
+
+        const notifications = await notificationModel
+            .find()
+            .sort({ createdAt: -1 });
+
+        const totalNotifications = await notificationModel.countDocuments();
+
+        const unreadNotifications = await notificationModel.countDocuments({
+            isRead: false
+        });
+
+        const todayStart = new Date();
+        todayStart.setHours(0, 0, 0, 0);
+
+        const todayNotifications = await notificationModel.countDocuments({
+            createdAt: {
+                $gte: todayStart
+            }
+        });
+
+        res.render("admin/adminNotification", {
+            notifications,
+            totalNotifications,
+            unreadNotifications,
+            todayNotifications
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).send("Something went wrong");
+
+    }
+
+});
+
+// -----------------------------------------
+router.delete("/deleteAllNotifications", isAdminLoggedIn, async (req, res) => {
+
+    try {
+
+        await notificationModel.deleteMany({});
+
+        res.json({
+            success: true
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            success: false
+        });
 
     }
 

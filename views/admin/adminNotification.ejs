@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin - Notifications</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="min-h-screen">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-30">
+
+            <div class="px-5 md:px-8 py-4 flex items-center justify-between">
+
+                <div>
+
+                    <h1 class="text-2xl font-bold text-slate-800">
+                        Notifications
+                    </h1>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Stay updated with the latest activity
+                    </p>
+
+                </div>
+
+
+                <div class="flex items-center gap-3">
+
+                    <% if (unreadNotifications > 0) { %>
+
+                        <button
+                            onclick="markAllAsRead()"
+                            class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition">
+
+                            <i class="ri-check-double-line text-lg"></i>
+
+                            Mark all as read
+
+                        </button>
+
+                    <% } %>
+
+
+                    <button
+                        class="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center">
+
+                        <i class="ri-more-2-fill text-xl text-slate-600"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="max-w-5xl mx-auto px-4 md:px-8 py-7">
+
+
+            <!-- ================= STATS ================= -->
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-7">
+
+
+                <!-- TOTAL -->
+
+                <div class="bg-white rounded-xl border border-slate-200 p-5">
+
+                    <div class="flex items-center justify-between">
+
+                        <div>
+
+                            <p class="text-sm text-slate-500">
+                                Total Notifications
+                            </p>
+
+                            <h2 class="text-2xl font-bold mt-1">
+                                <%= totalNotifications %>
+                            </h2>
+
+                        </div>
+
+
+                        <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                            <i class="ri-notification-3-line text-xl"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- UNREAD -->
+
+                <div class="bg-white rounded-xl border border-slate-200 p-5">
+
+                    <div class="flex items-center justify-between">
+
+                        <div>
+
+                            <p class="text-sm text-slate-500">
+                                Unread
+                            </p>
+
+                            <h2 class="text-2xl font-bold mt-1 text-blue-600">
+                                <%= unreadNotifications %>
+                            </h2>
+
+                        </div>
+
+
+                        <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+
+                            <i class="ri-mail-unread-line text-xl"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TODAY -->
+
+                <div class="bg-white rounded-xl border border-slate-200 p-5">
+
+                    <div class="flex items-center justify-between">
+
+                        <div>
+
+                            <p class="text-sm text-slate-500">
+                                Today
+                            </p>
+
+                            <h2 class="text-2xl font-bold mt-1">
+                                <%= todayNotifications %>
+                            </h2>
+
+                        </div>
+
+
+                        <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center">
+
+                            <i class="ri-calendar-event-line text-xl"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= FILTER ================= -->
+
+            <div class="bg-white border border-slate-200 rounded-xl p-4 mb-5">
+
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+
+                    <!-- FILTER BUTTONS -->
+
+                    <div class="flex items-center gap-1 bg-slate-100 rounded-lg p-1 w-fit">
+
+                        <button
+                            onclick="filterNotifications('all', this)"
+                            class="filter-btn px-4 py-2 rounded-md bg-white shadow-sm text-sm font-medium text-slate-800">
+
+                            All
+
+                        </button>
+
+
+                        <button
+                            onclick="filterNotifications('unread', this)"
+                            class="filter-btn px-4 py-2 rounded-md text-sm font-medium text-slate-500">
+
+                            Unread
+
+                        </button>
+
+
+                        <button
+                            onclick="filterNotifications('read', this)"
+                            class="filter-btn px-4 py-2 rounded-md text-sm font-medium text-slate-500">
+
+                            Read
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- SEARCH -->
+
+                    <div class="relative w-full md:w-64">
+
+                        <i
+                            class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                        </i>
+
+
+                        <input
+                            type="text"
+                            id="searchNotification"
+                            onkeyup="searchNotifications()"
+                            placeholder="Search notifications..."
+                            class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 outline-none text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= NOTIFICATIONS ================= -->
+
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+
+
+                <!-- HEADER -->
+
+                <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
+
+                    <h2 class="font-semibold text-slate-800">
+                        Recent Notifications
+                    </h2>
+
+
+                    <% if (notifications.length > 0) { %>
+
+                        <button
+                            onclick="clearAllNotifications()"
+                            class="text-sm text-red-500 hover:text-red-600 font-medium">
+
+                            Clear all
+
+                        </button>
+
+                    <% } %>
+
+                </div>
+
+
+
+                <!-- EMPTY -->
+
+                <% if (notifications.length === 0) { %>
+
+                    <div class="py-16 text-center">
+
+                        <div class="w-16 h-16 mx-auto rounded-full bg-slate-100 flex items-center justify-center">
+
+                            <i class="ri-notification-off-line text-3xl text-slate-400"></i>
+
+                        </div>
+
+
+                        <h3 class="mt-4 text-lg font-semibold text-slate-700">
+                            No Notifications
+                        </h3>
+
+
+                        <p class="text-sm text-slate-500 mt-1">
+                            You're all caught up!
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+
+                    <!-- LIST -->
+
+                    <div id="notificationList">
+
+
+                        <% notifications.forEach(function(notification) { %>
+
+
+                            <%
+                                let iconClass = "ri-notification-3-line";
+                                let colorClass = "bg-red-100 text-red-600";
+
+                                if (notification.type === "User") {
+                                    iconClass = "ri-user-add-line";
+                                    colorClass = "bg-blue-100 text-blue-600";
+                                }
+
+                                if (notification.type === "Company") {
+                                    iconClass = "ri-building-4-line";
+                                    colorClass = "bg-emerald-100 text-emerald-600";
+                                }
+
+                                if (notification.type === "Job") {
+                                    iconClass = "ri-briefcase-4-line";
+                                    colorClass = "bg-amber-100 text-amber-600";
+                                }
+
+                                if (notification.type === "Application") {
+                                    iconClass = "ri-file-list-3-line";
+                                    colorClass = "bg-purple-100 text-purple-600";
+                                }
+
+                                if (notification.type === "Alert") {
+                                    iconClass = "ri-alert-line";
+                                    colorClass = "bg-red-100 text-red-600";
+                                }
+                            %>
+
+
+                            <div
+                                class="notification-item group px-5 py-5 border-b border-slate-100 hover:bg-slate-50 transition <%= notification.isRead ? '' : 'bg-blue-50/40' %>"
+                                
+                                data-read="<%= notification.isRead %>"
+
+                                data-search="<%= notification.title.toLowerCase() + ' ' + notification.message.toLowerCase() + ' ' + notification.type.toLowerCase() %>">
+
+
+                                <div class="flex gap-4">
+
+
+                                    <!-- ICON -->
+
+                                    <div class="flex-shrink-0 w-11 h-11 rounded-full <%= colorClass %> flex items-center justify-center">
+
+                                        <i class="<%= iconClass %> text-xl"></i>
+
+                                    </div>
+
+
+
+                                    <!-- CONTENT -->
+
+                                    <div class="flex-1 min-w-0">
+
+
+                                        <!-- TITLE -->
+
+                                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+
+                                            <h3 class="font-semibold text-slate-800">
+
+                                                <%= notification.title %>
+
+
+                                                <% if (!notification.isRead) { %>
+
+                                                    <span class="inline-block w-2 h-2 rounded-full bg-blue-600 ml-1"></span>
+
+                                                <% } %>
+
+                                            </h3>
+
+
+                                            <span class="text-xs text-slate-400">
+
+                                                <%= new Date(notification.createdAt).toLocaleString("en-IN", {
+                                                    day: "2-digit",
+                                                    month: "short",
+                                                    hour: "2-digit",
+                                                    minute: "2-digit"
+                                                }) %>
+
+                                            </span>
+
+                                        </div>
+
+
+
+                                        <!-- MESSAGE -->
+
+                                        <p class="text-sm text-slate-600 mt-1">
+
+                                            <%= notification.message %>
+
+                                        </p>
+
+
+
+                                        <!-- BOTTOM -->
+
+                                        <div class="flex items-center gap-3 mt-3">
+
+
+                                            <!-- TYPE -->
+
+                                            <span class="text-xs font-medium px-2.5 py-1 rounded-full <%= colorClass %>">
+
+                                                <%= notification.type %>
+
+                                            </span>
+
+
+
+                                            <!-- READ -->
+
+                                            <% if (!notification.isRead) { %>
+
+                                                <button
+                                                    onclick="markAsRead('<%= notification._id %>')"
+                                                    class="text-xs text-slate-500 hover:text-blue-600">
+
+                                                    Mark as read
+
+                                                </button>
+
+                                            <% } else { %>
+
+                                                <span class="text-xs text-slate-400">
+                                                    Read
+                                                </span>
+
+                                            <% } %>
+
+
+
+                                            <!-- DELETE -->
+
+                                            <button
+                                                onclick="deleteNotification('<%= notification._id %>')"
+                                                class="text-xs text-slate-400 hover:text-red-500">
+
+                                                <i class="ri-delete-bin-line"></i>
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <!-- MORE -->
+
+                                    <button
+                                        class="opacity-0 group-hover:opacity-100 transition text-slate-400 hover:text-slate-700">
+
+                                        <i class="ri-more-2-fill text-xl"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                        <% }); %>
+
+
+                    </div>
+
+
+                    <!-- SEARCH EMPTY -->
+
+                    <div
+                        id="searchEmpty"
+                        class="hidden py-12 text-center">
+
+                        <i class="ri-search-line text-3xl text-slate-300"></i>
+
+                        <h3 class="mt-3 font-semibold text-slate-700">
+                            No notifications found
+                        </h3>
+
+                        <p class="text-sm text-slate-500 mt-1">
+                            Try a different search.
+                        </p>
+
+                    </div>
+
+
+                <% } %>
+
+            </div>
+
+
+
+            <!-- ================= FOOTER ================= -->
+
+            <% if (notifications.length > 0) { %>
+
+                <div class="flex items-center justify-between mt-6">
+
+                    <p class="text-sm text-slate-500">
+
+                        Showing
+
+                        <span
+                            id="visibleCount"
+                            class="font-medium text-slate-700">
+
+                            <%= notifications.length %>
+
+                        </span>
+
+                        notifications
+
+                    </p>
+
+                </div>
+
+            <% } %>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        // ==========================================
+        // FILTER
+        // ==========================================
+
+        let currentFilter = "all";
+
+
+        // ==========================================
+        // MARK ONE AS READ
+        // ==========================================
+
+        async function markAsRead(id) {
+
+            try {
+
+                const response = await fetch(
+                    `/admin/markNotificationRead/${id}`,
+                    {
+                        method: "POST"
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (data.success) {
+
+                    location.reload();
+
+                } else {
+
+                    alert("Unable to mark notification as read.");
+
+                }
+
+            } catch (error) {
+
+                console.log(error);
+
+                alert("Something went wrong.");
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // MARK ALL AS READ
+        // ==========================================
+
+        async function markAllAsRead() {
+
+            try {
+
+                const response = await fetch(
+                    "/admin/markAllNotificationsRead",
+                    {
+                        method: "POST"
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (data.success) {
+
+                    location.reload();
+
+                } else {
+
+                    alert("Unable to mark notifications as read.");
+
+                }
+
+            } catch (error) {
+
+                console.log(error);
+
+                alert("Something went wrong.");
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // DELETE ONE
+        // ==========================================
+
+        async function deleteNotification(id) {
+
+            const confirmDelete = confirm(
+                "Are you sure you want to delete this notification?"
+            );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response = await fetch(
+                    `/admin/deleteNotification/${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (data.success) {
+
+                    location.reload();
+
+                } else {
+
+                    alert("Unable to delete notification.");
+
+                }
+
+            } catch (error) {
+
+                console.log(error);
+
+                alert("Something went wrong.");
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // FILTER
+        // ==========================================
+
+        function filterNotifications(type, button) {
+
+            currentFilter = type;
+
+
+            document.querySelectorAll(".filter-btn").forEach(function(btn) {
+
+                btn.classList.remove(
+                    "bg-white",
+                    "shadow-sm",
+                    "text-slate-800"
+                );
+
+                btn.classList.add("text-slate-500");
+
+            });
+
+
+            button.classList.add(
+                "bg-white",
+                "shadow-sm",
+                "text-slate-800"
+            );
+
+            button.classList.remove("text-slate-500");
+
+
+            applyFilters();
+
+        }
+
+
+
+        // ==========================================
+        // SEARCH
+        // ==========================================
+
+        function searchNotifications() {
+
+            applyFilters();
+
+        }
+
+
+
+        // ==========================================
+        // APPLY FILTER
+        // ==========================================
+
+        function applyFilters() {
+
+            const searchInput =
+                document.getElementById("searchNotification").value
+                .toLowerCase()
+                .trim();
+
+
+            const notifications =
+                document.querySelectorAll(".notification-item");
+
+
+            let visibleCount = 0;
+
+
+            notifications.forEach(function(notification) {
+
+
+                const isRead =
+                    notification.dataset.read === "true";
+
+
+                const searchText =
+                    notification.dataset.search;
+
+
+                let filterMatch = true;
+
+
+                if (currentFilter === "unread") {
+
+                    filterMatch = !isRead;
+
+                }
+
+
+                if (currentFilter === "read") {
+
+                    filterMatch = isRead;
+
+                }
+
+
+                const searchMatch =
+                    searchText.includes(searchInput);
+
+
+                if (filterMatch && searchMatch) {
+
+                    notification.classList.remove("hidden");
+
+                    visibleCount++;
+
+                } else {
+
+                    notification.classList.add("hidden");
+
+                }
+
+            });
+
+
+            const countElement =
+                document.getElementById("visibleCount");
+
+
+            if (countElement) {
+
+                countElement.innerText = visibleCount;
+
+            }
+
+
+            const searchEmpty =
+                document.getElementById("searchEmpty");
+
+
+            if (searchEmpty) {
+
+                if (visibleCount === 0 && notifications.length > 0) {
+
+                    searchEmpty.classList.remove("hidden");
+
+                } else {
+
+                    searchEmpty.classList.add("hidden");
+
+                }
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // CLEAR ALL
+        // ==========================================
+
+        async function clearAllNotifications() {
+
+            const confirmClear = confirm(
+                "Are you sure you want to delete all notifications?"
+            );
+
+
+            if (!confirmClear) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response = await fetch(
+                    "/admin/deleteAllNotifications",
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (data.success) {
+
+                    location.reload();
+
+                } else {
+
+                    alert("Unable to clear notifications.");
+
+                }
+
+            } catch (error) {
+
+                console.log(error);
+
+                alert("Something went wrong.");
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

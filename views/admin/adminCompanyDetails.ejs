@@ -1,0 +1,1480 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin - Company Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+
+<body class="overflow-x-hidden bg-gray-50">
+
+    <div class="w-full min-h-screen">
+
+
+        <!-- ================= NAVBAR ================= -->
+
+        <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0">
+                <div class="flex items-center justify-between sm:gap-4 lg:gap-6">
+                    <div class="menubtn">
+                        <i class="ri-menu-fill text-2xl"></i>
+                    </div>
+                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 ml-2">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <!-- notification k ley route bnana h -->
+                    <a href=""><i class="ri-notification-3-line text-2xl"></i>
+                    </a>
+
+                     <div class="flex items-center gap-2">
+
+                        <div
+                            class="h-11 w-11 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center">
+
+                            <% if (admin?.profileImage &&
+                                admin.profileImage !== "default-admin.png") { %>
+
+                                <img src="/admin/admin-profile"
+                                    alt="Admin Profile"
+                                    class="w-full h-full object-cover">
+
+                                <% } else { %>
+
+                                    <i class="ri-admin-fill text-2xl text-blue-500"></i>
+
+                                    <% } %>
+
+                        </div>
+
+                        <h2 class="text-xl font-semibold hidden md:block text-gray-800">
+                            Admin
+                        </h2>
+
+                        <a href="">
+                            <i class="ri-arrow-down-wide-line text-gray-600"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </nav>
+            <!-- *********** FOr the menu list div ********-->
+            <div
+                class=" sidebar fixed top-0 left-0 w-72 h-screen bg-white shadow-2xl z-50 -translate-x-full transition-transform duration-300 p-4">
+
+                <div class="flex items-center ">
+                    <img class="h-8"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
+                        alt="">
+                    <h5 class="text-xl font-bold">Quick <span class="text-blue-500">Hire</span></h5>
+                </div>
+
+                <div class="cross flex justify-end mb-3">
+                    <i
+                        class="ri-close-line text-2xl w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200"></i>
+                </div>
+                <div class="list">
+                    <ul class=" space-y-3">
+                        <!-- yha pee user dashboard menu link attach krne h -->
+
+                        <li
+                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer  hover:bg-gray-100 mb-1">
+                            <a href="/admin/adminDashboard">
+                                <i class="ri-home-3-line text-xl"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                            <a href="/admin/adminUserDashboard">
+                                <i class="ri-group-line text-xl"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600">
+                            <a href="/admin/adminCompanyDashboard">
+                                <i class="ri-building-2-line text-xl"></i>
+                                <span>Companies</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="/admin/adminJobDashboard">
+                                <i class="ri-briefcase-4-line text-xl"></i>
+                                <span>Jobs</span>
+                            </a>
+                        </li>
+
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                            <a href="/admin/adminApplications">
+                                <i class="ri-file-list-3-line text-xl"></i>
+                                <span>Applications</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
+                            <a href="/admin/adminProfilePage">
+                                <i class="ri-group-line text-xl"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                            <a href="/admin/logout">
+                                <i class="ri-logout-box-r-line text-xl"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+
+        <!-- OVERLAY -->
+
+        <div
+            class="overlay fixed inset-0
+                   bg-black/30 hidden z-40">
+        </div>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main
+            class="px-5 sm:px-8 lg:px-12
+                   pt-24 pb-14">
+
+
+            <!-- BACK -->
+
+            <div class="mb-5">
+
+                <a
+                    href="/admin/adminCompanyDashboard"
+                    class="inline-flex items-center gap-2
+                           text-gray-600
+                           hover:text-blue-600 transition">
+
+                    <i class="ri-arrow-left-line text-lg"></i>
+
+                    <span class="font-medium">
+                        Back to Companies
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- PAGE HEADER -->
+
+            <div
+                class="flex flex-col md:flex-row
+                       md:items-center md:justify-between
+                       gap-4">
+
+
+                <div>
+
+                    <h1
+                        class="text-3xl sm:text-4xl
+                               font-bold text-gray-800">
+
+                        Company Details
+
+                    </h1>
+
+                    <p class="text-gray-600 mt-2">
+
+                        View and manage complete company information.
+
+                    </p>
+
+                </div>
+
+
+                <!-- DELETE BUTTON -->
+
+                <button
+                    onclick="openDeleteModal()"
+                    class="inline-flex items-center
+                           justify-center gap-2
+                           bg-red-500 text-white
+                           px-5 py-3 rounded-xl
+                           font-medium
+                           hover:bg-red-600
+                           transition shadow-sm">
+
+                    <i class="ri-delete-bin-6-line text-lg"></i>
+
+                    Delete Company
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= COMPANY HERO ================= -->
+
+            <div
+                class="bg-white rounded-3xl shadow-xl
+                       p-6 md:p-8 mt-8">
+
+
+                <div
+                    class="flex flex-col lg:flex-row
+                           items-center gap-7">
+
+
+                    <!-- COMPANY LOGO -->
+
+                    <div
+                        class="h-32 w-32 md:h-36 md:w-36
+                               rounded-2xl
+                               bg-blue-50
+                               border-4 border-white
+                               shadow-md overflow-hidden
+                               flex items-center justify-center
+                               shrink-0">
+
+
+                        <% if (company.companyProfile &&
+                               company.companyProfile.data) { %>
+
+                            <img
+                                src="data:<%= company.companyProfile.contentType %>;base64,<%= company.companyProfile.data.toString('base64') %>"
+                                alt="Company Logo"
+                                class="w-full h-full object-cover">
+
+                        <% } else { %>
+
+                            <div
+                                class="w-full h-full
+                                       flex items-center
+                                       justify-center
+                                       bg-blue-100
+                                       text-blue-600">
+
+                                <i
+                                    class="ri-building-4-line
+                                           text-5xl">
+                                </i>
+
+                            </div>
+
+                        <% } %>
+
+                    </div>
+
+
+                    <!-- COMPANY BASIC INFO -->
+
+                    <div class="flex-1 w-full">
+
+                        <div
+                            class="flex flex-col
+                                   md:flex-row
+                                   md:items-start
+                                   md:justify-between
+                                   gap-4">
+
+
+                            <div>
+
+                                <h2
+                                    class="text-2xl md:text-3xl
+                                           font-bold text-gray-800">
+
+                                    <%= company.companyName %>
+
+                                </h2>
+
+
+                                <p
+                                    class="text-gray-500
+                                           font-medium mt-1">
+
+                                    <%= company.industry ||
+                                        "Industry not provided" %>
+
+                                </p>
+
+
+                                <div
+                                    class="flex flex-wrap
+                                           gap-4 mt-4">
+
+
+                                    <span
+                                        class="inline-flex
+                                               items-center gap-2
+                                               text-gray-600">
+
+                                        <i
+                                            class="ri-mail-line
+                                                   text-blue-600">
+                                        </i>
+
+                                        <%= company.companyEmail %>
+
+                                    </span>
+
+
+                                    <span
+                                        class="inline-flex
+                                               items-center gap-2
+                                               text-gray-600">
+
+                                        <i
+                                            class="ri-map-pin-line
+                                                   text-red-500">
+                                        </i>
+
+                                        <%= company.location ||
+                                            "Location not provided" %>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- STATUS -->
+
+                            <span
+                                class="inline-flex
+                                       items-center gap-2
+                                       bg-green-100
+                                       text-green-700
+                                       px-4 py-2
+                                       rounded-xl
+                                       text-sm
+                                       font-semibold">
+
+                                <span
+                                    class="w-2 h-2
+                                           rounded-full
+                                           bg-green-500">
+                                </span>
+
+                                Active Company
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- QUICK INFO -->
+
+                        <div
+                            class="grid grid-cols-2
+                                   md:grid-cols-4
+                                   gap-4 mt-7">
+
+
+                            <div
+                                class="bg-gray-50
+                                       rounded-xl p-4">
+
+                                <p
+                                    class="text-xs
+                                           text-gray-500">
+
+                                    Company Size
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.companySize ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="bg-gray-50
+                                       rounded-xl p-4">
+
+                                <p
+                                    class="text-xs
+                                           text-gray-500">
+
+                                    Founded
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.foundedYear ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="bg-gray-50
+                                       rounded-xl p-4">
+
+                                <p
+                                    class="text-xs
+                                           text-gray-500">
+
+                                    Contact
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.phone ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="bg-gray-50
+                                       rounded-xl p-4">
+
+                                <p
+                                    class="text-xs
+                                           text-gray-500">
+
+                                    Website
+
+                                </p>
+
+                                <% if (company.website) { %>
+
+                                    <a
+                                        href="<%= company.website %>"
+                                        target="_blank"
+                                        class="font-semibold
+                                               text-blue-600
+                                               mt-1 block
+                                               truncate">
+
+                                        Visit Website
+
+                                    </a>
+
+                                <% } else { %>
+
+                                    <p
+                                        class="font-semibold
+                                               text-gray-400 mt-1">
+
+                                        Not Provided
+
+                                    </p>
+
+                                <% } %>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CONTENT GRID ================= -->
+
+            <div
+                class="grid grid-cols-1
+                       lg:grid-cols-3
+                       gap-6 mt-6">
+
+
+                <!-- ================= LEFT ================= -->
+
+                <div
+                    class="lg:col-span-2
+                           space-y-6">
+
+
+                    <!-- COMPANY INFORMATION -->
+
+                    <div
+                        class="bg-white
+                               rounded-3xl
+                               shadow-xl
+                               p-6 md:p-8">
+
+
+                        <div
+                            class="flex items-center
+                                   gap-3 pb-5
+                                   border-b
+                                   border-gray-100">
+
+
+                            <div
+                                class="w-10 h-10
+                                       rounded-xl
+                                       bg-blue-50
+                                       flex items-center
+                                       justify-center">
+
+                                <i
+                                    class="ri-building-4-line
+                                           text-blue-600
+                                           text-xl">
+                                </i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2
+                                    class="text-xl
+                                           font-bold
+                                           text-gray-800">
+
+                                    Company Information
+
+                                </h2>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500
+                                           mt-1">
+
+                                    Basic information about this company.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="grid grid-cols-1
+                                   md:grid-cols-2
+                                   gap-x-10
+                                   gap-y-6 mt-7">
+
+
+                            <!-- NAME -->
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Company Name
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.companyName %>
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- INDUSTRY -->
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Industry
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.industry ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- COMPANY SIZE -->
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Company Size
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.companySize ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- FOUNDED -->
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Founded Year
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.foundedYear ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- LOCATION -->
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Location
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.location ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- PHONE -->
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Phone
+
+                                </p>
+
+                                <p
+                                    class="font-semibold
+                                           text-gray-800 mt-1">
+
+                                    <%= company.phone ||
+                                        "Not Provided" %>
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ABOUT COMPANY -->
+
+                    <div
+                        class="bg-white
+                               rounded-3xl
+                               shadow-xl
+                               p-6 md:p-8">
+
+
+                        <div
+                            class="flex items-center
+                                   gap-3 mb-5">
+
+
+                            <div
+                                class="w-10 h-10
+                                       rounded-xl
+                                       bg-purple-50
+                                       flex items-center
+                                       justify-center">
+
+                                <i
+                                    class="ri-information-line
+                                           text-purple-600
+                                           text-xl">
+                                </i>
+
+                            </div>
+
+
+                            <h2
+                                class="text-xl font-bold
+                                       text-gray-800">
+
+                                About Company
+
+                            </h2>
+
+                        </div>
+
+
+                        <p
+                            class="text-gray-600
+                                   leading-8
+                                   whitespace-pre-line">
+
+                            <%= company.about ||
+                                "No information has been provided by this company." %>
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- CONTACT DETAILS -->
+
+                    <div
+                        class="bg-white
+                               rounded-3xl
+                               shadow-xl
+                               p-6 md:p-8">
+
+
+                        <div
+                            class="flex items-center
+                                   gap-3 mb-6">
+
+
+                            <div
+                                class="w-10 h-10
+                                       rounded-xl
+                                       bg-green-50
+                                       flex items-center
+                                       justify-center">
+
+                                <i
+                                    class="ri-contacts-line
+                                           text-green-600
+                                           text-xl">
+                                </i>
+
+                            </div>
+
+
+                            <h2
+                                class="text-xl font-bold
+                                       text-gray-800">
+
+                                Contact Details
+
+                            </h2>
+
+                        </div>
+
+
+                        <div
+                            class="space-y-4">
+
+
+                            <!-- EMAIL -->
+
+                            <div
+                                class="flex items-center
+                                       gap-4 p-4
+                                       rounded-xl
+                                       bg-gray-50">
+
+                                <div
+                                    class="w-11 h-11
+                                           rounded-xl
+                                           bg-blue-100
+                                           flex items-center
+                                           justify-center">
+
+                                    <i
+                                        class="ri-mail-line
+                                               text-blue-600
+                                               text-xl">
+                                    </i>
+
+                                </div>
+
+                                <div>
+
+                                    <p
+                                        class="text-xs
+                                               text-gray-500">
+
+                                        Company Email
+
+                                    </p>
+
+                                    <p
+                                        class="font-medium
+                                               text-gray-800 mt-1">
+
+                                        <%= company.companyEmail %>
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PHONE -->
+
+                            <div
+                                class="flex items-center
+                                       gap-4 p-4
+                                       rounded-xl
+                                       bg-gray-50">
+
+                                <div
+                                    class="w-11 h-11
+                                           rounded-xl
+                                           bg-green-100
+                                           flex items-center
+                                           justify-center">
+
+                                    <i
+                                        class="ri-phone-line
+                                               text-green-600
+                                               text-xl">
+                                    </i>
+
+                                </div>
+
+                                <div>
+
+                                    <p
+                                        class="text-xs
+                                               text-gray-500">
+
+                                        Phone Number
+
+                                    </p>
+
+                                    <p
+                                        class="font-medium
+                                               text-gray-800 mt-1">
+
+                                        <%= company.phone ||
+                                            "Not Provided" %>
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- WEBSITE -->
+
+                            <div
+                                class="flex items-center
+                                       gap-4 p-4
+                                       rounded-xl
+                                       bg-gray-50">
+
+                                <div
+                                    class="w-11 h-11
+                                           rounded-xl
+                                           bg-purple-100
+                                           flex items-center
+                                           justify-center">
+
+                                    <i
+                                        class="ri-global-line
+                                               text-purple-600
+                                               text-xl">
+                                    </i>
+
+                                </div>
+
+                                <div class="min-w-0">
+
+                                    <p
+                                        class="text-xs
+                                               text-gray-500">
+
+                                        Website
+
+                                    </p>
+
+                                    <% if (company.website) { %>
+
+                                        <a
+                                            href="<%= company.website %>"
+                                            target="_blank"
+                                            class="font-medium
+                                                   text-blue-600
+                                                   mt-1 block
+                                                   truncate">
+
+                                            <%= company.website %>
+
+                                        </a>
+
+                                    <% } else { %>
+
+                                        <p
+                                            class="font-medium
+                                                   text-gray-400 mt-1">
+
+                                            Not Provided
+
+                                        </p>
+
+                                    <% } %>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= RIGHT ================= -->
+
+                <div
+                    class="space-y-6">
+
+
+                    <!-- ACCOUNT SUMMARY -->
+
+                    <div
+                        class="bg-white
+                               rounded-3xl
+                               shadow-xl
+                               p-6">
+
+
+                        <div
+                            class="flex items-center
+                                   gap-3 mb-5">
+
+
+                            <div
+                                class="w-10 h-10
+                                       rounded-xl
+                                       bg-blue-50
+                                       flex items-center
+                                       justify-center">
+
+                                <i
+                                    class="ri-shield-user-line
+                                           text-blue-600
+                                           text-xl">
+                                </i>
+
+                            </div>
+
+
+                            <h2
+                                class="text-lg font-bold
+                                       text-gray-800">
+
+                                Company Account
+
+                            </h2>
+
+                        </div>
+
+
+                        <div class="space-y-5">
+
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Account Status
+
+                                </p>
+
+                                <div
+                                    class="inline-flex
+                                           items-center gap-2
+                                           bg-green-100
+                                           text-green-700
+                                           px-3 py-1.5
+                                           rounded-lg
+                                           text-sm
+                                           font-semibold mt-2">
+
+                                    <span
+                                        class="w-2 h-2
+                                               rounded-full
+                                               bg-green-500">
+                                    </span>
+
+                                    Active
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                <p
+                                    class="text-sm
+                                           text-gray-500">
+
+                                    Company ID
+
+                                </p>
+
+                                <p
+                                    class="font-medium
+                                           text-gray-800
+                                           mt-1 break-all">
+
+                                    <%= company._id %>
+
+                                </p>
+
+                            </div>
+
+
+                            <% if (company.createdAt) { %>
+
+                                <div>
+
+                                    <p
+                                        class="text-sm
+                                               text-gray-500">
+
+                                        Registered On
+
+                                    </p>
+
+                                    <p
+                                        class="font-medium
+                                               text-gray-800 mt-1">
+
+                                        <%= new Date(company.createdAt)
+                                            .toLocaleDateString("en-IN") %>
+
+                                    </p>
+
+                                </div>
+
+                            <% } %>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COMPANY WEBSITE -->
+
+                    <div
+                        class="bg-white
+                               rounded-3xl
+                               shadow-xl
+                               p-6">
+
+
+                        <div
+                            class="flex items-center
+                                   gap-3 mb-5">
+
+
+                            <div
+                                class="w-10 h-10
+                                       rounded-xl
+                                       bg-purple-50
+                                       flex items-center
+                                       justify-center">
+
+                                <i
+                                    class="ri-global-line
+                                           text-purple-600
+                                           text-xl">
+                                </i>
+
+                            </div>
+
+
+                            <h2
+                                class="text-lg font-bold">
+
+                                Company Website
+
+                            </h2>
+
+                        </div>
+
+
+                        <% if (company.website) { %>
+
+                            <a
+                                href="<%= company.website %>"
+                                target="_blank"
+                                class="flex items-center
+                                       justify-center gap-2
+                                       w-full
+                                       bg-blue-600
+                                       text-white
+                                       py-3 rounded-xl
+                                       hover:bg-blue-700
+                                       transition">
+
+                                <i class="ri-external-link-line"></i>
+
+                                Visit Website
+
+                            </a>
+
+                        <% } else { %>
+
+                            <div
+                                class="text-center
+                                       py-5
+                                       text-gray-400">
+
+                                <i
+                                    class="ri-global-line
+                                           text-3xl">
+                                </i>
+
+                                <p class="mt-2">
+                                    Website not provided
+                                </p>
+
+                            </div>
+
+                        <% } %>
+
+                    </div>
+
+
+                    <!-- ADMIN ACTION -->
+
+                    <div
+                        class="bg-white
+                               rounded-3xl
+                               shadow-xl
+                               p-6">
+
+
+                        <h2
+                            class="text-lg font-bold
+                                   text-gray-800 mb-4">
+
+                            Admin Actions
+
+                        </h2>
+
+
+                        <button
+                            onclick="openDeleteModal()"
+                            class="w-full
+                                   flex items-center
+                                   justify-center gap-2
+                                   border border-red-300
+                                   text-red-600
+                                   px-4 py-3
+                                   rounded-xl
+                                   font-medium
+                                   hover:bg-red-50
+                                   transition">
+
+                            <i
+                                class="ri-delete-bin-6-line">
+                            </i>
+
+                            Delete Company
+
+                        </button>
+
+
+                        <p
+                            class="text-xs
+                                   text-gray-400
+                                   text-center
+                                   mt-3">
+
+                            Deleting this company may also affect
+                            its jobs and applications.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= DELETE MODAL ================= -->
+
+    <div
+        id="deleteModal"
+        class="fixed inset-0
+               bg-black/40
+               hidden
+               items-center
+               justify-center
+               z-[100] px-4">
+
+
+        <div
+            class="bg-white
+                   w-full max-w-md
+                   rounded-3xl
+                   shadow-2xl
+                   p-7
+                   text-center">
+
+
+            <!-- ICON -->
+
+            <div
+                class="w-16 h-16
+                       rounded-2xl
+                       bg-red-100
+                       text-red-600
+                       flex items-center
+                       justify-center
+                       mx-auto">
+
+                <i
+                    class="ri-delete-bin-6-line
+                           text-3xl">
+                </i>
+
+            </div>
+
+
+            <h2
+                class="text-2xl font-bold
+                       text-gray-800 mt-5">
+
+                Delete Company?
+
+            </h2>
+
+
+            <p
+                class="text-gray-500
+                       mt-2 leading-6">
+
+                Are you sure you want to delete
+                <span class="font-semibold text-gray-700">
+                    <%= company.companyName %>
+                </span>?
+
+                This action cannot be undone.
+
+            </p>
+
+
+            <!-- BUTTONS -->
+
+            <div
+                class="flex flex-col
+                       sm:flex-row
+                       gap-3 mt-7">
+
+
+                <button
+                    onclick="closeDeleteModal()"
+                    class="flex-1
+                           px-4 py-3
+                           rounded-xl
+                           border border-gray-300
+                           text-gray-700
+                           font-medium
+                           hover:bg-gray-50">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    onclick="deleteCompany()"
+                    class="flex-1
+                           px-4 py-3
+                           rounded-xl
+                           bg-red-500
+                           text-white
+                           font-medium
+                           hover:bg-red-600">
+
+                    Yes, Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const menubtn = document.querySelector(".menubtn");
+        const sidebar = document.querySelector(".sidebar");
+        const cross = document.querySelector(".cross");
+        const overlay = document.querySelector(".overlay");
+
+        const deleteModal =
+            document.getElementById("deleteModal");
+
+
+        // OPEN SIDEBAR
+
+        menubtn.addEventListener("click", () => {
+
+            sidebar.classList.remove("-translate-x-full");
+
+            overlay.classList.remove("hidden");
+
+        });
+
+
+        // CLOSE SIDEBAR
+
+        cross.addEventListener("click", () => {
+
+            sidebar.classList.add("-translate-x-full");
+
+            overlay.classList.add("hidden");
+
+        });
+
+
+        // OVERLAY
+
+        overlay.addEventListener("click", () => {
+
+            sidebar.classList.add("-translate-x-full");
+
+            overlay.classList.add("hidden");
+
+        });
+
+
+        // OPEN DELETE MODAL
+
+        function openDeleteModal() {
+
+            deleteModal.classList.remove("hidden");
+
+            deleteModal.classList.add("flex");
+
+        }
+
+
+        // CLOSE DELETE MODAL
+
+        function closeDeleteModal() {
+
+            deleteModal.classList.add("hidden");
+
+            deleteModal.classList.remove("flex");
+
+        }
+
+
+        // DELETE COMPANY
+
+        function deleteCompany() {
+
+            window.location.href =
+                "/admin/adminDeleteCompany/<%= company._id %>";
+
+        }
+
+
+        // ESCAPE KEY
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+
+                closeDeleteModal();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+

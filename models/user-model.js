@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     city:String,
     state:String,
     pincode:String,
+    aboutme:String,
 
     skills:{
        type: [String],
@@ -32,7 +33,12 @@ const userSchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    aboutme:String
+    
+
+    isActive: {
+    type: Boolean,
+    default: true
+},
 });
 
 module.exports = mongoose.model("user",userSchema);

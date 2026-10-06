@@ -110,7 +110,7 @@
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="">
+                            <a href="/admin/adminApplications">
                                 <i class="ri-file-list-3-line text-xl"></i>
                                 <span>Applications</span>
                             </a>
@@ -162,7 +162,9 @@
 
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Total Users</h2>
-                                <p class="text-4xl font-bold mt-1">123</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= totalUsers %>
+                                </p>
                             </div>
 
                         </div>
@@ -186,7 +188,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Active Users</h2>
-                                <p class="text-4xl font-bold mt-1">38</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= activeUsers %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -207,7 +211,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Inactive Users</h2>
-                                <p class="text-4xl font-bold mt-1">19</p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= inactiveUsers %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -228,7 +234,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Recent Users</h2>
-                                <p class="text-4xl font-bold mt-1"> 12</p>
+                                <p class="text-4xl font-bold mt-1">
+                                     <%= recentUsers %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3">
@@ -373,28 +381,13 @@
                                                 <div class="flex justify-center gap-2">
 
                                                     <!-- View -->
-                                                    <a href="/admin/user/<%= user._id %>"
+                                                    <a href="/admin/adminUserDetails/<%= user._id %>"
                                                         class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition flex items-center justify-center">
 
                                                         <i class="ri-eye-line"></i>
 
                                                     </a>
 
-                                                    <!-- Edit -->
-                                                    <a href="/admin/edit-user/<%= user._id %>"
-                                                        class="w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition flex items-center justify-center">
-
-                                                        <i class="ri-pencil-line"></i>
-
-                                                    </a>
-
-                                                    <!-- Delete -->
-                                                    <a href="/admin/delete-user/<%= user._id %>"
-                                                        class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition flex items-center justify-center">
-
-                                                        <i class="ri-delete-bin-6-line"></i>
-
-                                                    </a>
 
                                                 </div>
 

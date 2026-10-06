@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Applications</title>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -21,8 +19,7 @@
         <div class="relative">
 
             <!-- ================= NAVBAR ================= -->
-            <nav
-                class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0 left-0 z-30">
+            <nav class="w-full h-16 bg-gray-100 flex items-center justify-between px-3 py-2 fixed top-0 left-0 z-30">
 
                 <!-- Left -->
                 <div class="flex items-center gap-4">
@@ -55,12 +52,9 @@
                         <div
                             class="h-11 w-11 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center">
 
-                            <% if (admin?.profileImage &&
-                                admin.profileImage !== "default-admin.png") { %>
+                            <% if (admin?.profileImage && admin.profileImage !=="default-admin.png" ) { %>
 
-                                <img src="/admin/admin-profile"
-                                    alt="Admin Profile"
-                                    class="w-full h-full object-cover">
+                                <img src="/admin/admin-profile" alt="Admin Profile" class="w-full h-full object-cover">
 
                                 <% } else { %>
 
@@ -92,8 +86,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
 
-                    <img
-                        class="h-8"
+                    <img class="h-8"
                         src="https://static.vecteezy.com/system/resources/thumbnails/070/916/787/small/a-3d-render-of-a-light-blue-briefcase-with-the-word-job-in-white-letters-isolated-on-transparent-background-png.png"
                         alt="">
 
@@ -120,12 +113,9 @@
                     <ul class="space-y-3">
 
                         <!-- Dashboard -->
-                        <li
-                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100">
 
-                            <a
-                                href="/admin/adminDashboard"
-                                class="flex items-center gap-2 w-full">
+                            <a href="/admin/adminDashboard" class="flex items-center gap-2 w-full">
 
                                 <i class="ri-home-3-line text-xl"></i>
                                 <span>Dashboard</span>
@@ -136,12 +126,9 @@
 
 
                         <!-- Users -->
-                        <li
-                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
 
-                            <a
-                                href="/admin/adminUserDashboard"
-                                class="flex items-center gap-2 w-full">
+                            <a href="/admin/adminUserDashboard" class="flex items-center gap-2 w-full">
 
                                 <i class="ri-group-line text-xl"></i>
                                 <span>Users</span>
@@ -152,12 +139,9 @@
 
 
                         <!-- Companies -->
-                        <li
-                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
 
-                            <a
-                                href="/admin/adminCompanyDashboard"
-                                class="flex items-center gap-2 w-full">
+                            <a href="/admin/adminCompanyDashboard" class="flex items-center gap-2 w-full">
 
                                 <i class="ri-building-2-line text-xl"></i>
                                 <span>Companies</span>
@@ -168,12 +152,9 @@
 
 
                         <!-- Jobs -->
-                        <li
-                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
 
-                            <a
-                                href="/admin/adminJobDashboard"
-                                class="flex items-center gap-2 w-full">
+                            <a href="/admin/adminJobDashboard" class="flex items-center gap-2 w-full">
 
                                 <i class="ri-briefcase-4-line text-xl"></i>
                                 <span>Jobs</span>
@@ -187,9 +168,7 @@
                         <li
                             class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600">
 
-                            <a
-                                href="/admin/adminApplicationDashboard"
-                                class="flex items-center gap-2 w-full">
+                            <a href="/admin/adminApplicationDashboard" class="flex items-center gap-2 w-full">
 
                                 <i class="ri-file-list-3-line text-xl"></i>
                                 <span>Applications</span>
@@ -200,12 +179,9 @@
 
 
                         <!-- Profile -->
-                        <li
-                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
 
-                            <a
-                                href="/admin/adminProfilePage"
-                                class="flex items-center gap-2 w-full">
+                            <a href="/admin/adminProfilePage" class="flex items-center gap-2 w-full">
 
                                 <i class="ri-user-line text-xl"></i>
                                 <span>My Profile</span>
@@ -216,12 +192,9 @@
 
 
                         <!-- Logout -->
-                        <li
-                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
+                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
 
-                            <a
-                                href="/admin/logout"
-                                class="flex items-center gap-2 w-full">
+                            <a href="/admin/logout" class="flex items-center gap-2 w-full">
 
                                 <i class="ri-logout-box-r-line text-xl"></i>
                                 <span>Logout</span>
@@ -238,8 +211,7 @@
 
 
             <!-- ================= OVERLAY ================= -->
-            <div
-                class="overlay fixed inset-0 bg-black/30 hidden z-40">
+            <div class="overlay fixed inset-0 bg-black/30 hidden z-40">
             </div>
 
 
@@ -251,15 +223,13 @@
 
                     <div class="mb-8">
 
-                        <h1
-                            class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800">
 
                             Applications
 
                         </h1>
 
-                        <p
-                            class="text-base sm:text-lg text-gray-600 mt-3">
+                        <p class="text-base sm:text-lg text-gray-600 mt-3">
 
                             Manage and monitor all job applications across Quick Hire.
 
@@ -269,21 +239,18 @@
 
 
                     <!-- ================= STAT CARDS ================= -->
-                    <div
-                        class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 
 
                         <!-- Total -->
-                        <div
-                            class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
+                        <div class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
 
                             <div class="flex items-center gap-4">
 
                                 <div
                                     class="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-blue-100 flex items-center justify-center">
 
-                                    <i
-                                        class="ri-group-line text-3xl lg:text-4xl text-blue-600">
+                                    <i class="ri-group-line text-3xl lg:text-4xl text-blue-600">
                                     </i>
 
                                 </div>
@@ -294,8 +261,7 @@
                                         <%= totalApplications %>
                                     </p>
 
-                                    <p
-                                        class="text-lg text-gray-500 mt-1 font-semibold">
+                                    <p class="text-lg text-gray-500 mt-1 font-semibold">
                                         Total Applications
                                     </p>
 
@@ -307,16 +273,14 @@
 
 
                         <!-- Shortlisted -->
-                        <div
-                            class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
+                        <div class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
 
                             <div class="flex items-center gap-4">
 
                                 <div
                                     class="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-green-100 flex items-center justify-center">
 
-                                    <i
-                                        class="ri-checkbox-circle-line text-3xl lg:text-4xl text-green-600">
+                                    <i class="ri-checkbox-circle-line text-3xl lg:text-4xl text-green-600">
                                     </i>
 
                                 </div>
@@ -327,8 +291,7 @@
                                         <%= shortlistedApplication %>
                                     </p>
 
-                                    <p
-                                        class="text-lg text-gray-500 mt-1 font-semibold">
+                                    <p class="text-lg text-gray-500 mt-1 font-semibold">
                                         Shortlisted
                                     </p>
 
@@ -340,16 +303,14 @@
 
 
                         <!-- Under Review -->
-                        <div
-                            class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
+                        <div class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
 
                             <div class="flex items-center gap-4">
 
                                 <div
                                     class="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-orange-100 flex items-center justify-center">
 
-                                    <i
-                                        class="ri-time-line text-3xl lg:text-4xl text-orange-500">
+                                    <i class="ri-time-line text-3xl lg:text-4xl text-orange-500">
                                     </i>
 
                                 </div>
@@ -360,8 +321,7 @@
                                         <%= reviewApplications %>
                                     </p>
 
-                                    <p
-                                        class="text-lg text-gray-500 mt-1 font-semibold">
+                                    <p class="text-lg text-gray-500 mt-1 font-semibold">
                                         Under Review
                                     </p>
 
@@ -373,16 +333,14 @@
 
 
                         <!-- Rejected -->
-                        <div
-                            class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
+                        <div class="bg-white rounded-3xl shadow-xl p-6 hover:shadow-2xl transition min-h-[155px]">
 
                             <div class="flex items-center gap-4">
 
                                 <div
                                     class="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-red-100 flex items-center justify-center">
 
-                                    <i
-                                        class="ri-close-circle-line text-3xl lg:text-4xl text-red-600">
+                                    <i class="ri-close-circle-line text-3xl lg:text-4xl text-red-600">
                                     </i>
 
                                 </div>
@@ -393,8 +351,7 @@
                                         <%= rejectedApplications %>
                                     </p>
 
-                                    <p
-                                        class="text-lg text-gray-500 mt-1 font-semibold">
+                                    <p class="text-lg text-gray-500 mt-1 font-semibold">
                                         Rejected
                                     </p>
 
@@ -410,16 +367,13 @@
 
 
                 <!-- ================= APPLICATION SECTION ================= -->
-                <div
-                    class="px-6 sm:px-8 lg:px-12 mt-10">
+                <div class="px-6 sm:px-8 lg:px-12 mt-10">
 
 
                     <!-- Search + Filters -->
-                    <div
-                        class="bg-white rounded-2xl border border-gray-200 p-4 mb-5">
+                    <div class="bg-white rounded-2xl border border-gray-200 p-4 mb-5">
 
-                        <div
-                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
                             <!-- Search -->
                             <div class="relative w-full lg:w-[420px]">
@@ -428,9 +382,7 @@
                                     class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
                                 </i>
 
-                                <input
-                                    type="text"
-                                    placeholder="Search applicants, jobs or companies..."
+                                <input type="text" placeholder="Search applicants, jobs or companies..."
                                     class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition">
 
                             </div>
@@ -446,15 +398,15 @@
 
                                     <% if (companies) { %>
 
-                                        <% companies.forEach(company => { %>
+                                        <% companies.forEach(company=> { %>
 
                                             <option value="<%= company._id %>">
                                                 <%= company.companyName %>
                                             </option>
 
-                                        <% }) %>
+                                            <% }) %>
 
-                                    <% } %>
+                                                <% } %>
 
                                 </select>
 
@@ -483,11 +435,9 @@
 
 
                     <!-- ================= STATUS TABS ================= -->
-                    <div
-                        class="border border-gray-200 rounded-2xl p-2 mb-5 bg-white">
+                    <div class="border border-gray-200 rounded-2xl p-2 mb-5 bg-white">
 
-                        <div
-                            class="flex items-center gap-1 overflow-x-auto">
+                        <div class="flex items-center gap-1 overflow-x-auto">
 
 
                             <!-- All -->
@@ -498,8 +448,7 @@
 
                                 <span>All Applications</span>
 
-                                <span
-                                    class="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                                <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs">
 
                                     <%= totalApplications %>
 
@@ -512,14 +461,12 @@
                             <button
                                 class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
 
-                                <i
-                                    class="ri-time-line text-orange-500">
+                                <i class="ri-time-line text-orange-500">
                                 </i>
 
                                 <span>Under Review</span>
 
-                                <span
-                                    class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">
+                                <span class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">
 
                                     <%= reviewApplications %>
 
@@ -532,14 +479,12 @@
                             <button
                                 class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
 
-                                <i
-                                    class="ri-checkbox-circle-line text-green-500">
+                                <i class="ri-checkbox-circle-line text-green-500">
                                 </i>
 
                                 <span>Shortlisted</span>
 
-                                <span
-                                    class="bg-green-100 text-green-600 px-2 py-0.5 rounded-full text-xs">
+                                <span class="bg-green-100 text-green-600 px-2 py-0.5 rounded-full text-xs">
 
                                     <%= shortlistedApplication %>
 
@@ -552,14 +497,12 @@
                             <button
                                 class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
 
-                                <i
-                                    class="ri-close-circle-line text-red-500">
+                                <i class="ri-close-circle-line text-red-500">
                                 </i>
 
                                 <span>Rejected</span>
 
-                                <span
-                                    class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs">
+                                <span class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs">
 
                                     <%= rejectedApplications %>
 
@@ -573,45 +516,37 @@
 
 
                     <!-- ================= TABLE ================= -->
-                    <div
-                        class="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden">
 
                         <div class="overflow-x-auto">
 
                             <table class="w-full min-w-[1150px]">
 
-                                <thead
-                                    class="bg-gray-50 border-b">
+                                <thead class="bg-gray-50 border-b">
 
                                     <tr>
 
-                                        <th
-                                            class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
                                             Candidate
                                         </th>
 
-                                        <th
-                                            class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
                                             Job Title
                                         </th>
 
-                                        <th
-                                            class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
                                             Company
                                         </th>
 
-                                        <th
-                                            class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
                                             Applied On
                                         </th>
 
-                                        <th
-                                            class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">
                                             Status
                                         </th>
 
-                                        <th
-                                            class="text-center px-6 py-4 text-sm font-semibold text-gray-600">
+                                        <th class="text-center px-6 py-4 text-sm font-semibold text-gray-600">
                                             Actions
                                         </th>
 
@@ -622,48 +557,42 @@
 
                                 <tbody>
 
-                                    <% if (applications && applications.length > 0) { %>
+                                    <% if (applications && applications.length> 0) { %>
 
-                                        <% applications.forEach(application => { %>
+                                        <% applications.forEach(application=> { %>
 
-                                            <tr
-                                                class="border-b hover:bg-gray-50 transition">
+                                            <tr class="border-b hover:bg-gray-50 transition">
 
 
                                                 <!-- Candidate -->
                                                 <td class="px-6 py-5">
 
-                                                    <div
-                                                        class="flex items-center gap-4">
+                                                    <div class="flex items-center gap-4">
 
                                                         <div
                                                             class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center overflow-hidden">
 
-                                                            <% if (
-                                                                application.applicant &&
+                                                            <% if ( application.applicant &&
                                                                 application.applicant.profileImage &&
-                                                                application.applicant.profileImage.data
-                                                            ) { %>
+                                                                application.applicant.profileImage.data ) { %>
 
-                                                                <img
-                                                                    src="data:<%= application.applicant.profileImage.contentType %>;base64,<%= application.applicant.profileImage.data.toString('base64') %>"
+                                                                <img src="data:<%= application.applicant.profileImage.contentType %>;base64,<%= application.applicant.profileImage.data.toString('base64') %>"
                                                                     alt="Profile"
                                                                     class="h-14 w-14 rounded-full object-cover">
 
-                                                            <% } else { %>
+                                                                <% } else { %>
 
-                                                                <div
-                                                                    class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-lg">
+                                                                    <div
+                                                                        class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-lg">
 
-                                                                    <%= application.applicant &&
-                                                                        application.applicant.fullname
-                                                                        ? application.applicant.fullname.charAt(0).toUpperCase()
-                                                                        : "U"
-                                                                    %>
+                                                                        <%= application.applicant &&
+                                                                            application.applicant.fullname ?
+                                                                            application.applicant.fullname.charAt(0).toUpperCase()
+                                                                            : "U" %>
 
-                                                                </div>
+                                                                    </div>
 
-                                                            <% } %>
+                                                                    <% } %>
 
                                                         </div>
 
@@ -676,8 +605,7 @@
 
                                                             </h2>
 
-                                                            <p
-                                                                class="text-gray-500 mt-1 text-sm">
+                                                            <p class="text-gray-500 mt-1 text-sm">
 
                                                                 <%= application.applicant?.email || "No email" %>
 
@@ -695,15 +623,13 @@
 
                                                     <div>
 
-                                                        <h2
-                                                            class="font-medium text-gray-800">
+                                                        <h2 class="font-medium text-gray-800">
 
                                                             <%= application.job?.jobTitle || "Unknown Job" %>
 
                                                         </h2>
 
-                                                        <p
-                                                            class="text-gray-500 mt-1">
+                                                        <p class="text-gray-500 mt-1">
 
                                                             <%= application.job?.jobType || "N/A" %>
 
@@ -717,24 +643,23 @@
                                                 <!-- Company -->
                                                 <td class="px-6 py-5">
 
-                                                    <div
-                                                        class="flex items-center gap-3">
+                                                    <div class="flex items-center gap-3">
 
                                                         <div
                                                             class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
 
-                                                            <i
-                                                                class="ri-building-4-line text-xl text-blue-500">
+                                                            <i class="ri-building-4-line text-xl text-blue-500">
                                                             </i>
 
                                                         </div>
 
                                                         <div>
 
-                                                            <p
-                                                                class="font-medium text-gray-800">
+                                                            <p class="font-medium text-gray-800">
 
-                                                                <%= application.job?.company?.companyName || application.company?.companyName || "Unknown Company" %>
+                                                                <%= application.job?.company?.companyName ||
+                                                                    application.company?.companyName
+                                                                    || "Unknown Company" %>
 
                                                             </p>
 
@@ -746,17 +671,10 @@
 
 
                                                 <!-- Date -->
-                                                <td
-                                                    class="px-6 py-5 text-gray-600">
+                                                <td class="px-6 py-5 text-gray-600">
 
-                                                    <%= new Date(application.appliedAt).toLocaleDateString(
-                                                        "en-IN",
-                                                        {
-                                                            day: "2-digit",
-                                                            month: "short",
-                                                            year: "numeric"
-                                                        }
-                                                    ) %>
+                                                    <%= new Date(application.appliedAt).toLocaleDateString( "en-IN" , {
+                                                        day: "2-digit" , month: "short" , year: "numeric" } ) %>
 
                                                 </td>
 
@@ -764,7 +682,7 @@
                                                 <!-- Status -->
                                                 <td class="px-6 py-5">
 
-                                                    <% if (application.status === "Shortlisted") { %>
+                                                    <% if (application.status==="Shortlisted" ) { %>
 
                                                         <span
                                                             class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
@@ -773,25 +691,25 @@
 
                                                         </span>
 
-                                                    <% } else if (application.status === "Rejected") { %>
+                                                        <% } else if (application.status==="Rejected" ) { %>
 
-                                                        <span
-                                                            class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                            <span
+                                                                class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
 
-                                                            Rejected
+                                                                Rejected
 
-                                                        </span>
+                                                            </span>
 
-                                                    <% } else { %>
+                                                            <% } else { %>
 
-                                                        <span
-                                                            class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                                                <span
+                                                                    class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">
 
-                                                            Under Review
+                                                                    Under Review
 
-                                                        </span>
+                                                                </span>
 
-                                                    <% } %>
+                                                                <% } %>
 
                                                 </td>
 
@@ -799,12 +717,10 @@
                                                 <!-- Actions -->
                                                 <td class="px-6 py-5">
 
-                                                    <div
-                                                        class="flex justify-center gap-2">
+                                                    <div class="flex justify-center gap-2">
 
                                                         <!-- View -->
-                                                        <a
-                                                            href="/admin/adminApplicationDetails/<%= application._id %>"
+                                                        <a href="/admin/adminApplicationDetails/<%= application._id %>"
                                                             title="View Details"
                                                             class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition flex items-center justify-center">
 
@@ -814,10 +730,11 @@
 
 
                                                         <!-- Delete -->
-                                                        <button
-                                                            onclick="window.location.href='/admin/adminDeleteApplicationConfirmation/<%= application._id %>'"
-                                                            type="button"
-                                                            title="Delete Application"
+                                                        <!-- Delete -->
+                                                        <button type="button" title="Delete Application"
+                                                            data-id="<%= application._id %>"
+                                                            data-name="<%= application.applicant?.fullname || 'Unknown User' %>"
+                                                            onclick="openDeleteModal(this.dataset.id, this.dataset.name)"
                                                             class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition flex items-center justify-center">
 
                                                             <i class="ri-delete-bin-6-line"></i>
@@ -830,49 +747,44 @@
 
                                             </tr>
 
-                                        <% }) %>
+                                            <% }) %>
 
-                                    <% } else { %>
+                                                <% } else { %>
 
-                                        <tr>
+                                                    <tr>
 
-                                            <td
-                                                colspan="6"
-                                                class="px-6 py-12 text-center">
+                                                        <td colspan="6" class="px-6 py-12 text-center">
 
-                                                <div
-                                                    class="flex flex-col items-center justify-center">
+                                                            <div class="flex flex-col items-center justify-center">
 
-                                                    <div
-                                                        class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                                                                <div
+                                                                    class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
 
-                                                        <i
-                                                            class="ri-file-list-3-line text-3xl text-gray-400">
-                                                        </i>
+                                                                    <i
+                                                                        class="ri-file-list-3-line text-3xl text-gray-400">
+                                                                    </i>
 
-                                                    </div>
+                                                                </div>
 
-                                                    <h3
-                                                        class="text-lg font-semibold text-gray-700">
+                                                                <h3 class="text-lg font-semibold text-gray-700">
 
-                                                        No Applications Found
+                                                                    No Applications Found
 
-                                                    </h3>
+                                                                </h3>
 
-                                                    <p
-                                                        class="text-sm text-gray-500 mt-1">
+                                                                <p class="text-sm text-gray-500 mt-1">
 
-                                                        There are no job applications available yet.
+                                                                    There are no job applications available yet.
 
-                                                    </p>
+                                                                </p>
 
-                                                </div>
+                                                            </div>
 
-                                            </td>
+                                                        </td>
 
-                                        </tr>
+                                                    </tr>
 
-                                    <% } %>
+                                                    <% } %>
 
                                 </tbody>
 
@@ -898,36 +810,31 @@
 
                             <div class="flex items-center gap-2">
 
-                                <button
-                                    class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
 
                                     <i class="ri-arrow-left-s-line"></i>
 
                                 </button>
 
-                                <button
-                                    class="w-9 h-9 rounded-lg bg-blue-600 text-white">
+                                <button class="w-9 h-9 rounded-lg bg-blue-600 text-white">
 
                                     1
 
                                 </button>
 
-                                <button
-                                    class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
 
                                     2
 
                                 </button>
 
-                                <button
-                                    class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
 
                                     3
 
                                 </button>
 
-                                <button
-                                    class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                                <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
 
                                     <i class="ri-arrow-right-s-line"></i>
 
@@ -935,6 +842,60 @@
 
                             </div>
 
+                        </div>
+
+                        
+                        <!-- ================= DELETE CONFIRMATION MODAL ================= -->
+
+                        <div id="deleteModal"
+                            class="fixed inset-0 bg-black/40 hidden items-center justify-center z-[100]">
+
+                            <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-md p-6">
+
+                                <!-- Icon -->
+                                <div class="w-14 h-14 mx-auto rounded-full bg-red-100
+                    flex items-center justify-center mb-4">
+
+                                    <i class="ri-delete-bin-6-line text-3xl text-red-600"></i>
+
+                                </div>
+
+                                <!-- Heading -->
+                                <h2 class="text-xl font-bold text-gray-800 text-center">
+                                    Delete Application?
+                                </h2>
+
+                                <!-- Message -->
+                                <p class="text-gray-500 text-center mt-2">
+                                    Are you sure you want to delete the application of
+                                    <span id="applicantName" class="font-semibold text-gray-700">
+                                    </span>?
+                                </p>
+
+                                <p class="text-sm text-red-500 text-center mt-2">
+                                    This action cannot be undone.
+                                </p>
+
+                                <!-- Buttons -->
+                                <div class="flex justify-center gap-3 mt-6">
+
+                                    <!-- Cancel -->
+                                    <button onclick="closeDeleteModal()" class="px-5 py-2.5 rounded-xl border border-gray-300
+                       text-gray-700 hover:bg-gray-100 transition">
+
+                                        Cancel
+                                    </button>
+
+                                    <!-- Delete -->
+                                    <button onclick="confirmDelete()" class="px-5 py-2.5 rounded-xl bg-red-600 text-white
+                       hover:bg-red-700 transition">
+
+                                        Yes, Delete
+                                    </button>
+
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -982,6 +943,44 @@
             overlay.classList.add("hidden");
 
         });
+
+        let deleteApplicationId = "";
+
+        function openDeleteModal(applicationId, applicantName) {
+
+            deleteApplicationId = applicationId;
+
+            document.getElementById("applicantName").textContent = applicantName;
+
+            const modal = document.getElementById("deleteModal");
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+
+        function closeDeleteModal() {
+
+            const modal = document.getElementById("deleteModal");
+
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+
+            deleteApplicationId = "";
+        }
+
+
+       function confirmDelete() {
+
+    if (deleteApplicationId) {
+
+        window.location.href =
+            "/admin/adminDeleteApplication/" +
+            deleteApplicationId;
+
+    }
+
+}
 
     </script>
 

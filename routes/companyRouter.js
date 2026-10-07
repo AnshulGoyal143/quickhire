@@ -372,7 +372,7 @@ router.post("/PostJob", isCompanyLoggedIn, async (req, res) => {
 
     await notificationModel.create({
         title: "New Job Posted",
-        message: `${job.jobTitle} has been posted by ${createdCompany.companyName}.`,
+        message: `${job.jobTitle} has been posted by ${req.company.companyName}.`,
         type: "Job",
         icon: "ri-briefcase-4-line",
         isRead: false

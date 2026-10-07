@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // alg connection aur ye only developer phase k ley h in real dyanmic conncetion usse hoga
 mongoose
-.connect("mongodb://127.0.0.1:27017/quickhire")
+.connect(process.env.MONGODB_URL)
 .then(function(){
     console.log("connected")
 })

@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -464,7 +466,7 @@ router.post("/userApplyJobs", isLoggedIn, upload.single("resume"), async (req, r
             icon: "ri-file-list-3-line",
             isRead: false
         });
-        
+
     res.json({
         success: true,
         message: "Application submitted successfully"
@@ -551,9 +553,11 @@ async function isLoggedIn(req, res, next) {
     }
 
     let data = jwt.verify(req.cookies.token, process.env.USER_JWT_SECRET);
+    if (!data) {
+        return res.redirect("/users/login");
+    }
 
     let user = await userModel.findById(data.userid);
-
     req.user = user;
     res.locals.user = user;
 

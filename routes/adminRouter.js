@@ -737,8 +737,12 @@ async function isAdminLoggedIn(req, res, next) {
    if (!req.cookies.adminToken) {
       return res.redirect("/admin/login");
    }
-
+   
    let data = jwt.verify(req.cookies.adminToken, process.env.ADMIN_JWT_SECRET);
+   if (!data) {
+      return res.redirect("/admin/login");
+   }
+    
 
    let admin = await adminModel.findById(data.adminid);
 

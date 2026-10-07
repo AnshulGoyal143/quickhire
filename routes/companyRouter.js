@@ -458,6 +458,9 @@ async function isCompanyLoggedIn(req, res, next) {
         req.cookies.companyToken,
         process.env.COMPANY_JWT_SECRET
     );
+    if (!data) {
+         return res.redirect("/company/login");
+    }
 
     // 🏢 Find logged-in company from database
     let company = await companyModel.findById(data.companyid);

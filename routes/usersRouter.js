@@ -27,7 +27,7 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
     let { email, password } = req.body;
 
-    let user = await userModel.findOne({ email });
+    let user = await userModel.findOne({ email:email.toLowerCase() });
     if (!user) return res.status(500).send("Something went wrong");
 
     bcrypt.compare(password, user.password, function (err, result) {
@@ -50,14 +50,14 @@ router.get("/register", (req, res) => {
 router.post("/register", async (req, res) => {
     let { email, fullname, password, mobile } = req.body;
 
-    let user = await userModel.findOne({ email });
+    let user = await userModel.findOne({ email:email.toLowerCase() });
     if (user) return res.status(500).send("Account already exists");
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, async (err, hash) => {
             let createdUser = await userModel.create({
                 fullname,
-                email,
+                email:email.toLowerCase(),
                 mobile,
                 password: hash
             });

@@ -40,7 +40,7 @@
                         <h2 class="text-xl font-semibold hidden md:block ">
                             <%= company.companyName %>
                         </h2>
-                        <a href=""><i class="ri-arrow-down-wide-line"></i></a>
+                      
                     </div>
                 </div>
             </nav>
@@ -110,19 +110,7 @@
                             </a>
                         </li>
 
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="">
-                                <i class="ri-bookmark-line text-xl"></i>
-                                <span>Saved Candidates</span>
-                            </a>
-                        </li>
-
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="">
-                                <i class="ri-chat-3-line text-xl"></i>
-                                <span>Messages</span>
-                            </a>
-                        </li>
+                     
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer mt-8 hover:bg-gray-100">
                             <a href="/company/logout">
@@ -341,7 +329,7 @@
             </p>
         </div>
 
-        <a href="/company/applicants"
+        <a href="/company/companyApplicant"
            class="text-blue-600 font-medium hover:underline text-sm">
             View All
         </a>
@@ -468,7 +456,7 @@
 
 
                         <!-- VIEW -->
-                        <a href="/company/application/<%= application._id %>"
+                        <a href="/company/companyApplicationDetails/<%= application._id %>"
                            class="w-9 h-9 rounded-lg
                                   border border-gray-200
                                   flex items-center justify-center

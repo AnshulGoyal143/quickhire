@@ -362,16 +362,23 @@ router.get("/companyJobPosted", isCompanyLoggedIn, (req, res) => {
 
 // -------------post a job----------------
 
+
 router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
     try {
         const page = Math.max(1, parseInt(req.query.page) || 1);
         const limit = 8;
-        const skip = (page - 1) * limit;
 
         const filter = { company: req.company._id };
 
         const totalJobs = await jobModel.countDocuments(filter);
         const totalPages = Math.ceil(totalJobs / limit);
+
+        // Invalid page ko handle karo
+        const currentPage = totalPages === 0
+            ? 1
+            : Math.min(page, totalPages);
+
+        const skip = (currentPage - 1) * limit;
 
         const jobs = await jobModel.find(filter)
             .sort({ createdAt: -1 })
@@ -380,14 +387,14 @@ router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
 
         res.render("company/companyJobPosted", {
             jobs,
-            currentPage: page,
+            currentPage,
             totalPages,
             totalJobs,
             limit
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("Company Job Posted Error:", error);
         res.status(500).send("Something went wrong");
     }
 });

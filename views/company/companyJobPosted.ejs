@@ -39,7 +39,7 @@
                         <h2 class="text-xl font-semibold hidden md:block ">
                             <%= company.companyName %>
                         </h2>
-                       
+
                     </div>
                 </div>
             </nav>
@@ -94,7 +94,7 @@
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
-                            <a href="/company/companyApplicants">
+                            <a href="/company/companyApplicant">
                                 <i class="ri-team-line text-xl"></i>
                                 <span>Applicants</span>
                             </a>
@@ -102,7 +102,7 @@
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100">
-                            <a href="/company/companyApplicantion">
+                            <a href="/company/companyApplications">
                                 <i class="ri-file-list-3-line text-xl"></i>
                                 <span>Applications</span>
                             </a>
@@ -145,7 +145,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Total Jobs</h2>
-                                <p class="text-4xl font-bold mt-1"><%= totalJobs %></p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= totalJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -167,7 +169,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Active Jobs</h2>
-                                <p class="text-4xl font-bold mt-1"><%= activeJobs %></p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= activeJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -188,7 +192,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Expired Jobs</h2>
-                                <p class="text-4xl font-bold mt-1"><%= expiredJobs %></p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= expiredJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3 ">
@@ -209,7 +215,9 @@
                             </div>
                             <div class="maintext">
                                 <h2 class="text-xl text-gray-500">Draft Jobs</h2>
-                                <p class="text-4xl font-bold mt-1"> <%= draftJobs %></p>
+                                <p class="text-4xl font-bold mt-1">
+                                    <%= draftJobs %>
+                                </p>
                             </div>
                         </div>
                         <div class="routetag mt-3">
@@ -407,41 +415,48 @@
                     </div>
 
                     <!-- Pagination -->
+
                     <div
                         class="flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-4 border-t bg-white">
 
                         <p class="text-sm text-gray-500">
                             Showing
                             <span class="font-semibold">
-                                <%= jobs.length %>
+                                <%= totalJobs===0 ? 0 : (currentPage - 1) * limit + 1 %>
+                            </span>
+                            -
+                            <span class="font-semibold">
+                                <%= Math.min(currentPage * limit, totalJobs) %>
+                            </span>
+                            of
+                            <span class="font-semibold">
+                                <%= totalJobs %>
                             </span>
                             jobs
                         </p>
 
                         <div class="flex items-center gap-2">
 
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
+                            <a href="?page=<%= currentPage - 1 %>" class="w-9 h-9 flex items-center justify-center rounded-lg border
+           <%= currentPage <= 1 ? 'pointer-events-none opacity-40' : 'hover:bg-gray-100' %>">
                                 <i class="ri-arrow-left-s-line"></i>
-                            </button>
+                            </a>
 
-                            <button class="w-9 h-9 rounded-lg bg-blue-600 text-white">
-                                1
-                            </button>
+                            <% for (let i=1; i <=totalPages; i++) { %>
+                                <a href="?page=<%= i %>" class="w-9 h-9 flex items-center justify-center rounded-lg border
+               <%= currentPage === i
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'hover:bg-gray-100' %>">
+                                    <%= i %>
+                                </a>
+                                <% } %>
 
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                                2
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                                3
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </button>
+                                    <a href="?page=<%= currentPage + 1 %>" class="w-9 h-9 flex items-center justify-center rounded-lg border
+           <%= currentPage >= totalPages ? 'pointer-events-none opacity-40' : 'hover:bg-gray-100' %>">
+                                        <i class="ri-arrow-right-s-line"></i>
+                                    </a>
 
                         </div>
-
                     </div>
 
                 </div>

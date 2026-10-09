@@ -39,7 +39,7 @@
                         <h2 class="text-xl font-semibold hidden md:block ">
                             <%= company.companyName %>
                         </h2>
-                      
+
                     </div>
                 </div>
             </nav>
@@ -61,8 +61,7 @@
                     <ul class=" space-y-3">
                         <!-- yha pee user dashboard menu link attach krne h -->
 
-                        <li
-                            class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1">
+                        <li class="flex items-center gap-2 px-4 py-3 rounded-xl cursor-pointer hover:bg-gray-100 mb-1">
                             <a href="/company/companyDashboard">
                                 <i class="ri-home-3-line text-xl"></i>
                                 <span>Dashboard</span>
@@ -94,15 +93,16 @@
 
 
                         <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer hover:bg-gray-100 ">
-                            <a href="/company/companyApplicants">
+                            <a href="/company/companyApplicant">
                                 <i class="ri-team-line text-xl"></i>
                                 <span>Applicants</span>
                             </a>
                         </li>
 
 
-                        <li class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600 ">
-                            <a href="/company/companyApplicantion">
+                        <li
+                            class="flex items-center gap-2 px-4 py-4 rounded-xl cursor-pointer bg-blue-100 text-blue-600 ">
+                            <a href="/company/companyApplications">
                                 <i class="ri-file-list-3-line text-xl"></i>
                                 <span>Applications</span>
                             </a>
@@ -129,7 +129,8 @@
                 <div class="welcome mb-8">
 
                     <h4 class="text-3xl sm:text-4xl lg:text-5xl mt-2 font-bold">Applications</h4>
-                    <p class="text-base sm:text-lg lg:text-xl mt-3 text-gray-700">Manage and review all applications received for your job posts. </p>
+                    <p class="text-base sm:text-lg lg:text-xl mt-3 text-gray-700">Manage and review all applications
+                        received for your job posts. </p>
                 </div>
                 <!-- ************************CARDS ******************* -->
                 <div class="routetext  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -143,13 +144,13 @@
                                 <i class="ri-group-line text-3xl lg:text-4xl text-blue-600"></i>
                             </div>
                             <div class="maintext">
-                                 <p class="text-4xl font-bold ">
-                                    <%=  totalApplications %>
-                                 </p>
+                                <p class="text-4xl font-bold ">
+                                    <%= totalApplications %>
+                                </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Total Applications</p>
                             </div>
                         </div>
-                        
+
                     </div>
 
 
@@ -163,15 +164,15 @@
                                 <i class="ri-checkbox-circle-line text-3xl lg:text-4xl text-green-600"></i>
                             </div>
                             <div class="maintext">
-                                
+
                                 <p class="text-4xl font-bold ">
                                     <%= shortlistedApplication %>
                                 </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Shortlisted</p>
-                                
+
                             </div>
                         </div>
-            
+
                     </div>
 
                     <!-- *************** -->
@@ -184,13 +185,13 @@
                                 <i class="ri-time-line text-3xl lg:text-4xl text-orange-500 "></i>
                             </div>
                             <div class="maintext">
-                                 <p class="text-4xl font-bold ">
-                                     <%= reviewApplications %>
-                                 </p>
+                                <p class="text-4xl font-bold ">
+                                    <%= reviewApplications %>
+                                </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Under Review </p>
                             </div>
                         </div>
-            
+
                     </div>
 
                     <!-- *********************** -->
@@ -203,341 +204,367 @@
                                 <i class="ri-close-circle-line text-3xl lg:text-4xl text-red-600"></i>
                             </div>
                             <div class="maintext">
-                                 <p class="text-4xl font-bold ">
+                                <p class="text-4xl font-bold ">
                                     <%= rejectedApplications %>
-                                 </p>
+                                </p>
                                 <p class="text-xl text-gray-500 mt-1 font-semibold">Rejected</p>
+                            </div>
+
                         </div>
-                        
+
+
                     </div>
-
-
-                </div>
-            </div>
-
-
-            <!-- **************tables ********* -->
-
-            <div class=" px-6 sm:px-8 lg:px-12 py-2 pt-28 pb-10  transition-all duration-300">
-                <!-- Header -->
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-
-                    <!-- Search -->
-                    <div class="relative w-full md:w-[420px]">
-                        <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
-
-                        <input type="text" placeholder="Search applicants..."
-                            class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
-                    </div>
-
-                    <!-- ******** APPLICATION STATUS TABS ******** -->
-
-<div class="border border-gray-200 rounded-2xl p-2 mt-6 mb-4">
-
-<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-
-    
-
-
-    <!-- Status Tabs -->
-    <div class="flex items-center gap-1 overflow-x-auto">
-
-        <!-- All Applications -->
-        <button
-            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm whitespace-nowrap transition">
-
-            <i class="ri-apps-line"></i>
-
-            <span>All Applications</span>
-
-            <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs">
-                <%= totalApplications %>
-            </span>
-
-        </button>
-
-
-        <!-- Under Review -->
-        <button
-            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
-
-            <i class="ri-time-line text-orange-500"></i>
-
-            <span>Under Review</span>
-
-            <span class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">
-                <%= reviewApplications %>
-            </span>
-
-        </button>
-
-
-        <!-- Shortlisted -->
-        <button
-            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
-
-            <i class="ri-checkbox-circle-line text-green-500"></i>
-
-            <span>Shortlisted</span>
-
-            <span class="bg-green-100 text-green-600 px-2 py-0.5 rounded-full text-xs">
-                <%= shortlistedApplication %>
-            </span>
-
-        </button>
-
-
-        <!-- Rejected -->
-        <button
-            class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
-
-            <i class="ri-close-circle-line text-red-500"></i>
-
-            <span>Rejected</span>
-
-            <span class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs">
-                <%= rejectedApplications %>
-            </span>
-
-        </button>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
                 </div>
 
-                <!-- ***********TABLES FORM************* -->
-                <div class="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden mt-6">
 
-                    <!-- Table -->
-                    <div class="overflow-x-auto">
+                <!-- **************tables ********* -->
 
-                        <table class="w-full min-w-[950px]">
+                <div class=" px-6 sm:px-8 lg:px-12 py-2 pt-28 pb-10  transition-all duration-300">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
 
-                            <thead class="bg-gray-50 border-b">
-                                <tr>
+                        <!-- Search -->
+                        <div class="relative w-full md:w-[420px]">
+                            <i
+                                class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
 
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Candidate</th>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Title</th>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Applied On</th>
-                                    <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
-                                    <th class="text-center px-6 py-4 text-sm font-semibold text-gray-600">Actions</th>
-                                </tr>
-                            </thead>
-<tbody>
+                            <input type="text" placeholder="Search applicants..."
+                                class="w-full border border-gray-300 rounded-xl py-3 pl-12 pr-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                        </div>
 
-    <% if (applications && applications.length > 0) { %>
+                        <!-- ******** APPLICATION STATUS TABS ******** -->
 
-        <% applications.forEach(application => { %>
+                        <div class="border border-gray-200 rounded-2xl p-2 mt-6 mb-4">
 
-            <tr class="border-b hover:bg-gray-50 transition">
+                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
 
-                <!-- Candidate -->
-                <td class="px-6 py-5">
 
-                    <div class="flex items-center gap-4">
 
-                        <div class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center">
 
-                               <% if (application.applicant.profileImage && application.applicant.profileImage.data) { %>
+                                <!-- Status Tabs -->
+                                <div class="flex items-center gap-1 overflow-x-auto">
 
-                                                            <img src="data:<%= application.applicant.profileImage.contentType %>;base64,<%= application.applicant.profileImage.data.toString('base64') %>"
-                                                                alt="Profile"
-                                                                class="h-14 w-14 bg-blue-100 rounded-full object-cover">
+                                    <!-- All Applications -->
+                                    <button
+                                        class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-sm whitespace-nowrap transition">
 
-                                                            <% } else { %>
+                                        <i class="ri-apps-line"></i>
 
-                                                                <div
-                                                                    class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
-                                                                    <%= application.applicant.fullname ?
-                                                                        application.applicant.fullname.charAt(0).toUpperCase()
-                                                                        : "U" %>
-                                                                </div>
+                                        <span>All Applications</span>
 
-                                                                <% } %>
+                                        <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                                            <%= totalApplications %>
+                                        </span>
+
+                                    </button>
+
+
+                                    <!-- Under Review -->
+                                    <button
+                                        class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
+
+                                        <i class="ri-time-line text-orange-500"></i>
+
+                                        <span>Under Review</span>
+
+                                        <span class="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-xs">
+                                            <%= reviewApplications %>
+                                        </span>
+
+                                    </button>
+
+
+                                    <!-- Shortlisted -->
+                                    <button
+                                        class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
+
+                                        <i class="ri-checkbox-circle-line text-green-500"></i>
+
+                                        <span>Shortlisted</span>
+
+                                        <span class="bg-green-100 text-green-600 px-2 py-0.5 rounded-full text-xs">
+                                            <%= shortlistedApplication %>
+                                        </span>
+
+                                    </button>
+
+
+                                    <!-- Rejected -->
+                                    <button
+                                        class="status-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 font-medium text-sm whitespace-nowrap transition">
+
+                                        <i class="ri-close-circle-line text-red-500"></i>
+
+                                        <span>Rejected</span>
+
+                                        <span class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs">
+                                            <%= rejectedApplications %>
+                                        </span>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
 
 
                         </div>
 
-                        <div>
 
-                            <h2 class="font-medium">
-                                <%= application.applicant.fullname %>
-                            </h2>
+                    </div>
 
-                            <p class="text-gray-600 mt-1">
-                                <%= application.applicant.email %>
+                    <!-- ***********TABLES FORM************* -->
+                    <div class="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden mt-6">
+
+                        <!-- Table -->
+                        <div class="overflow-x-auto">
+
+                            <table class="w-full min-w-[950px]">
+
+                                <thead class="bg-gray-50 border-b">
+                                    <tr>
+
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Candidate
+                                        </th>
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Job Title
+                                        </th>
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Applied On
+                                        </th>
+                                        <th class="text-left px-6 py-4 text-sm font-semibold text-gray-600">Status</th>
+                                        <th class="text-center px-6 py-4 text-sm font-semibold text-gray-600">Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <% if (applications && applications.length> 0) { %>
+
+                                        <% applications.forEach(application=> { %>
+
+                                            <tr class="border-b hover:bg-gray-50 transition">
+
+                                                <!-- Candidate -->
+                                                <td class="px-6 py-5">
+
+                                                    <div class="flex items-center gap-4">
+
+                                                        <div
+                                                            class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center">
+
+                                                            <% if (application.applicant.profileImage &&
+                                                                application.applicant.profileImage.data) { %>
+
+                                                                <img src="data:<%= application.applicant.profileImage.contentType %>;base64,<%= application.applicant.profileImage.data.toString('base64') %>"
+                                                                    alt="Profile"
+                                                                    class="h-14 w-14 bg-blue-100 rounded-full object-cover">
+
+                                                                <% } else { %>
+
+                                                                    <div
+                                                                        class="h-14 w-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+                                                                        <%= application.applicant.fullname ?
+                                                                            application.applicant.fullname.charAt(0).toUpperCase()
+                                                                            : "U" %>
+                                                                    </div>
+
+                                                                    <% } %>
+
+
+                                                        </div>
+
+                                                        <div>
+
+                                                            <h2 class="font-medium">
+                                                                <%= application.applicant.fullname %>
+                                                            </h2>
+
+                                                            <p class="text-gray-600 mt-1">
+                                                                <%= application.applicant.email %>
+                                                            </p>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </td>
+
+
+                                                <!-- Job -->
+                                                <td class="px-6 py-5">
+
+                                                    <div>
+
+                                                        <h2 class="font-medium">
+                                                            <%= application.job.jobTitle %>
+                                                        </h2>
+
+                                                        <p class="text-gray-600 mt-1">
+                                                            <%= application.job.jobType %>
+                                                        </p>
+
+                                                    </div>
+
+                                                </td>
+
+
+                                                <!-- Applied Date -->
+                                                <td class="px-6 py-5 text-gray-600">
+
+                                                    <%= new Date(application.appliedAt).toLocaleDateString("en-IN", {
+                                                        day: "2-digit" , month: "short" , year: "numeric" }) %>
+
+                                                </td>
+
+
+                                                <!-- Status -->
+                                                <td class="px-6 py-5">
+
+                                                    <span
+                                                        class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
+
+                                                        <%= application.status || "Applied" %>
+
+                                                    </span>
+
+                                                </td>
+
+
+                                                <!-- Actions -->
+                                                <td class="px-6 py-5">
+
+                                                    <div class="flex justify-center gap-2">
+
+                                                        <!-- View Details -->
+                                                        <a href="/company/companyApplicationDetails/<%= application._id %>"
+                                                            title="View Details"
+                                                            class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition flex items-center justify-center">
+
+                                                            <i class="ri-eye-line"></i>
+
+                                                        </a>
+
+
+                                                        <!-- Delete -->
+                                                        <button
+                                                            onclick="window.location.href='/company/companyDeleteConfirmation/<%= application._id %>'"
+                                                            type="button" title="Delete Application"
+                                                            class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
+
+                                                            <i class="ri-delete-bin-6-line"></i>
+
+                                                        </button>
+
+                                                    </div>
+
+                                                </td>
+
+                                            </tr>
+
+                                            <% }) %>
+
+                                                <% } else { %>
+
+                                                    <tr>
+
+                                                        <td colspan="5" class="px-6 py-10 text-center text-gray-500">
+
+                                                            No applications received yet.
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <% } %>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <!-- Pagination -->
+
+                        <div
+                            class="flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-4 border-t bg-white">
+
+                            <!-- Applications Count -->
+                            <p class="text-sm text-gray-500">
+                                Showing
+                                <span class="font-semibold">
+                                    <%= totalApplications===0 ? 0 : (currentPage - 1) * limit + 1 %>
+                                </span>
+                                –
+                                <span class="font-semibold">
+                                    <%= Math.min(currentPage * limit, totalApplications) %>
+                                </span>
+                                of
+                                <span class="font-semibold">
+                                    <%= totalApplications %>
+                                </span>
+                                applications
                             </p>
 
+                            <div class="flex items-center gap-2">
+
+                                <!-- Previous -->
+                                <a href="?page=<%= currentPage - 1 %>" class="w-9 h-9 flex items-center justify-center rounded-lg border
+           <%= currentPage <= 1
+               ? 'pointer-events-none opacity-40'
+               : 'hover:bg-gray-100' %>">
+                                    <i class="ri-arrow-left-s-line"></i>
+                                </a>
+
+                                <!-- Page Numbers -->
+                                <% for (let i=1; i <=totalPages; i++) { %>
+                                    <a href="?page=<%= i %>" class="w-9 h-9 flex items-center justify-center rounded-lg border
+               <%= currentPage === i
+                   ? 'bg-blue-600 text-white border-blue-600'
+                   : 'hover:bg-gray-100' %>">
+                                        <%= i %>
+                                    </a>
+                                    <% } %>
+
+                                        <!-- Next -->
+                                        <a href="?page=<%= currentPage + 1 %>" class="w-9 h-9 flex items-center justify-center rounded-lg border
+           <%= currentPage >= totalPages
+               ? 'pointer-events-none opacity-40'
+               : 'hover:bg-gray-100' %>">
+                                            <i class="ri-arrow-right-s-line"></i>
+                                        </a>
+
+                            </div>
                         </div>
 
                     </div>
-
-                </td>
-
-
-                <!-- Job -->
-                <td class="px-6 py-5">
-
-                    <div>
-
-                        <h2 class="font-medium">
-                            <%= application.job.jobTitle %>
-                        </h2>
-
-                        <p class="text-gray-600 mt-1">
-                            <%= application.job.jobType %>
-                        </p>
-
-                    </div>
-
-                </td>
-
-
-                <!-- Applied Date -->
-                <td class="px-6 py-5 text-gray-600">
-
-                    <%= new Date(application.appliedAt).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric"}) %>
-
-                </td>
-
-
-                <!-- Status -->
-                <td class="px-6 py-5">
-
-                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">
-
-                        <%= application.status || "Applied" %>
-
-                    </span>
-
-                </td>
-
-
-                <!-- Actions -->
-                <td class="px-6 py-5">
-
-    <div class="flex justify-center gap-2">
-
-        <!-- View Details -->
-        <a
-            href="/company/companyApplicationDetails/<%= application._id %>"
-            title="View Details"
-            class="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition flex items-center justify-center">
-
-            <i class="ri-eye-line"></i>
-
-        </a>
-
-
-        <!-- Delete -->
-        <button onclick="window.location.href='/company/companyDeleteConfirmation/<%= application._id %>'"
-            type="button"
-            title="Delete Application"
-            class="w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition">
-
-            <i class="ri-delete-bin-6-line"></i>
-
-        </button>
-
-    </div>
-
-</td>
-
-            </tr>
-
-        <% }) %>
-
-    <% } else { %>
-
-        <tr>
-
-            <td colspan="5" class="px-6 py-10 text-center text-gray-500">
-
-                No applications received yet.
-
-            </td>
-
-        </tr>
-
-    <% } %>
-
-</tbody>
-
-                        </table>
-
-                    </div>
-
-                    <!-- Pagination -->
-                    <div
-                        class="flex flex-col md:flex-row items-center justify-between gap-4 px-6 py-4 border-t bg-white">
-
-                        <p class="text-sm text-gray-500">
-                            Showing <span class="font-semibold">1–5</span> of
-                            <span class="font-semibold">123</span> jobs
-                        </p>
-
-                        <div class="flex items-center gap-2">
-
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                                <i class="ri-arrow-left-s-line"></i>
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg bg-blue-600 text-white">
-                                1
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                                2
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                                3
-                            </button>
-
-                            <button class="w-9 h-9 rounded-lg border hover:bg-gray-100">
-                                <i class="ri-arrow-right-s-line"></i>
-                            </button>
-
-                        </div>
-
-                    </div>
-
                 </div>
+
+
             </div>
 
-
         </div>
+        <script>
+            let menubtn = document.querySelector(".menubtn");
+            let sidebar = document.querySelector(".sidebar");
+            let cross = document.querySelector(".cross");
+            let overlay = document.querySelector(".overlay")
 
-    </div>
-    <script>
-        let menubtn = document.querySelector(".menubtn");
-        let sidebar = document.querySelector(".sidebar");
-        let cross = document.querySelector(".cross");
-        let overlay = document.querySelector(".overlay")
+            menubtn.addEventListener("click", () => {
+                sidebar.classList.remove("-translate-x-full");
+                overlay.classList.remove("hidden");
+            });
 
-        menubtn.addEventListener("click", () => {
-            sidebar.classList.remove("-translate-x-full");
-            overlay.classList.remove("hidden");
-        });
+            cross.addEventListener("click", () => {
+                sidebar.classList.add("-translate-x-full")
+                overlay.classList.add("hidden");
 
-        cross.addEventListener("click", () => {
-            sidebar.classList.add("-translate-x-full")
-            overlay.classList.add("hidden");
+            })
 
-        })
+            overlay.addEventListener("click", () => {
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("hidden");
+            })
 
-        overlay.addEventListener("click", () => {
-            sidebar.classList.add("-translate-x-full");
-            overlay.classList.add("hidden");
-        })
-
-    </script>
+        </script>
 </body>
 
 </html>

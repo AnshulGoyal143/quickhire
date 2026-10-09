@@ -133,55 +133,75 @@ router.get("/companyMyProfile", isCompanyLoggedIn, (req, res) => {
 
 
 //---------------application -----------
+
 router.get("/companyApplications", isCompanyLoggedIn, async (req, res) => {
+    try {
+        // Pagination
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = 5;
+        const skip = (page - 1) * limit;
 
-    const applications = await applicationModel
-        .find({ company: req.company._id })
-        .populate("applicant")
-        .populate("job")
-        .sort({ appliedAt: -1 })
+        const filter = { company: req.company._id };
 
-    // Total Applications
-    const totalApplications = await applicationModel.countDocuments({
-        company: req.company._id
-    });
+        // Total Applications
+        const totalApplications =
+            await applicationModel.countDocuments(filter);
 
+        const totalPages = Math.ceil(totalApplications / limit);
 
+        // Applications for Current Page
+        const applications = await applicationModel
+            .find(filter)
+            .populate("applicant")
+            .populate("job")
+            .sort({ appliedAt: -1 })
+            .skip(skip)
+            .limit(limit);
 
-    // Under Review
-    const reviewApplications = await applicationModel.countDocuments({
-        company: req.company._id,
-        status: "Under Review"
-    });
+        // Under Review
+        const reviewApplications =
+            await applicationModel.countDocuments({
+                ...filter,
+                status: "Under Review"
+            });
 
+        // In Progress
+        const inProgressApplications =
+            await applicationModel.countDocuments({
+                ...filter,
+                status: { $in: ["Shortlisted", "Selected"] }
+            });
 
-    // In Progress
-    const inProgressApplications = await applicationModel.countDocuments({
-        company: req.company._id,
-        status: { $in: ["Shortlisted", "Selected"] }
-    });
+        // Rejected
+        const rejectedApplications =
+            await applicationModel.countDocuments({
+                ...filter,
+                status: "Rejected"
+            });
 
+        // Shortlisted
+        const shortlistedApplication =
+            await applicationModel.countDocuments({
+                ...filter,
+                status: "Shortlisted"
+            });
 
-    // Rejected
-    const rejectedApplications = await applicationModel.countDocuments({
-        company: req.company._id,
-        status: "Rejected"
-    });
+        res.render("company/companyApplications", {
+            applications,
+            totalApplications,
+            reviewApplications,
+            inProgressApplications,
+            rejectedApplications,
+            shortlistedApplication,
+            currentPage: page,
+            totalPages,
+            limit
+        });
 
-    // shortlisted
-    const shortlistedApplication = await applicationModel.countDocuments({
-        company: req.company._id,
-        status: "Shortlisted"
-    });
-
-    res.render("company/companyApplications", {
-        applications,
-        totalApplications,
-        reviewApplications,
-        inProgressApplications,
-        rejectedApplications,
-        shortlistedApplication
-    });
+    } catch (error) {
+        console.error("Company Applications Error:", error);
+        res.status(500).send("Something went wrong");
+    }
 });
 
 // ------------------APPLICATION DETAILS-------
@@ -214,47 +234,63 @@ router.get("/application-resume/:id", isCompanyLoggedIn, async (req, res) => {
 });
 //-------------applicants ---------
 
+
 router.get("/companyApplicant", isCompanyLoggedIn, async (req, res) => {
+    try {
+        // Pagination
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = 5;
+        const skip = (page - 1) * limit;
 
-    const applications = await applicationModel
-        .find({ company: req.company._id })
-        .populate("applicant")
-        .populate("job")
-        .sort({ appliedAt: -1 })
+        const filter = { company: req.company._id };
 
-    // Total Applications
-    const totalApplications = await applicationModel.countDocuments({
-        company: req.company._id
-    });
+        // Total Applications
+        const totalApplications = await applicationModel.countDocuments(filter);
 
+        const totalPages = Math.ceil(totalApplications / limit);
 
-    // Under Review
-    const reviewApplications = await applicationModel.countDocuments({
-        company: req.company._id,
-        status: "Under Review"
-    });
+        // Current Page Applications
+        const applications = await applicationModel
+            .find(filter)
+            .populate("applicant")
+            .populate("job")
+            .sort({ appliedAt: -1 })
+            .skip(skip)
+            .limit(limit);
 
+        // Under Review
+        const reviewApplications = await applicationModel.countDocuments({
+            ...filter,
+            status: "Under Review"
+        });
 
-    // In Progress
-    const inProgressApplications = await applicationModel.countDocuments({
-        company: req.company._id,
-        status: { $in: ["Shortlisted", "Selected"] }
-    });
+        // In Progress
+        const inProgressApplications = await applicationModel.countDocuments({
+            ...filter,
+            status: { $in: ["Shortlisted", "Selected"] }
+        });
 
+        // Rejected
+        const rejectedApplications = await applicationModel.countDocuments({
+            ...filter,
+            status: "Rejected"
+        });
 
-    // Rejected
-    const rejectedApplications = await applicationModel.countDocuments({
-        company: req.company._id,
-        status: "Rejected"
-    });
+        res.render("company/companyApplicant", {
+            applications,
+            totalApplications,
+            reviewApplications,
+            inProgressApplications,
+            rejectedApplications,
+            currentPage: page,
+            totalPages,
+            limit
+        });
 
-    res.render("company/companyApplicant", {
-        applications,
-        totalApplications,
-        reviewApplications,
-        inProgressApplications,
-        rejectedApplications
-    });
+    } catch (error) {
+        console.error("Company applicants error:", error);
+        res.status(500).send("Something went wrong");
+    }
 });
 
 //--------------------edit profile-------------------------------------
@@ -325,9 +361,36 @@ router.get("/companyJobPosted", isCompanyLoggedIn, (req, res) => {
 })
 
 // -------------post a job----------------
-router.get("/PostJob", isCompanyLoggedIn, (req, res) => {
-    res.render("company/companyPostJob")
-})
+
+router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
+    try {
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = 8;
+        const skip = (page - 1) * limit;
+
+        const filter = { company: req.company._id };
+
+        const totalJobs = await jobModel.countDocuments(filter);
+        const totalPages = Math.ceil(totalJobs / limit);
+
+        const jobs = await jobModel.find(filter)
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        res.render("company/companyJobPosted", {
+            jobs,
+            currentPage: page,
+            totalPages,
+            totalJobs,
+            limit
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Something went wrong");
+    }
+});
 
 router.post("/PostJob", isCompanyLoggedIn, async (req, res) => {
 

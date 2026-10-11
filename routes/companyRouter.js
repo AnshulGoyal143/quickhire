@@ -387,8 +387,8 @@ router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
 
         res.render("company/companyJobPosted", {
             jobs,
-            currentPage,
-            totalPages : page,
+            currentPage : page,
+            totalPages ,
             totalJobs,
             limit
         });

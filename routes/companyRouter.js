@@ -354,14 +354,8 @@ router.get("/company-profile", isCompanyLoggedIn, async (req, res) => {
     res.send(company.companyProfile.data);
 });
 
+
 //--------------POSTED JOBS which are posted by company-----------
-
-router.get("/companyJobPosted", isCompanyLoggedIn, (req, res) => {
-    res.render("company/companyJobPosted");
-})
-
-// -------------post a job----------------
-
 
 
 router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
@@ -407,6 +401,12 @@ router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
     }
 });
 
+// -------------post a job----------------
+
+// GET route: Post Job page open karne ke liye
+router.get("/PostJob", isCompanyLoggedIn, (req, res) => {
+    res.render("company/companyPostJob");
+});
 
 router.post("/PostJob", isCompanyLoggedIn, async (req, res) => {
 

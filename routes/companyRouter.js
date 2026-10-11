@@ -366,7 +366,7 @@ router.get("/companyJobPosted", isCompanyLoggedIn, (req, res) => {
 router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
     try {
         const page = Math.max(1, parseInt(req.query.page) || 1);
-        const limit = 8;
+        const limit = 5;
 
         const filter = { company: req.company._id };
 
@@ -388,7 +388,7 @@ router.get("/companyJobPosted", isCompanyLoggedIn, async (req, res) => {
         res.render("company/companyJobPosted", {
             jobs,
             currentPage,
-            totalPages,
+            totalPages : page,
             totalJobs,
             limit
         });
